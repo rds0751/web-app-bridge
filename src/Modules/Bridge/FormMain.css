@@ -1,3 +1,51 @@
+.alignLeft {
+  text-align: left;
+}
+
+.css-1s2u09g-control {
+  border-radius: 24px !important;
+}
+
+.drop-padding {
+  padding: 40px;
+}
+.amount-box-outer {
+  /* border: 1px solid rgb(139, 7, 7) !important; */
+  border: 1px solid rgb(207, 207, 207);
+  align-items: center;
+  display: flex;
+  padding: 10px;
+  border-radius: 24px;
+  width: 566px;
+  height: 48px;
+}
+.amount-box-inner {
+  border: 1px solid rgb(207, 207, 207);
+  width: 100%;
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: 5px;
+  height: fit-content;
+  outline: none !important;
+  margin-left: 20px;
+  padding-left: 2%;
+}
+.copy-token {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  background-color: #6287d019;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+.copy-link {
+  text-decoration: none;
+  display: inline;
+  width: 20%;
+  margin-left: 2%;
+}
+
 .fl {
   flex: 6;
 }
@@ -6,8 +54,10 @@
 }
 .exchane-img {
   margin-top: 45px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 8px;
+  margin-right: 19px;
+  width: 28px;
+  height: 27px;
 }
 .parent-row {
   display: flex;
@@ -17,11 +67,16 @@
 
 .input-box-1 {
   border: 1px solid rgb(207, 207, 207);
-  width: 100%;
   background-color: white;
   padding: 2.5% 4%;
   box-sizing: border-box;
-  border-radius: 5px;
+  border-radius: 24px;
+  width: 243px;
+  height: 48px;
+}
+.input-box-1 > div {
+  width: 243px;
+  height: 48px;
 }
 .block-chain-container {
   /* border: 1px solid rgb(139, 7, 7) !important; */
@@ -29,9 +84,6 @@
   padding: 0px 10px 3px 1px;
   display: flex;
   border-radius: 5px;
-}
-.block-chain-left {
-  /* width: 20%; */
 }
 .block-chain-right {
   width: 90%;
@@ -41,10 +93,16 @@
   border: 0px;
   padding: 0px;
   margin: 0px;
+  outline: none !important;
+}
+.rm-border-amount {
+  border: 0px;
+  margin: 0px;
 }
 
 .submit-button {
-  width: 100%;
+  width: 566px;
+  height: 48px;
   background-color: #103f9c;
   color: white;
   border-radius: 20px;
@@ -356,4 +414,12 @@
     width: 340px;
     height: 340px;
   }
+}
+.token-select > div {
+  width: 566px;
+  height: 48px;
+}
+.destination > input {
+  width: 566px;
+  height: 48px;
 }

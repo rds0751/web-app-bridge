@@ -1,6 +1,6 @@
 import React from "react";
 import "./Card.css";
-import FormMain from "../FormMain/FormMain";
+import BridgeCard from "./Bridge";
 import Header from "../Common/header"
 import SideBar from "../Common/drawer";
 import Box from '@mui/material/Box';
@@ -12,7 +12,7 @@ function Card() {
       <Header />
       <SideBar />
       <div className="my-card">
-      <FormMain />
+      <BridgeCard />
       </div>
     </Box>
     

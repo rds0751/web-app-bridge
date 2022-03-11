@@ -6,14 +6,14 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Link } from "react-router-dom";
+import "./index.css";
 
 const drawerWidth = 240;
 export default function SideBar() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }} >
       <Drawer
         sx={{
           width: drawerWidth,
@@ -25,52 +25,53 @@ export default function SideBar() {
         }}
         variant="permanent"
         anchor="left"
+        className="drawer-content"
       >
         <Toolbar>
-          <h4 STYLE={{ fontWeight: "bold" }}>SMARTSWAP</h4>
+          <h4 style={{ fontWeight: "bold",color:"white" }}>SMARTSWAP</h4>
         </Toolbar>
 
         <List>
-          <ListItem button component={Link} to="/about">
+          <ListItem className="list-item" button component={Link} to="/about">
             <ListItemIcon>
-              <MailIcon />
+              <img src="/images/noun_Home_3874019.svg"></img>
             </ListItemIcon>
-            <ListItemText>About</ListItemText>
+            <ListItemText className="list-text">About</ListItemText>
           </ListItem>
 
-          <ListItem button component={Link} to="/bridge">
+          <ListItem className="list-item" button component={Link} to="/bridge">
             <ListItemIcon>
-              <MailIcon />
+            <img src=""></img>
             </ListItemIcon>
-            <ListItemText>Bridge</ListItemText>
+            <ListItemText className="list-text">Bridge</ListItemText>
           </ListItem>
 
-          <ListItem button component={Link} to="/swap">
+          <ListItem className="list-item" button component={Link} to="/swap">
             <ListItemIcon>
-              <MailIcon />
+            <img src="/images/swap2.svg"></img>
             </ListItemIcon>
-            <ListItemText>Swap</ListItemText>
+            <ListItemText className="list-text">Swap</ListItemText>
           </ListItem>
 
-          <ListItem button component={Link} to="/pool">
+          <ListItem className="list-item" button component={Link} to="/pool">
             <ListItemIcon>
-              <MailIcon />
+            <img src="/images/earn2.svg"></img>
             </ListItemIcon>
-            <ListItemText>Pool</ListItemText>
+            <ListItemText className="list-text">Pool</ListItemText>
           </ListItem>
 
-          <ListItem button component={Link} to="/market">
+          <ListItem className="list-item" button component={Link} to="/market">
             <ListItemIcon>
-              <MailIcon />
+            <img src="/images/chart.svg"></img>
             </ListItemIcon>
-            <ListItemText>Market</ListItemText>
+            <ListItemText className="list-text">Market</ListItemText>
           </ListItem>
 
-          <ListItem button component={Link} to="/history">
+          <ListItem className="list-item" button component={Link} to="/history">
             <ListItemIcon>
-              <MailIcon />
+            <img src="/images/history (1).svg"></img>
             </ListItemIcon>
-            <ListItemText>History</ListItemText>
+            <ListItemText className="list-text">History</ListItemText>
           </ListItem>
         </List>
       </Drawer>
