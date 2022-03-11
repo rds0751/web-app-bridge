@@ -1,7 +1,11 @@
 import "./App.css";
 import Card from "./Modules/Card/Card";
 import About from "./Modules/About/";
-import Bridge from "./Modules/Bridge"
+import Bridge from "./Modules/Bridge";
+import Swap from "./Modules/Swap";
+import Pool from "./Modules/Pool"
+import Market from "./Modules/Market"
+import History from "./Modules/History"
 import {
   BrowserRouter as Router,
   Routes,
@@ -21,11 +25,12 @@ function App() {
           <Route path="/card" element={<Card />} />
           <Route path="/about" element={<About />} />
           <Route path="/bridge" element={<Bridge />} />
-          {/* <Route path="/about" element={<About />} />
+          <Route path="/swap" element={<Swap />}/>
+          <Route path="/pool" element={<Pool />} />
+          <Route path="/market" element={<Market />} />
           <Route path="/about" element={<About />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/about" element={<About />} /> */}
+          <Route path="/history" element={<History />} />
+          {/* <Route path="/about" element={<About />} /> */}
         </Routes>
       </Router>
     </div>

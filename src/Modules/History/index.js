@@ -2,15 +2,15 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Header from "../Common/header"
 import SideBar from "../Common/drawer"
-import About from "./About"
+import HistoryCard  from "./History"
 
-const drawerWidth = 240;
-export default function ButtonAppBar() {
+
+export default function Pool() {
   return (
     <Box>
         <Header />
      <SideBar />
-<About />
+     <HistoryCard />
     </Box>
   );
 }
