@@ -20,7 +20,7 @@ import Bridge from "../../contracts/bridge.json"
 import Deploy from "../../contracts/deployer.json";
 
 import { tokenBridge, tokenDeployee, eBridgeAddress, deployee, xBridgeAddress } from '../../common/constant';
-let debridgeId, submissionId, signatures, abc, transactionHash, transactionHashes;
+let debridgeId, submissionId, signatures, abc, transactionHash, transactionHashes ,transaction;
 //Main Function
 function BridgeConfirm() {
   const [show, setShow] = useState(false);
@@ -60,7 +60,8 @@ function BridgeConfirm() {
      * @param account[0] sender address.
      * @param data passing the approve method wih reciever address and amount
      */
-
+     if( location.state.selectedOptionToken.chainId !== 51)
+     {
     alert("Sending the Transaction");
     let transaction = {
       from: accounts[0],
@@ -122,6 +123,34 @@ function BridgeConfirm() {
         }
 
       });
+    }
+    else
+    {
+      alert("Sending the Transaction");
+      let transaction = {
+        from: accounts[0],
+        to: location.state.address, //contractAddress of the concerned token (same in data below)
+        gas: 28000,
+  
+        data: token.methods.transfer(location.state.address, xdc3.utils.toWei(location.state.amount, "ether")).encodeABI()
+        //value given by user should be multiplied by 1000
+      };
+  
+     
+        await window.web3.eth
+          .sendTransaction(transaction)
+          .on("confirmation", function (confirmationNumber, receipt) {
+            if (receipt && confirmationNumber === 1) {
+              console.log("transaction hash ", receipt.transactionHash);
+            }
+          });
+          
+
+
+
+
+
+    }
 
     const requestOptions = {
       method: 'POST',

@@ -1,8 +1,8 @@
 import React from "react";
 import { Box } from "@mui/material";
 import Tabs from "react-bootstrap/Tabs";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { Link  , useLocation} from "react-router-dom";
 import { Tab } from "react-bootstrap";
 import Faq from "react-faq-component";
 import { makeStyles } from "@material-ui/core/styles";
@@ -20,8 +20,10 @@ import xdc3 from "../../utils/xdc3";
 import "./Pool.css";
 import { ContactlessOutlined, NoBackpackSharp } from "@mui/icons-material";
 
+
+
 let results;
-const rows = [];
+const rows = []
 
 const useStyles = makeStyles({
   table: {
@@ -31,48 +33,86 @@ const useStyles = makeStyles({
 
 function HistoryCard() {
   const classes = useStyles();
-  const [data, setData] = useState("");
+  const [data, setData] = useState("")
   const [xdata, x] = useState("");
-  const [setToken, selectToken] = useState("");
-  let transaction;
-  const fetchURL = "http://3.109.251.40";
-  const getData = () => fetch(`${fetchURL}/txns`).then((res) => res.json());
-  useEffect(() => {
-    getData().then((data) => setData(data));
-  }, []);
+  const [setTime, time] = useState("");
+  const [setAmount, selectAmount] = useState("");
+  const [setBlock, selectBlock] = useState("");
+  const [xhash, selectHash] = useState("");
+  const [selectedOption, setSelectedOption] = useState(null);
 
-  for (const x in data) {
-    rows.push({
-      ActionImg: "/images/Add.svg",
-      Action: "Sent to Ropsten",
-      Tokens: setToken,
-      TokensImg: "/images/XDC.svg",
-      TokensTo: "",
-      Hash: x,
-      TokensToImg: "",
-      Time: "2 min ago",
-    });
-  }
+  // handle onChange event of the dropdown
+  const handleChange = (e) => {
+    selectHash(e);
+  };
+  let transaction;
+  let transactionTime;
+  let non;
+  let hashing;
+  let amount;
+  let dateTimeStamp;
+  const fetchURL = "http://3.109.251.40"
+  const getData = () =>
+    fetch(`${fetchURL}/txns`)
+      .then((res) => res.json())
+  useEffect(() => {
+    getData().then((data) => setData(data))
+  }, [])
+
+  // console.log("acfsdtion", data );
+
   //  const index =length.[0, abc];
 
   const History = async () => {
-    const Web3 = require("web3");
-    const web3 = new Web3(
-      new Web3.providers.HttpProvider("https://rpc.apothem.network/")
-    );
+
+    const Web3 = require('web3')
+    const web3 = new Web3(new Web3.providers.HttpProvider('https://rpc.apothem.network/'))
 
     // Get address
-    const accounts = await web3.eth.getAccounts();
-    console.log(accounts);
+    const accounts = await web3.eth.getAccounts()
+    console.log(accounts)
 
-    for (var i = 0; i <= 200; i++) {
-      console.log("action", data.data[i]);
-      transaction = await web3.eth.getTransaction(data.data[i]);
-      selectToken(web3.utils.fromWei(transaction.value, "ether"));
+
+
+    // for (var i = 0; i < data.data.length; i++) {
+      for (var i = 0; i < 10; i++) {
+      hashing = data.data[i];
+      console.log("mond", hashing);
+      transaction = await web3.eth.getTransaction(hashing);
+      non = await web3.eth.getBlock(hashing);
+      
+      dateTimeStamp = await web3.eth.getTransaction(hashing).blockNumber;
+      //timestamp
+      
+      amount = await web3.utils.fromWei(transaction.value, 'ether');
+      
+
+      selectHash(hashing);
+      console.log("hdhdhdjd", transaction);
+      // console.log("okay", dateTimeStamp);
       x(transaction);
+      selectAmount(amount);
+      rows.push(
+        {
+          "ActionImg": "/images/Add.svg",
+          "Action": "Sent to Ropsten",
+          "Tokens": amount,
+          "TokensImg": "/images/XDC.svg",
+          "TokensTo": "",
+          "Hash": hashing,
+          "TokensToImg": "",
+          "Time": setTime
+        }
+      )
+
     }
-    console.log("accounsdhbsgdv", setToken);
+
+
   };
+
+
+
+
 
   return (
     <Box className="pool-box">
@@ -111,9 +151,9 @@ function HistoryCard() {
                     <TableCell>
                       <img src={row.ActionImg} />
                       &nbsp;&nbsp;
-                      <Link className="link" to="/HistoryDetails">
+                     
                         {row.Action}
-                      </Link>
+                      
                     </TableCell>
                     <TableCell>
                       <img src={row.TokensImg} />
@@ -121,7 +161,9 @@ function HistoryCard() {
                       <img src={row.TokensToImg} />
                       &nbsp;&nbsp;{row.TokensTo}
                     </TableCell>
-                    <TableCell>{row.Hash}</TableCell>
+                     <Link  className="link" to="/HistoryDetails" state ={{xhash , setAmount , selectedOption }} >
+                    <TableCell  onChange={handleChange} value={selectedOption} >{row.Hash}</TableCell>
+                    </Link>
                     <TableCell>{row.Time}</TableCell>
                     {/* <TableCell>{row.apr}</TableCell> */}
                   </TableRow>
@@ -158,7 +200,8 @@ function HistoryCard() {
                       <img src={row.TokensToImg} />
                       &nbsp;&nbsp;{row.TokensTo}
                     </TableCell>
-                    <TableCell>{row.Hash}</TableCell>
+                  
+                    <TableCell onChange={handleChange} >{row.Hash}</TableCell>
                     <TableCell>{row.Time}</TableCell>
                     {/* <TableCell>{row.apr}</TableCell> */}
                   </TableRow>
