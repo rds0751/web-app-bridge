@@ -3,12 +3,12 @@ import Card from "./Modules/Card/Card";
 import About from "./Modules/About/";
 import Bridge from "./Modules/Bridge";
 import Swap from "./Modules/Swap";
-import Pool from "./Modules/Pool"
-import Market from "./Modules/Market"
-import History from "./Modules/History"
-import PoolDetail from "./Modules/PoolDetail"
+import Pool from "./Modules/Pool";
+import Market from "./Modules/Market";
+import History from "./Modules/History";
+import PoolDetail from "./Modules/PoolDetail";
 import AddLiquidity from "./Modules/AddLiquidity";
-import BridgeConfirm from "./Modules/Bridge/BridgeConfirm"
+import BridgeConfirm from "./Modules/Bridge/BridgeConfirm";
 import {
   BrowserRouter as Router,
   Routes,
@@ -16,7 +16,7 @@ import {
   Link,
   Switch,
 } from "react-router-dom";
-
+import HistoryDetails from "./Modules/HistoryDetails";
 
 function App() {
   return (
@@ -29,14 +29,18 @@ function App() {
           <Route path="/card" element={<Card />} />
           <Route path="/about" element={<About />} />
           <Route path="/bridge" element={<Bridge />} />
-          <Route path="/swap" element={<Swap />}/>
+          <Route path="/swap" element={<Swap />} />
           <Route path="/pool" element={<Pool />} />
           <Route path="/market" element={<Market />} />
           <Route path="/about" element={<About />} />
           <Route path="/history" element={<History />} />
           <Route path="/pool-detail" element={<PoolDetail />} />
           <Route path="/add-liquidity" element={<AddLiquidity />} />
-          <Route path="/bridge-confirm-transaction" element={<BridgeConfirm />} />
+          <Route
+            path="/bridge-confirm-transaction"
+            element={<BridgeConfirm />}
+          />
+          <Route path="/HistoryDetails" element={<HistoryDetails />} />
         </Routes>
       </Router>
     </div>
