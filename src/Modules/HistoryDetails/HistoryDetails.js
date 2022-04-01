@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Box } from "@mui/material";
 import copy from "../../assets/copy.png";
+import { width } from "@mui/system";
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -32,7 +33,7 @@ export default function HistoryDetailsCard() {
                 key={row.name}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell scope="row">
+                <TableCell style={{ width: "35%" }} scope="row">
                   <img src={copy} />
                   {row.name}
                 </TableCell>
