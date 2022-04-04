@@ -9,7 +9,7 @@ import { Divider } from "@mui/material";
 import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import Progress from "./Progress";
-import { Link , useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { PregnantWomanSharp } from "@material-ui/icons";
 import xdc3 from "../../utils/xdc3";
 import Web3 from "web3";
@@ -20,7 +20,7 @@ import Bridge from "../../contracts/bridge.json"
 import Deploy from "../../contracts/deployer.json";
 
 import { tokenBridge, tokenDeployee, eBridgeAddress, deployee, xBridgeAddress } from '../../common/constant';
-let debridgeId, submissionId, signatures, abc, transactionHash, transactionHashes ,transaction;
+let debridgeId, submissionId, signatures, abc, transactionHash, transactionHashes, transaction;
 //Main Function
 function BridgeConfirm() {
   const [show, setShow] = useState(false);
@@ -50,7 +50,7 @@ function BridgeConfirm() {
     //creating a object using getAccounts
     const accounts = await xdc3.eth.getAccounts();
     console.log("accounts", accounts[0]);
-    console.log(" Destination",'3');
+    console.log(" Destination", '3');
     console.log("", location.state.selectedOptionToken.address);
 
     /**
@@ -60,39 +60,38 @@ function BridgeConfirm() {
      * @param account[0] sender address.
      * @param data passing the approve method wih reciever address and amount
      */
-     if( location.state.selectedOptionToken.chainId !== 51)
-     {
-    alert("Sending the Transaction");
-    let transaction = {
-      from: accounts[0],
-      to: location.state.address, //contractAddress of the concerned token (same in data below)
-      gas: 28000,
+   
+      alert("Sending the Transaction");
+      let transaction = {
+        from: accounts[0],
+        to: location.state.address, //contractAddress of the concerned token (same in data below)
+        gas: 28000,
 
-      data: token.methods.approve(location.state.address, xdc3.utils.toWei(location.state.amount, "ether")).encodeABI()
-      //value given by user should be multiplied by 1000
-    };
+        data: token.methods.approve(location.state.address, xdc3.utils.toWei(location.state.amount, "ether")).encodeABI()
+        //value given by user should be multiplied by 1000
+      };
 
-    if (51=== 51) {
-      await window.web3.eth
-        .sendTransaction(transaction)
-        .on("confirmation", function (confirmationNumber, receipt) {
-          if (receipt && confirmationNumber === 1) {
-            console.log("transaction hash ", receipt.transactionHash);
-          }
-        });
-    }
-    else {
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
-      window.web3 = new Web3(window.ethereum);
-      const web3 = new Web3(window.ethereum);
-      await window.web3.eth
-        .sendTransaction(transaction)
-        .on("confirmation", function (confirmationNumber, receipt) {
-          if (receipt && confirmationNumber === 1) {
-            console.log("transaction hash ", receipt.transactionHash);
-          }
-        });
-    }
+      if (51 === 51) {
+        await window.web3.eth
+          .sendTransaction(transaction)
+          .on("confirmation", function (confirmationNumber, receipt) {
+            if (receipt && confirmationNumber === 1) {
+              console.log("transaction hash ", receipt.transactionHash);
+            }
+          });
+      }
+      else {
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
+        window.web3 = new Web3(window.ethereum);
+        const web3 = new Web3(window.ethereum);
+        await window.web3.eth
+          .sendTransaction(transaction)
+          .on("confirmation", function (confirmationNumber, receipt) {
+            if (receipt && confirmationNumber === 1) {
+              console.log("transaction hash ", receipt.transactionHash);
+            }
+          });
+      }
 
     await console.log("accounts", accounts[0]);
 
@@ -106,7 +105,7 @@ function BridgeConfirm() {
       data: xbridge.methods.send(
         location.state.selectedOptionToken.address,//address _tokenAddress,
         xdc3.utils.toWei(location.state.amount, "ether"), // token _amount
-       '3',// _chainIdTo
+        '3',// _chainIdTo
         location.state.address, //_receiver
         "0x", // _permit
         false, //_useAssetFee
@@ -120,37 +119,11 @@ function BridgeConfirm() {
       .on("confirmation", function (confirmationNumber, result) {
         if (result && confirmationNumber === 1) {
           transactionHash = result.transactionHash;
+          console.log("transactinsnsns" , transactionHash);
         }
 
       });
-    }
-    else
-    {
-      alert("Sending the Transaction");
-      let transaction = {
-        from: accounts[0],
-        to: location.state.address, //contractAddress of the concerned token (same in data below)
-        gas: 28000,
-  
-        data: token.methods.transfer(location.state.address, xdc3.utils.toWei(location.state.amount, "ether")).encodeABI()
-        //value given by user should be multiplied by 1000
-      };
-  
-     
-        await window.web3.eth
-          .sendTransaction(transaction)
-          .on("confirmation", function (confirmationNumber, receipt) {
-            if (receipt && confirmationNumber === 1) {
-              console.log("transaction hash ", receipt.transactionHash);
-            }
-          });
-          
 
-
-
-
-
-    }
 
     const requestOptions = {
       method: 'POST',
@@ -212,7 +185,7 @@ function BridgeConfirm() {
     //fetching the address of the sender through metamask
 
     console.log("", accounts);
-    console.log(" Destination",'3');
+    console.log(" Destination", '3');
     const isSubmissionUsed = await ebridge.methods.isSubmissionUsed(submissionId).call();
     const debridge_id = await ebridge.methods.getDebridgeId(location.state.selectedOptionToken.chainId, tokenBridge).call();
     alert("GetDebridgeId successfully fetched");
@@ -264,8 +237,8 @@ function BridgeConfirm() {
         .sendTransaction(transaction)
         .on("confirmation", function (confirmationNumber, receipt) {
           if (receipt && confirmationNumber === 1) {
-            transactionHashes = receipt.transactionHash;
-            console.log("Transaction", transactionHashes)
+            transactionHash = receipt.transactionHash;
+            console.log("Transaction", transactionHash)
           }
         });
     }
@@ -277,8 +250,8 @@ function BridgeConfirm() {
         .sendTransaction(transaction)
         .on("confirmation", function (confirmationNumber, receipt) {
           if (receipt && confirmationNumber === 1) {
-            transactionHashes = receipt.transactionHashes;
-            console.log("Transaction", transactionHashes);
+            transactionHash = receipt.transactionHash;
+            console.log("Transaction", transactionHash);
           }
         });
     }
@@ -286,8 +259,8 @@ function BridgeConfirm() {
 
     console.log("", submissionId);
     alert("Successfully Recieved the Token");
-    setHasher(transactionHashes);
-    console.log("Transaction", transactionHashes);
+    setHasher(transactionHash);
+    console.log("Transaction", transactionHash);
 
 
     /**
@@ -322,9 +295,9 @@ function BridgeConfirm() {
             <p className="review">Review Transaction</p>
             <Divider className="mb-23" />
             <div className="image-flex">
-              <img className="token-img" src="/images/XDC.svg" alt="sachin" ></img>
+              <img className="token-img" src="/images/XDC.svg" ></img>
               <img src="/images/Arrow.svg" alt="sachin"></img>
-              <img className="token-img" src="/images/ethereum.svg" alt="sachin"></img>
+              <img className="token-img" src="/images/ethereum.svg" ></img>
             </div>
             <div className="asset-flex">
               <p>Asset</p>
@@ -348,9 +321,12 @@ function BridgeConfirm() {
             </div>
             <Divider className="mb-23" />
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <Link  to= "/bridge" > <button className="cancel-button">Cancel</button> </Link> 
+              <Link to="/bridge" > <button className="cancel-button">Cancel</button> </Link>
               <button className="confirm-button" onClick={OnSubmit}>Confirm</button>
+                
             </div>
+            <center> <a href={'https://explorer.apothem.network/txs/' + hash} target='_blank' style={{ color: "black", fontSize: "9px" }}> {hash} </a></center>
+        <center>  <a href={'https://ropsten.etherscan.io/tx/' + hasher} target='_blank' style={{ color: "black", fontSize: "9px" }}> {hasher} </a> </center>
           </div>
 
         </div>

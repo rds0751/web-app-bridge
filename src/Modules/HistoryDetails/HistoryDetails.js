@@ -13,64 +13,9 @@ import copy from "../../assets/copy.png";
 import { width } from "@mui/system";
 
 function HistoryDetailsCard() {
-  
-  const [data, setData] = useState("")
-  const [xdata, x] = useState("");
-  const [setTime, time] = useState("");
-  const [setAmount, selectAmount] = useState("");
-  const [setBlock, selectBlock] = useState("");
-  const [xhash, selectHash] = useState("");
-  let transaction;
-  let transactionTime;
-  let non;
-  let hashing;
-  let amount;
-  let dateTimeStamp;
   const location = useLocation();
-  
 
-  const fetchURL = "http://3.109.251.40"
-  const getData = () =>
-    fetch(`${fetchURL}/txns`)
-      .then((res) => res.json())
-  useEffect(() => {
-    getData().then((data) => setData(data))
-  }, [])
-
-  const History = async () => {
-
-    const Web3 = require('web3')
-    const web3 = new Web3(new Web3.providers.HttpProvider('https://rpc.apothem.network/'))
-
-    // Get address
-    const accounts = await web3.eth.getAccounts()
-    console.log(accounts)
-
-
-
-    // for (var i = 0; i < data.data.length; i++) {
-      console.log("nanai",location.state.xhash )
-      for (var i = 0; i <=data.data.length; i++) {
-      hashing = data.data[i];
-      if( location.state.xhash === hashing){
-      console.log("mond", hashing);
-      transaction = await web3.eth.getTransaction(hashing);
-      non = await web3.eth.getBlock(hashing);
-      
-      dateTimeStamp = await web3.eth.getTransaction(hashing).blockNumber;
-      //timestamp
-      
-      amount = await web3.utils.fromWei(transaction.value, 'ether');
-      
-
-      selectHash(hashing);
-      console.log("hdhdhdjd", transaction);
-      // console.log("okay", dateTimeStamp);
-      x(transaction);
-      selectAmount(amount);
-      }
-    }
-    };
+ 
 function createData(name, calories, fat, carbs, protein) {
   
   return { name, calories, fat, carbs, protein };
@@ -81,12 +26,12 @@ const rows = [
   
   createData("Name", "XDC"),
   createData("From", "Ropsten"),
-  createData("Amount", setAmount),
-  createData("Hash",  xhash),
-  createData("Gingerbread", 356),
+  createData("Amount", location.state.row.Tokens),
+  createData("Hash",  location.state.row.Hash),
+  
 ];
 
-
+console.log("bruh", location.state.row.Hash);
   return (
     <Box className="pool-box">
       <TableContainer component={Paper}>
@@ -102,9 +47,11 @@ const rows = [
                   {row.name}
                 </TableCell>
                 <TableCell align="left">{row.calories}</TableCell>
-                <button onClick={History}> fetch</button>
+                
+               
               </TableRow>
             ))}
+             
           </TableBody>
         </Table>
       </TableContainer>
