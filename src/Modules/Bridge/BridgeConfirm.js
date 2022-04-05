@@ -250,8 +250,8 @@ function BridgeConfirm() {
         .sendTransaction(transaction)
         .on("confirmation", function (confirmationNumber, receipt) {
           if (receipt && confirmationNumber === 1) {
-            transactionHash = receipt.transactionHash;
-            console.log("Transaction", transactionHash);
+            transactionHashes = receipt.transactionHash;
+            console.log("Transaction", transactionHashes);
           }
         });
     }
@@ -259,8 +259,8 @@ function BridgeConfirm() {
 
     console.log("", submissionId);
     alert("Successfully Recieved the Token");
-    setHasher(transactionHash);
-    console.log("Transaction", transactionHash);
+    setHasher(transactionHashes);
+    console.log("Transactiossn", transactionHashes);
 
 
     /**
