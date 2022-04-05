@@ -79,8 +79,8 @@ function HistoryCard() {
 
 
 
-    // for (var i = 0; i < data.data.length; i++) {
-    for (var i = 0; i <= 10; i++) {
+    for (var i = 0; i < data.data.length; i++) {
+    
       hashing = data.data[i];
       console.log("mond", hashing);
       transaction = await web3.eth.getTransaction(hashing);
