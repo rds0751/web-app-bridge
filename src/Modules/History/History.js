@@ -1,4 +1,6 @@
 import React from "react";
+import moment from 'moment';
+
 import { Box } from "@mui/material";
 import Tabs from "react-bootstrap/Tabs";
 import { useState, useEffect } from 'react';
@@ -71,7 +73,7 @@ function HistoryCard() {
   const History = async () => {
 
     const Web3 = require('web3')
-    const web3 = new Web3(new Web3.providers.HttpProvider('https://rpc.apothem.network/'))
+    const web3 = new Web3(new Web3.providers.HttpProvider('https://apothemxdcpayrpc.blocksscan.io/'))
 
     // Get address
     const accounts = await web3.eth.getAccounts()
@@ -79,25 +81,32 @@ function HistoryCard() {
 
 
 
-    for (var i = 0; i < data.data.length; i++) {
+    for (var i = 0; i <=data.data.length; i++) {
     
       hashing = data.data[i];
       console.log("mond", hashing);
+      
+      
+     
+
       transaction = await web3.eth.getTransaction(hashing);
-      non = await web3.eth.getBlock(hashing);
-
-      dateTimeStamp = await web3.eth.getTransaction(hashing).blockNumber;
       //timestamp
-
+       non = await web3.eth.getBlock(transaction['blockNumber']);
       amount = await web3.utils.fromWei(transaction.value, 'ether');
-
+      dateTimeStamp = non['timestamp'];
+      // transactionTime = new Date(dateTimeStamp);
+      transactionTime = moment(dateTimeStamp).fromNow();
+      var time =  
 
       selectHash(hashing);
       setSelectedOption(hashing)
       console.log("hdhdhdjd", transaction);
-      // console.log("okay", dateTimeStamp);
+      console.log("okay", );
+      console.log("tran",transaction);
+      console.log("kiki",transactionTime);
       x(transaction);
       selectAmount(amount);
+      
       rows.push(
         {
           "ActionImg": " /images/XDC.svg",
@@ -107,7 +116,7 @@ function HistoryCard() {
           "TokensTo": "",
           "Hash": hashing,
           "TokensToImg": "",
-          "Time": setTime
+          "Time": transactionTime
         }
       )
 
@@ -146,7 +155,7 @@ function HistoryCard() {
                   <TableCell>Action</TableCell>
                   <TableCell>Tokens</TableCell>
                   <TableCell>Hash</TableCell>
-                  {/* <TableCell>Time</TableCell> */}
+                  <TableCell>Time</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

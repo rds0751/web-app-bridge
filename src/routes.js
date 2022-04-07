@@ -4,6 +4,7 @@ import About from "./Modules/About/";
 import Bridge from "./Modules/Bridge";
 import Swap from "./Modules/Swap";
 import Pool from "./Modules/Pool";
+import Transaction from "./Modules/Bridge/Transaction";
 import Market from "./Modules/Market";
 import History from "./Modules/History";
 import PoolDetail from "./Modules/PoolDetail";
@@ -32,6 +33,7 @@ function App() {
           <Route path="/swap" element={<Swap />} />
           <Route path="/pool" element={<Pool />} />
           <Route path="/market" element={<Market />} />
+          <Route path="/transaction" element={<Transaction />} />
           <Route path="/about" element={<About />} />
           <Route path="/history" element={<History />} />
           <Route path="/pool-detail" element={<PoolDetail />} />

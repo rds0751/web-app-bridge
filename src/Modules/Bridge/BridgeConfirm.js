@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import { Divider } from "@mui/material";
 import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import Progress from "./Progress";
+import ProgressBar from "./Progress1";
 import { Link, useLocation } from "react-router-dom";
 import { PregnantWomanSharp } from "@material-ui/icons";
 import xdc3 from "../../utils/xdc3";
@@ -31,8 +31,8 @@ function BridgeConfirm() {
   const handleShow = () => setShow(true);
   const location = useLocation();
 
-  const OnSubmit = async (event) => {
-    event.preventDefault();
+  const OnSubmit = async () => {
+    // event.preventDefault();
     let account
     //connecting to the xdc testnetwork using chain_id
     await window.web3.eth.getAccounts((err, accounts) => {
@@ -284,6 +284,8 @@ function BridgeConfirm() {
     }
 
   };
+
+  
   return (
     <>
       <Box>
@@ -322,7 +324,7 @@ function BridgeConfirm() {
             <Divider className="mb-23" />
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <Link to="/bridge" > <button className="cancel-button">Cancel</button> </Link>
-              <button className="confirm-button" onClick={OnSubmit}>Confirm</button>
+              <Link to="/transaction" >   <button className="confirm-button" >Confirm</button></Link>
                 
             </div>
             <center> <a href={'https://explorer.apothem.network/txs/' + hash} target='_blank' style={{ color: "black", fontSize: "9px" }}> {hash} </a></center>
@@ -333,7 +335,7 @@ function BridgeConfirm() {
       </Box>
       <Modal show={show} animation={false}>
         <Modal.Header >
-          <Progress />
+          <ProgressBar />
         </Modal.Header>
         <Modal.Body></Modal.Body>
         <div className="done">
