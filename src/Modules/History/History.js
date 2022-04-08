@@ -81,7 +81,7 @@ function HistoryCard() {
 
 
 
-    for (var i = 0; i <=data.data.length; i++) {
+    for (var i = 0; i <=60; i++) {
     
       hashing = data.data[i];
       console.log("mond", hashing);
@@ -127,7 +127,11 @@ function HistoryCard() {
 
 
 
+ 
 
+  useEffect(() => {History();}, [])
+  
+  
   
 
   return (
@@ -136,7 +140,7 @@ function HistoryCard() {
         <p>History</p>
       </div>
       <div className="filter-Export">
-        <button onClick={History} className="filter-button mr12">
+        <button  className="filter-button mr12">
           Filter
         </button>
         <button className="filter-button">Export</button>

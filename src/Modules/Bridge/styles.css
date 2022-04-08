@@ -5,24 +5,25 @@
   }
   .indexedStep {
     color: white;
-    width: 20px;
-    height: 20px;
+    width: 35px;
+    height: 35px;
     font-size: 12px;
-    background-color: rgba(211, 211, 211, 0.8);
+    background-color: green;
     border-radius: 50%;
+    border-color: blue;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
   .indexedStep.accomplished {
-    background-color: rgba(0, 116, 217, 1);
+    background-color: green;
   }
   
   .test {
     position: absolute;
-    margin-top: 20px;
-    color: grey;
+    margin-top: 60px;
+    color: black;
     white-space: nowrap;
   }
   

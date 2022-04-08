@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Header from "../Common/header"
+import { Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import Box from '@mui/material/Box';
 import SideBar from "../Common/drawer";
 import "./styles.css";
@@ -298,67 +300,23 @@ export default function App() {
     <Header />
     <SideBar />
     <div className="App">
-    <Box>
-      <ProgressBar percent={progress}>
-        <Step>
-          {({ accomplished, index }) => (
-            <>
-              <div
-                className={`indexedStep ${
-                  accomplished ? "accomplished" : null
-                }`}
-              >
-                {index + 1}
-              </div>
-              <div className={"test"}>Dispatched</div>
-            </>
-          )}
-        </Step>
-        <Step>
-          {({ accomplished, index }) => (
-            <>
-              <div
-                className={`indexedStep ${
-                  accomplished ? "accomplished" : null
-                }`}
-              >
-                {index + 1}
-              </div>
-              <div className={"test"}>Pick Up</div>
-            </>
-          )}
-        </Step>
-        <Step>
-          {({ accomplished, index }) => (
-            <>
-              <div
-                className={`indexedStep ${
-                  accomplished ? "accomplished" : null
-                }`}
-              >
-                {index + 1}
-              </div>
-              <div className={"test"}>Delivery</div>
-            </>
-          )}
-        </Step>
-        <Step>
-          {({ accomplished, index }) => (
-            <>
-              <div
-                className={`indexedStep ${
-                  accomplished ? "accomplished" : null
-                }`}
-              >
-                {index + 1}
-              </div>
-              <div className={"test"}>Home</div>
-            </>
-          )}
-        </Step>
-      </ProgressBar>
-      </Box>
+        <h1> Hi</h1>
+    <Modal show={show} animation={false}>
+        <Modal.Header >
+      
+        </Modal.Header>
+        <Modal.Body></Modal.Body>
+        <div className="done">
+          <Button className="done-button" >
+            Done
+          </Button>
+        </div>
+
+
+
+      </Modal>
     </div>
+    
     </>
   );
   
