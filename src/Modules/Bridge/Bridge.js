@@ -32,7 +32,7 @@ function BridgeCard() {
   const data = [
     {
       value: 3,
-      text: "Ropsten",
+      text: "Ethereum",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +92,7 @@ function BridgeCard() {
     },
     {
       value: 3,
-      text: "Ropsten",
+      text: "Ethereum",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"

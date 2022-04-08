@@ -18,9 +18,13 @@ function HistoryDetailsCard() {
  
 function createData(name, calories, fat, carbs, protein) {
   
+
   return { name, calories, fat, carbs, protein };
 
+
 }
+
+
 
 const rows = [
   
@@ -28,6 +32,7 @@ const rows = [
   createData("From", "Ropsten"),
   createData("Amount", location.state.row.Tokens),
   createData("Hash",  location.state.row.Hash),
+  createData("Time",  location.state.selectedTime),
   
 ];
 

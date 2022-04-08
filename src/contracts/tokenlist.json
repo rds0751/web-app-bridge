@@ -91,8 +91,8 @@
         ]
       },
       {
-        "chainId": 50,
-        "address": "0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "chainId": 51,
+        "address": "0xaC8Bee1381894a2fe7336a1A2e35c90C81B1EA61",
         "symbol": "WXDC",
         "name": "Wrapped XDC",
         "decimals": 10,

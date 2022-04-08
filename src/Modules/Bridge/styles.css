@@ -1,24 +1,32 @@
 .App {
     font-family: sans-serif;
     text-align: center;
+ 
+    /* height: 30%; */
     padding: 30px;
   }
   .indexedStep {
-    color: white;
-    width: 35px;
-    height: 35px;
-    font-size: 12px;
-    background-color: green;
-    border-radius: 50%;
-    border-color: blue;
+    color: #2358E5;
+    top: 68px;
+    left: 1002px;
+    width: 32px;
+    height: 32px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 1px !important;
+    border-color  : #2358E5 !important;
+    border-width: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
   .indexedStep.accomplished {
-    background-color: green;
+    
+    /* background-color: #20AA15; */
+    
   }
+
+
   
   .test {
     position: absolute;
