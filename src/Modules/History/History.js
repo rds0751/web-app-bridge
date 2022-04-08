@@ -44,6 +44,7 @@ function HistoryCard() {
   const [xhash, selectHash] = useState("");
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedClickHash, setSelectedClickHash] = useState(null);
+  const [selectedTime , setSelectedTime] = useState("");
 
   // handle onChange event of the dropdown
   const handleChange = (e) => {
@@ -51,6 +52,7 @@ function HistoryCard() {
   };
   let transaction;
   let transactionTime;
+  let transactionTimes;
   let non;
   let hashing;
   let amount;
@@ -81,7 +83,7 @@ function HistoryCard() {
 
 
 
-    for (var i = 0; i <=60; i++) {
+    for (var i = 0; i <=data.data.length; i++) {
     
       hashing = data.data[i];
       console.log("mond", hashing);
@@ -92,10 +94,14 @@ function HistoryCard() {
       transaction = await web3.eth.getTransaction(hashing);
       //timestamp
        non = await web3.eth.getBlock(transaction['blockNumber']);
+       if(web3.utils.fromWei(transaction.value, 'ether'))
       amount = await web3.utils.fromWei(transaction.value, 'ether');
       dateTimeStamp = non['timestamp'];
       // transactionTime = new Date(dateTimeStamp);
-      transactionTime = moment(dateTimeStamp).fromNow();
+      const transactionTime = moment(dateTimeStamp*1000).fromNow();
+      transactionTimes =  new Date(dateTimeStamp *1000).toLocaleString();
+      setSelectedTime(transactionTimes)
+      console.log("time",dateTimeStamp)
       var time =  
 
       selectHash(hashing);
@@ -129,7 +135,7 @@ function HistoryCard() {
 
  
 
-  useEffect(() => {History();}, [])
+  // useEffect(() => {History();}, [])
   
   
   
@@ -143,7 +149,7 @@ function HistoryCard() {
         <button  className="filter-button mr12">
           Filter
         </button>
-        <button className="filter-button">Export</button>
+        <button  onClick={History} className="filter-button">Export</button>
       </div>
       <Tabs
         defaultActiveKey="Top Tokens"
@@ -184,7 +190,7 @@ function HistoryCard() {
                       &nbsp;&nbsp;{row.TokensTo}
                     </TableCell>
                     
-                    <Link className="link" to="/HistoryDetails" state={{ xhash, setAmount,  row}} >
+                    <Link className="link" to="/HistoryDetails" state={{ xhash, setAmount,  row ,selectedTime}} >
                       <TableCell onClick={ ()=> setSelectedClickHash (row.Hash)
                       } onChange={handleChange} value={selectedOption}  >{row.Hash}</TableCell>
                     </Link>

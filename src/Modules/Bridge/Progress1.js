@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles.css";
+import Toast from 'react-native-simple-toast';
 import { ProgressBar, Step } from "react-step-progress-bar";
 import "react-step-progress-bar/styles.css";
 import xdc3 from "../../utils/xdc3";
@@ -10,26 +11,27 @@ import xbridge from "../../utils/xbridge";
 import tokenList from '../../contracts/tokenlist.json'
 import Bridge from "../../contracts/bridge.json"
 import Deploy from "../../contracts/deployer.json";
+import DeBridgeGateJson from "../../contracts/Gate.json";
 import "react-step-progress/dist/index.css";
 import { tokenBridge, tokenDeployee, eBridgeAddress, deployee, xBridgeAddress } from '../../common/constant';
-let debridgeId, submissionId, signatures, abc, transactionHash, transactionHashes,bcd,cde, transaction;
+let debridgeId, submissionId, signatures, abc, transactionHash,tx, transactionHashes, bcd, cde, transaction;
 
 export default function App() {
-    const [show, setShow] = useState(false);
-    const [hash, setHash] = useState("");
-    const [hasher, setHasher] = useState("");
-    const [chainTo, setChainTo] = useState("");
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    const [firstStatus , setFirstStatus] = useState("");
-    const [SecoundStatus , setSecoundStatus] = useState("");
-    const [ThirdStatus , setThirdStatus] = useState("");
-    const location = useLocation();
+  const [show, setShow] = useState(false);
+  const [hash, setHash] = useState("");
+  const [hasher, setHasher] = useState("");
+  const [chainTo, setChainTo] = useState("");
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [firstStatus, setFirstStatus] = useState("");
+  const [SecoundStatus, setSecoundStatus] = useState("");
+  const [ThirdStatus, setThirdStatus] = useState("");
+  const location = useLocation();
   const [progress, setProgress] = useState(0);
 
   const OnSubmit = async () => {
-    
-    
+
+
     let account
     //connecting to the xdc testnetwork using chain_id
     await window.web3.eth.getAccounts((err, accounts) => {
@@ -42,12 +44,13 @@ export default function App() {
       }
     })
       ;
+   
 
     console.log(" ", location.state.selectedOptionToken.address);
     //creating a object using getAccounts
     const accounts = await xdc3.eth.getAccounts();
     console.log("accounts", accounts[0]);
-     console.log(" Destination", '3');
+    console.log(" Destination", '3');
     console.log("", location.state.selectedOptionToken.address);
 
     /**
@@ -57,8 +60,8 @@ export default function App() {
      * @param account[0] sender address.
      * @param data passing the approve method wih reciever address and amount
      */
-   
-      alert("Sending the Transaction");
+    if (0 == 0) {
+      Toast.show('Sending the Amount.');
       let transaction = {
         from: accounts[0],
         to: location.state.address, //contractAddress of the concerned token (same in data below)
@@ -74,7 +77,7 @@ export default function App() {
           .on("confirmation", function (confirmationNumber, receipt) {
             if (receipt && confirmationNumber === 1) {
               console.log("transaction hash ", receipt.transactionHash);
-              
+
             }
           });
       }
@@ -87,45 +90,81 @@ export default function App() {
           .on("confirmation", function (confirmationNumber, receipt) {
             if (receipt && confirmationNumber === 1) {
               console.log("transaction hash ", receipt.transactionHash);
-              
+
             }
           });
       }
 
-     
-     
+
+
       setProgress(progress + 30)
       await alert("Accepted the Request");
-     
 
-    transaction = {
-      from: accounts[0],
-      to: xBridgeAddress, //contractAddress of the concerned token (same in data below)
-      gas: 150000,
-      value: xdc3.utils.toWei(location.state.amount, "ether"), // token _amount
-      data: xbridge.methods.send(
-        location.state.selectedOptionToken.address,//address _tokenAddress,
-        xdc3.utils.toWei(location.state.amount, "ether"), // token _amount
-        '3',// _chainIdTo
-        location.state.address, //_receiver
-        "0x", // _permit
-        false, //_useAssetFee
-        0, //_referralCode  
-        "0x" //_autoParams
-      ).encodeABI()
-      //value given by user should be multiplied by 1000
-    };
-    await window.web3.eth
+
+      transaction = {
+        from: accounts[0],
+        to: xBridgeAddress, //contractAddress of the concerned token (same in data below)
+        gas: 150000,
+        value: xdc3.utils.toWei(location.state.amount, "ether"), // token _amount
+        data: xbridge.methods.send(
+          location.state.selectedOptionToken.address,//address _tokenAddress,
+          xdc3.utils.toWei(location.state.amount, "ether"), // token _amount
+          '3',// _chainIdTo
+          location.state.address, //_receiver
+          "0x", // _permit
+          false, //_useAssetFee
+          0, //_referralCode  
+          "0x" //_autoParams
+        ).encodeABI()
+        //value given by user should be multiplied by 1000
+      };
+      await window.web3.eth
+        .sendTransaction(transaction)
+        .on("confirmation", function (confirmationNumber, result) {
+          if (result && confirmationNumber === 1) {
+            transactionHash = result.transactionHash;
+            console.log("transactinsnsns", transactionHash);
+
+          }
+
+        });
+    }
+    else {
+      console.log("bajns")
+      
+      transaction =
+      {
+        from: accounts[0],
+        to: location.state.selectedOptionToken.address,
+        gas: 150000,
+        value: xdc3.utils.toWei(location.state.amount, "ether"),
+        data: xbridge.methods.send(
+            '0x0000000000000000000000000000000000000000', //address _tokenAddress,
+            xdc3.utils.toWei(location.state.amount, "ether"), // uint256 _amount,
+            42, //uint256 _chainIdTo,
+            accounts[0], // bytes memory _receiver,
+            "0x", // _permit
+            false, //_useAssetFee
+            0, //_referralCode  
+            "0x" //_autoParams
+          )
+          .encodeABI(),
+      };
+
+      await window.web3.eth
       .sendTransaction(transaction)
-      .on("confirmation", function (confirmationNumber, result) {
-        if (result && confirmationNumber === 1) {
-          transactionHash = result.transactionHash;
-          console.log("transactinsnsns" , transactionHash);
-          
-        }
+        .on("confirmation", function (confirmationNumber, result) {
+          if (result && confirmationNumber === 1) {
+            transactionHash = result.transactionHash;
+            console.log("transactinsnsnssssss", transactionHash);
 
-      });
-      setProgress(progress + 65)
+          }
+
+        });
+
+    }
+    
+    setProgress(progress + 65)
 
     const requestOptions = {
       method: 'POST',
@@ -148,11 +187,11 @@ export default function App() {
       }
     };
 
-    
-   console.log("transaction hash", transactionHash);
-   
-   setSecoundStatus('The')
-   
+
+    console.log("transaction hash", transactionHash);
+
+    setSecoundStatus('The')
+
     alert("Successfully sent the Token");
     console.log(abc);
     debridgeId = abc.debridgeId;
@@ -256,7 +295,7 @@ export default function App() {
           if (receipt && confirmationNumber === 1) {
             transactionHashes = receipt.transactionHash;
             console.log("Transaction", transactionHashes);
-             
+
           }
         });
     }
@@ -265,7 +304,7 @@ export default function App() {
     console.log("", submissionId);
     alert("Successfully Recieved the Token");
     setHasher(transactionHashes);
-   setThirdStatus("Transactiossn", transactionHashes);
+    setThirdStatus("Transactiossn", transactionHashes);
 
 
     /**
@@ -289,21 +328,22 @@ export default function App() {
     }
 
   };
-  useEffect(() => {    OnSubmit();  }, [])
+
+
+  useEffect(() => { OnSubmit(); }, [])
   return (
     <div className="App">
       <ProgressBar percent={progress}>
         <Step>
           {({ accomplished, index }) => (
             <>
-              <div
-                className={`indexedStep ${
-                  accomplished ? "accomplished" : null
-                }`}
+              <div 
+                className={`indexedStep ${accomplished ? "accomplished" : null
+                  }`}
               >
                 {index + 1}
               </div>
-              <div className={"test"}>Dispatched</div>
+              <div className={"test"}>Approve</div>
             </>
           )}
         </Step>
@@ -311,13 +351,25 @@ export default function App() {
           {({ accomplished, index }) => (
             <>
               <div
-                className={`indexedStep ${
-                  accomplished ? "accomplished" : null
-                }`}
+                className={`indexedStep ${accomplished ? "accomplished" : null
+                  }`}
               >
                 {index + 1}
               </div>
-              <div className={"test"}>Pick Up</div>
+              <div className={"test"}>Transfer</div>
+            </>
+          )}
+        </Step>
+        <Step >
+          {({ accomplished, index }) => (
+            <>
+              <div
+                className={`indexedStep ${accomplished ? "accomplished" : null
+                  }`}
+              >
+                { index  + 1}
+              </div>
+              <div className={"test"}>Confirmation</div>
             </>
           )}
         </Step>
@@ -325,27 +377,12 @@ export default function App() {
           {({ accomplished, index }) => (
             <>
               <div
-                className={`indexedStep ${
-                  accomplished ? "accomplished" : null
-                }`}
+                className={`indexedStep ${accomplished ? "accomplished" : null
+                  }`}
               >
                 {index + 1}
               </div>
-              <div className={"test"}>Delivery</div>
-            </>
-          )}
-        </Step>
-        <Step>
-          {({ accomplished, index }) => (
-            <>
-              <div
-                className={`indexedStep ${
-                  accomplished ? "accomplished" : null
-                }`}
-              >
-                {index + 1}
-              </div>
-              <div className={"test"}>Home</div>
+              <div className={"test"}>Recieve</div>
             </>
           )}
         </Step>
@@ -353,6 +390,6 @@ export default function App() {
       {/* <center> <a href={'https://explorer.apothem.network/txs/' + hash} target='_blank' style={{ color: "black", fontSize: "5px" }}> Hi{hash} </a></center>
         <center>  <a href={'https://ropsten.etherscan.io/tx/' + hasher} target='_blank' style={{ color: "black", fontSize: "5px" }}> {hasher} </a> </center> */}
     </div>
-    
+
   );
 }

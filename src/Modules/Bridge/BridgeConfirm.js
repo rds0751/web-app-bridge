@@ -83,8 +83,7 @@ function BridgeConfirm() {
         </Modal.Header>
         <Modal.Body>
             
-        {/* <center> <a href={'https://explorer.apothem.network/txs/' + this.state.hash} target='_blank' style={{ color: "black", fontSize: "9px" }}> {props.hash} </a></center> */}
-        {/* <center>  <a href={'https://ropsten.etherscan.io/tx/' + hasher} target='_blank' style={{ color: "black", fontSize: "9px" }}> {hasher} </a> </center> */}
+    
         </Modal.Body>
         <div className="done">
           <Button className="done-button" >
