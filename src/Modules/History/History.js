@@ -59,7 +59,7 @@ function HistoryCard() {
   let dateTimeStamp;
   let bcd;
   
-  const fetchURL = "http://3.109.251.40"
+  const fetchURL = "https://testapi.xdcbridge.com"
   const getData = () =>
     fetch(`${fetchURL}/txns`)
       .then((res) => res.json())

@@ -220,7 +220,7 @@ export default function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ "id": transactionHash })
       };
-      await fetch('http://3.109.251.40/', requestOptions)
+      await fetch('https://testapi.xdcbridge.com', requestOptions)
         .then(response => response.json())
         .then(data => { abc = data });
       console.log(abc.status)

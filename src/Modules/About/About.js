@@ -120,7 +120,7 @@ export default function About() {
               }}
               className="card-paper"
             >
-              <img src="/images/pool.svg" alt="swap"></img>
+              <img src="/images/Pool.svg" alt="swap"></img>
               <p className="p-heading">POOL</p>
               <p className="p-subheading">Add your token pair to the pool and earn whenever there is a swap</p>
             </Paper>
@@ -136,7 +136,7 @@ export default function About() {
               }}
               className="card-paper"
             >
-              <img src="/images/market.svg" alt="swap"></img>
+              <img src="/images/Market.svg" alt="swap"></img>
               <p className="p-heading">Market</p>
               <p className="p-subheading">Analyse the top performing tokens and pairs</p>
             </Paper>
