@@ -56,11 +56,11 @@ function BridgeConfirm() {
               <p>{location.state.amount}</p>
               {console.log("njnvd", location.state.amount)}
             </div>
-            <Divider className="mb-23" />
-            <div className="asset-flex">
+            {/* <Divider className="mb-23" /> */}
+            {/* <div className="asset-flex">
               <p>Destination</p>
               <p>{location.state.address}</p>
-            </div>
+            </div> */}
             <Divider className="mb-23" />
             <div className="asset-flex">
               <p>You will get</p>
@@ -86,7 +86,7 @@ function BridgeConfirm() {
     
         </Modal.Body>
         <div className="done">
-          <Button className="done-button" >
+          <Button onClick={handleClose} className="done-button" >
             Done
           </Button> 
         </div>

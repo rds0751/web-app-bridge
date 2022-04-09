@@ -80,8 +80,8 @@
         ]
       },
       {
-        "chainId": 50,
-        "address": "0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "chainId": 3,
+        "address": "0x52cdde738d71568f79379fb1d671c4eaef33d638",
         "symbol": "WETH",
         "name": "Wrapped Ether",
         "decimals": 10,

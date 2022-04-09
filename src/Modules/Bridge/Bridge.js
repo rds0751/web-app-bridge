@@ -230,7 +230,7 @@ function BridgeCard() {
           </Link>
         </div>
 
-        <div className="fs-12  c-b pt-3  left-label">Destination Address*</div>
+        {/* <div className="fs-12  c-b pt-3  left-label">Destination Address*</div>
         <div className="destination">
           <input
             type="name"
@@ -239,8 +239,8 @@ function BridgeCard() {
             placeholder="Wallet Address"
             onChange={(e) => setAddress(e.target.value)}
           />
-        </div>
-        <Link  to= "/bridge-confirm-transaction" state = {{amount , address , selectedOptionToken }}  >   <button type="submit" className="submit-button">
+        </div> */}
+        <Link  to= "/bridge-confirm-transaction" state = {{amount , selectedOptionToken }}  >   <button type="submit" className="submit-button">
         Next
         </button>
           </Link>

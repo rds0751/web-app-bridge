@@ -11,7 +11,13 @@ import Button from '@mui/material/Button';
 
 export default function Drawer() {
   return (
-    <AppBar position="static" style={{ background: "#2149B9 0% 0% no-repeat padding-box" }}>
+    <AppBar
+    position="fixed"
+    style={{
+      background: "#2149B9 0% 0% no-repeat padding-box",
+      height: "48px",
+    }}
+  >
       <Toolbar>
 
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
