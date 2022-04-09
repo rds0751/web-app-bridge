@@ -1,7 +1,7 @@
 //Importing the libraries
 import { Box } from "@mui/system";
-import React, { useState } from 'react';
-import { toast } from 'react';
+import React, { useState } from "react";
+import { toast } from "react";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { Button } from "react-bootstrap";
@@ -10,8 +10,7 @@ import "./index.css";
 import web3 from "../../utils/web3";
 import xdc3 from "../../utils/xdc3";
 import Web3 from "web3";
-import { NETWORKS } from "../../common/constant"
-
+import { NETWORKS } from "../../common/constant";
 
 //Main function
 export default function About() {
@@ -20,33 +19,24 @@ export default function About() {
 
   window.web3 = new Web3(window.xdc ? window.xdc : window.ethereum);
   const handleXDCPayWallet = async () => {
-
-
-
-
-
-
     if (window.web3.currentProvider) {
-
-
       if (!window.web3.currentProvider.hasOwnProperty("chainId")) {
         if (!window.xdc) {
           setPopup(2);
 
           alert();
-        }
-        else {
-          const state = window.web3.givenProvider.publicConfigStore ? window.web3.givenProvider.publicConfigStore._state : window.web3.currentProvider.publicConfigStore._state;
+        } else {
+          const state = window.web3.givenProvider.publicConfigStore
+            ? window.web3.givenProvider.publicConfigStore._state
+            : window.web3.currentProvider.publicConfigStore._state;
           let address = state.selectedAddress;
           let network =
-            state.networkVersion === "50" ? NETWORKS.XDC_MAINNET : NETWORKS.XDC_APOTHEM_TESTNET;
-
+            state.networkVersion === "50"
+              ? NETWORKS.XDC_MAINNET
+              : NETWORKS.XDC_APOTHEM_TESTNET;
         }
-
       }
     }
-
-
   };
 
   let account = false;
@@ -55,7 +45,7 @@ export default function About() {
     if (accounts.length === 0) {
       setButtonText("Connect Wallet");
       // window.location.reload(false);
-      alert("Please Connect to The XDCPAY")
+      alert("Please Connect to The XDCPAY");
       account = false;
     } else {
       console.log("Account", accounts);
@@ -72,9 +62,13 @@ export default function About() {
         alignItems="center"
         justifyContent="center"
       >
-        <h2>Welcome to SmartSwap</h2>
-        <Button onClick={() => handleXDCPayWallet()} className="connect-wallet" variant="primary">
-          <img src='/images/wallet.svg'></img>
+        <h2 style={{ marginLeft: "220px" }}> Welcome to SmartSwap</h2>
+        <Button
+          onClick={() => handleXDCPayWallet()}
+          className="connect-wallet"
+          variant="primary"
+        >
+          <img src="/images/wallet.svg"></img>
           {buttonText}
         </Button>{" "}
       </Box>
@@ -90,7 +84,10 @@ export default function About() {
             >
               <img src="/images/Swap (1).svg" alt="swap"></img>
               <p className="p-heading">BRIDGE</p>
-              <p className="p-subheading">Transfer data (e.g. digital asset ownership information) between two chains</p>
+              <p className="p-subheading">
+                Transfer data (e.g. digital asset ownership information) between
+                two chains
+              </p>
             </Paper>
           </Grid>
 
@@ -106,7 +103,9 @@ export default function About() {
             >
               <img src="/images/Swap (1).svg" alt="swap"></img>
               <p className="p-heading">SWAP</p>
-              <p className="p-subheading">Swap tokens supported on XDC Network</p>
+              <p className="p-subheading">
+                Swap tokens supported on XDC Network
+              </p>
             </Paper>
           </Grid>
 
@@ -122,7 +121,10 @@ export default function About() {
             >
               <img src="/images/pool.svg" alt="swap"></img>
               <p className="p-heading">POOL</p>
-              <p className="p-subheading">Add your token pair to the pool and earn whenever there is a swap</p>
+              <p className="p-subheading">
+                Add your token pair to the pool and earn whenever there is a
+                swap
+              </p>
             </Paper>
           </Grid>
 
@@ -138,7 +140,9 @@ export default function About() {
             >
               <img src="/images/market.svg" alt="swap"></img>
               <p className="p-heading">Market</p>
-              <p className="p-subheading">Analyse the top performing tokens and pairs</p>
+              <p className="p-subheading">
+                Analyse the top performing tokens and pairs
+              </p>
             </Paper>
           </Grid>
         </Grid>

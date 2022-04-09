@@ -13,7 +13,7 @@ import "./index.css";
 const drawerWidth = 200;
 export default function SideBar() {
   return (
-    <Box sx={{ flexGrow: 1 }} >
+    <Box sx={{ flexGrow: 1 }}>
       <Drawer
         sx={{
           width: drawerWidth,
@@ -28,20 +28,23 @@ export default function SideBar() {
         className="drawer-content"
       >
         <Toolbar>
-          <img style={{ width: "147px" }} src="/images/Logo@2x.png"></img>
+          <img style={{ width: "147px" }} src="/images/Swapp.svg"></img>
         </Toolbar>
 
         <List>
           <ListItem className="list-item" button component={Link} to="/about">
             <ListItemIcon>
-              <img src="/images/noun_Home_3874019.svg"></img>
+              <img
+                style={{ MarginLeft: "20px" }}
+                src="/images/noun_Home_3874019.svg"
+              ></img>
             </ListItemIcon>
             <ListItemText className="list-text">About</ListItemText>
           </ListItem>
 
           <ListItem className="list-item" button component={Link} to="/bridge">
             <ListItemIcon>
-            <img src="/images/BridgeWhite.svg"></img>
+              <img src="/images/BridgeWhite.svg"></img>
             </ListItemIcon>
             <ListItemText className="list-text">Bridge</ListItemText>
           </ListItem>
@@ -69,19 +72,19 @@ export default function SideBar() {
 
           <ListItem className="list-item" button component={Link} to="/history">
             <ListItemIcon>
-            <img src="/images/history (1).svg"></img>
+              <img src="/images/history (1).svg"></img>
             </ListItemIcon>
             <ListItemText className="list-text">History</ListItemText>
           </ListItem>
         </List>
-        <div style={{position:"absolute", bottom:"0",left: "18px"}}>
-          <div style={{display:"flex",    marginBottom: "11px"}}>
-<img src="/images/Night mode.png"></img>
-<input className="footer-input" placeholder="$USD"></input>
+        <div style={{ position: "absolute", bottom: "0", left: "18px" }}>
+          <div style={{ display: "flex", marginBottom: "11px" }}>
+            <img src="/images/Night mode.png"></img>
+            <input className="footer-input" placeholder="$USD"></input>
           </div>
           <div>
-          <p className="powered">Powered by:&nbsp;XDC</p>
-            </div>
+            <p className="powered">Powered by:&nbsp;XDC</p>
+          </div>
         </div>
       </Drawer>
     </Box>

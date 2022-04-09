@@ -1,3 +1,4 @@
+
 .content-box {
   position: relative;
   right: 312px;
@@ -7,6 +8,7 @@
   width: 284px;
   height: 44px;
   border-radius: 106px;
+  margin-Left: 220px;
 }
 .connect-wallet>img {
   position: relative;
