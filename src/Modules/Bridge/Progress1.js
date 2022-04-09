@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 // import toast from 'react-toastify';
+import { toast } from 'react-toastify';
 import "./styles.css";
+import 'react-toastify/dist/ReactToastify.css';
 import { ProgressBar, Step } from "react-step-progress-bar";
 import "react-step-progress-bar/styles.css";
 import xdc3 from "../../utils/xdc3";
@@ -29,6 +31,10 @@ export default function App() {
   const location = useLocation();
   const [progress, setProgress] = useState(0);
 
+  toast.configure()
+
+
+
   const OnSubmit = async () => {
 
 
@@ -45,7 +51,7 @@ export default function App() {
     })
       ;
    
-
+      
     console.log(" ", location.state.selectedOptionToken.address);
     //creating a object using getAccounts
     const accounts = await xdc3.eth.getAccounts();
@@ -56,18 +62,19 @@ export default function App() {
     /**
      * @dev Performing the Approve method for erc20 .
      * @param address Reciever Address.
-     * @param amount token should be approved to the reciever address
+     * @param amount token should be appr oved to the reciever address
      * @param account[0] sender address.
      * @param data passing the approve method wih reciever address and amount
      */
     if (0 == 0) {
-      // toast('Sending the Amount.');
+      
+      toast.info('Sending the Amount.');
       let transaction = {
         from: accounts[0],
-        to: location.state.address, //contractAddress of the concerned token (same in data below)
+        to: accounts[0], //contractAddress of the concerned token (same in data below)
         gas: 28000,
 
-        data: token.methods.approve(location.state.address, xdc3.utils.toWei(location.state.amount, "ether")).encodeABI()
+        data: token.methods.approve(accounts[0], xdc3.utils.toWei(location.state.amount, "ether")).encodeABI()
         //value given by user should be multiplied by 1000
       };
 
@@ -98,7 +105,7 @@ export default function App() {
 
 
       setProgress(progress + 30)
-      await alert("Accepted the Request");
+    
 
 
       transaction = {
@@ -110,7 +117,7 @@ export default function App() {
           location.state.selectedOptionToken.address,//address _tokenAddress,
           xdc3.utils.toWei(location.state.amount, "ether"), // token _amount
           '3',// _chainIdTo
-          location.state.address, //_receiver
+          accounts[0], //_receiver
           "0x", // _permit
           false, //_useAssetFee
           0, //_referralCode  
@@ -129,7 +136,7 @@ export default function App() {
 
         });
     }
-    else {
+    else if(0==1)  {
       console.log("bajns")
       
       transaction =
@@ -138,10 +145,10 @@ export default function App() {
         to: location.state.selectedOptionToken.address,
         gas: 150000,
         value: xdc3.utils.toWei(location.state.amount, "ether"),
-        data: xbridge.methods.send(
+        data: ebridge.methods.send(
             '0x0000000000000000000000000000000000000000', //address _tokenAddress,
             xdc3.utils.toWei(location.state.amount, "ether"), // uint256 _amount,
-            42, //uint256 _chainIdTo,
+            51, //uint256 _chainIdTo,
             accounts[0], // bytes memory _receiver,
             "0x", // _permit
             false, //_useAssetFee
@@ -162,6 +169,40 @@ export default function App() {
 
         });
 
+    }
+    else{
+      
+      transaction =
+      {
+        from: accounts[0],
+        to: location.state.selectedOptionToken.address,
+        gas: 150000,
+        value: xdc3.utils.toWei(location.state.amount, "ether"),
+        data: xbridge.methods.send(
+            '0x0000000000000000000000000000000000000000', //address _tokenAddress,
+            xdc3.utils.toWei(location.state.amount, "ether"), // uint256 _amount,
+            42, //uint256 _chainIdTo,
+            accounts[0], // bytes memory _receiver,
+            "0x", // _permit
+            false, //_useAssetFee
+            0, //_referralCode  
+            "0x" //_autoParams
+          )
+          .encodeABI(),
+      };
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      window.web3 = new Web3(window.ethereum);
+      const web3 = new Web3(window.ethereum);
+      await window.web3.eth
+      .sendTransaction(transaction)
+        .on("confirmation", function (confirmationNumber, result) {
+          if (result && confirmationNumber === 1) {
+            transactionHash = result.transactionHash;
+            console.log("transactinsnsnssssss", transactionHash);
+
+          }
+
+        });
     }
     
     setProgress(progress + 65)
@@ -192,7 +233,8 @@ export default function App() {
 
     setSecoundStatus('The')
 
-    alert("Successfully sent the Token");
+   
+
     console.log(abc);
     debridgeId = abc.debridgeId;
     submissionId = abc.submissionId;
@@ -231,7 +273,7 @@ export default function App() {
     console.log(" Destination", '3');
     const isSubmissionUsed = await ebridge.methods.isSubmissionUsed(submissionId).call();
     const debridge_id = await ebridge.methods.getDebridgeId(location.state.selectedOptionToken.chainId, tokenBridge).call();
-    alert("GetDebridgeId successfully fetched");
+    
     console.log("debridgeId", debridge_id);
     console.log(" Destination", location.state.selectedOptionToken.chainId);
     console.log("", location.state.selectedOptionToken.address);
@@ -266,7 +308,7 @@ export default function App() {
         debridge_id,
         location.state.amount,
         location.state.selectedOptionToken.chainId,
-        location.state.address,
+        accounts[0],
         submissionId,
         signatures,
         autoParamsFrom,
@@ -302,7 +344,7 @@ export default function App() {
 
     setProgress(progress + 100)
     console.log("", submissionId);
-    alert("Successfully Recieved the Token");
+   
     setHasher(transactionHashes);
     setThirdStatus("Transactiossn", transactionHashes);
 
@@ -330,7 +372,11 @@ export default function App() {
   };
 
 
-  useEffect(() => { OnSubmit(); }, [])
+  useEffect(() => { OnSubmit(); 
+    }, []) 
+
+
+
   return (
     <div className="App">
       <ProgressBar percent={progress}>
