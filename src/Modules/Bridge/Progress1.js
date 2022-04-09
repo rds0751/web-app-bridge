@@ -17,7 +17,7 @@ import Deploy from "../../contracts/deployer.json";
 import DeBridgeGateJson from "../../contracts/Gate.json";
 import "react-step-progress/dist/index.css";
 import { tokenBridge, tokenDeployee, eBridgeAddress, deployee, xBridgeAddress } from '../../common/constant';
-let debridgeId, submissionId, signatures, abc, transactionHash,tx, transactionHashes, bcd, cde, transaction;
+let debridgeId, submissionId, signatures, abc, transactionHash,tx,allowance ,amount , transactionHashes, bcd, cde, transaction;
 
 export default function App() {
   const [show, setShow] = useState(false);
@@ -67,28 +67,36 @@ export default function App() {
      * @param account[0] sender address.
      * @param data passing the approve method wih reciever address and amount
      */
-    if (0 == 0) {
+    
       
       toast.info('Sending the Amount.');
       let transaction = {
         from: accounts[0],
-        to: accounts[0], //contractAddress of the concerned token (same in data below)
-        gas: 28000,
-
-        data: token.methods.approve(accounts[0], xdc3.utils.toWei(location.state.amount, "ether")).encodeABI()
+        to: location.state.selectedOptionToken.address, //contractAddress of the concerned token (same in data below)
+        data: token.methods.approve(xBridgeAddress, '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
+        
+        ).encodeABI()
         //value given by user should be multiplied by 1000
       };
 
-      if (51 === 51) {
+      if (location.state.selectedOptionToken.chainId === 51) {
         await window.web3.eth
           .sendTransaction(transaction)
           .on("confirmation", function (confirmationNumber, receipt) {
             if (receipt && confirmationNumber === 1) {
               console.log("transaction hash ", receipt.transactionHash);
 
+              
+
             }
+           
           });
+
+         
+        
+
       }
+      
       else {
         await window.ethereum.request({ method: 'eth_requestAccounts' });
         window.web3 = new Web3(window.ethereum);
@@ -98,26 +106,31 @@ export default function App() {
           .on("confirmation", function (confirmationNumber, receipt) {
             if (receipt && confirmationNumber === 1) {
               console.log("transaction hash ", receipt.transactionHash);
+    
+
 
             }
           });
       }
 
 
+      allowance = parseInt( await token.methods.allowance('0xdcdde99d5a90446cfac723f1b685c04244a31a5f', xBridgeAddress).call())
+      console.log("allowaNCE", allowance , location.state.amount);
 
       setProgress(progress + 30)
     
 
-
+      if(location.state.selectedOptionToken.chainId == 51)
+      {
       transaction = {
         from: accounts[0],
         to: xBridgeAddress, //contractAddress of the concerned token (same in data below)
         gas: 150000,
-        value: xdc3.utils.toWei(location.state.amount, "ether"), // token _amount
+        value: xdc3.utils.toWei("0.01"), // token _amount
         data: xbridge.methods.send(
           location.state.selectedOptionToken.address,//address _tokenAddress,
-          xdc3.utils.toWei(location.state.amount, "ether"), // token _amount
-          '3',// _chainIdTo
+          xdc3.utils.toWei(location.state.amount), // token _amount
+          3,// _chainIdTo
           accounts[0], //_receiver
           "0x", // _permit
           false, //_useAssetFee
@@ -136,75 +149,38 @@ export default function App() {
           }
 
         });
-    }
-    else if(0==1)  {
-      console.log("bajns")
-      
-      transaction =
-      {
-        from: accounts[0],
-        to: location.state.selectedOptionToken.address,
-        gas: 150000,
-        value: xdc3.utils.toWei(location.state.amount, "ether"),
-        data: ebridge.methods.send(
-            '0x0000000000000000000000000000000000000000', //address _tokenAddress,
-            xdc3.utils.toWei(location.state.amount, "ether"), // uint256 _amount,
-            51, //uint256 _chainIdTo,
-            accounts[0], // bytes memory _receiver,
+      }
+      else {
+        transaction = {
+          from: accounts[0],
+          to: xBridgeAddress, //contractAddress of the concerned token (same in data below)
+          gas: 150000,
+          value: xdc3.utils.toWei("0.01"), // token _amount
+          data: xbridge.methods.send(
+            location.state.selectedOptionToken.address,//address _tokenAddress,
+            location.state.amount, // token _amount
+            51,// _chainIdTo
+            accounts[0], //_receiver
             "0x", // _permit
             false, //_useAssetFee
             0, //_referralCode  
             "0x" //_autoParams
-          )
-          .encodeABI(),
-      };
+          ).encodeABI()
+          //value given by user should be multiplied by 1000
+        };
+        await window.web3.eth
+          .sendTransaction(transaction)
+          .on("confirmation", function (confirmationNumber, result) {
+            if (result && confirmationNumber === 1) {
+              transactionHash = result.transactionHash;
+              console.log("transactinsnsns", transactionHash);
+  
+            }
+  
+          });
 
-      await window.web3.eth
-      .sendTransaction(transaction)
-        .on("confirmation", function (confirmationNumber, result) {
-          if (result && confirmationNumber === 1) {
-            transactionHash = result.transactionHash;
-            console.log("transactinsnsnssssss", transactionHash);
-
-          }
-
-        });
-
-    }
-    else{
-      
-      transaction =
-      {
-        from: accounts[0],
-        to: location.state.selectedOptionToken.address,
-        gas: 150000,
-        value: xdc3.utils.toWei(location.state.amount, "ether"),
-        data: xbridge.methods.send(
-            '0x0000000000000000000000000000000000000000', //address _tokenAddress,
-            xdc3.utils.toWei(location.state.amount, "ether"), // uint256 _amount,
-            42, //uint256 _chainIdTo,
-            accounts[0], // bytes memory _receiver,
-            "0x", // _permit
-            false, //_useAssetFee
-            0, //_referralCode  
-            "0x" //_autoParams
-          )
-          .encodeABI(),
-      };
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
-      window.web3 = new Web3(window.ethereum);
-      const web3 = new Web3(window.ethereum);
-      await window.web3.eth
-      .sendTransaction(transaction)
-        .on("confirmation", function (confirmationNumber, result) {
-          if (result && confirmationNumber === 1) {
-            transactionHash = result.transactionHash;
-            console.log("transactinsnsnssssss", transactionHash);
-
-          }
-
-        });
-    }
+      }
+  
     
     setProgress(progress + 65)
 
@@ -240,6 +216,7 @@ export default function App() {
     debridgeId = abc.debridgeId;
     submissionId = abc.submissionId;
     signatures = abc.signature;
+    amount = abc.amount;
     setHash(transactionHash);
     console.log(submissionId, debridgeId);
 
@@ -273,7 +250,7 @@ export default function App() {
     console.log("", accounts);
     console.log(" Destination", '3');
     const isSubmissionUsed = await ebridge.methods.isSubmissionUsed(submissionId).call();
-    const debridge_id = await ebridge.methods.getDebridgeId(location.state.selectedOptionToken.chainId, tokenBridge).call();
+    const debridge_id = await ebridge.methods.getDebridgeId(51, tokenBridge).call();
     
     console.log("debridgeId", debridge_id);
     console.log(" Destination", location.state.selectedOptionToken.chainId);
@@ -282,7 +259,7 @@ export default function App() {
     const deployAsset = await deploy.methods.deployAsset(debridge_id, 'Token Mapped with XDC Chain', 'WXDC1', 18).call();
     const _token = tokenDeployee;
     console.log(deployAsset, _token);
-
+    console.log("amountts", amount);
     /**
      * @dev Get the hash value and the result.
      * @param web3 fetching the web3 from the library.
@@ -303,11 +280,10 @@ export default function App() {
     transaction = {
       from: accounts[0],
       to: eBridgeAddress, //contractAddress of the concerned token (same in data below)
-      gas: 280000,
       value: '0',
       data: ebridge.methods.claim(
         debridge_id,
-        location.state.amount,
+        amount,
         location.state.selectedOptionToken.chainId,
         accounts[0],
         submissionId,
@@ -318,7 +294,7 @@ export default function App() {
       //value given by user should be multiplied by 1000
     };
 
-    if (3 === 51) {
+    if (location.state.selectedOptionToken.chainId === 3) {
       await window.web3.eth
         .sendTransaction(transaction)
         .on("confirmation", function (confirmationNumber, receipt) {

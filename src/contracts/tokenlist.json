@@ -59,7 +59,7 @@
     "tokens": [
       {
         "chainId": 51,
-        "address": "0xdf1Efd50Fc91b377DA328F42f408f3BF904143D0",
+        "address": "0x6b97589be27C827A9e6108D5717E7a2D35acb82f",
         "symbol": "MTK",
         "name": "MyToken",
         "decimals": 18,
@@ -80,8 +80,8 @@
         ]
       },
       {
-        "chainId": 3,
-        "address": "0x52cdde738d71568f79379fb1d671c4eaef33d638",
+        "chainId": 50,
+        "address": "0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         "symbol": "WETH",
         "name": "Wrapped Ether",
         "decimals": 10,
