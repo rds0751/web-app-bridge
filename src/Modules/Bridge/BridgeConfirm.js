@@ -1,14 +1,14 @@
 
 import React, { useState } from "react";
 
-
+import { TailSpin } from "react-loader-spinner";
 import Header from "../Common/header"
 import SideBar from "../Common/drawer";
 import Box from '@mui/material/Box';
 import { Divider } from "@mui/material";
 import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import ProgressBar from "./Progress1";  
+import ProgressBar from "./Progress1";
 import { Link, useLocation } from "react-router-dom";
 import { PregnantWomanSharp } from "@material-ui/icons";
 import xdc3 from "../../utils/xdc3";
@@ -28,9 +28,12 @@ function BridgeConfirm() {
   const [chainTo, setChainTo] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+const [spinnerLoading, setSpinnerLoading] = useState(true);
+
+
   const location = useLocation();
 
-  
+
   return (
     <>
       <Box>
@@ -70,25 +73,47 @@ function BridgeConfirm() {
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <Link to="/bridge" > <button className="cancel-button">Cancel</button> </Link>
               <button className="confirm-button" onClick={handleShow}>Confirm</button>
-                
+
             </div>
-           
+
           </div>
 
         </div>
       </Box>
-      <Modal show={show} animation={false}>
+      <Modal style={{marginTop : "2%"}} show={show} animation={false}>
         <Modal.Header >
           <ProgressBar />
         </Modal.Header>
         <Modal.Body>
-            
-    
+
+
         </Modal.Body>
         <div className="done">
-          <Button onClick={handleClose} className="done-button" >
+
+          <TailSpin
+
+            color="#2358E5"
+
+            height={70}
+
+            width={70}
+
+            visible={spinnerLoading}
+
+          />
+
+          <Button
+
+            onClick={(handleClose) => setSpinnerLoading(!spinnerLoading)}
+
+            className="done-button margintp"
+
+          >
+
             Done
-          </Button> 
+
+          </Button>
+
         </div>
 
 
