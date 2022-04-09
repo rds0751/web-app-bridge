@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
+// import toast from 'react-toastify';
 import "./styles.css";
-import Toast from 'react-native-simple-toast';
 import { ProgressBar, Step } from "react-step-progress-bar";
 import "react-step-progress-bar/styles.css";
 import xdc3 from "../../utils/xdc3";
@@ -61,7 +61,7 @@ export default function App() {
      * @param data passing the approve method wih reciever address and amount
      */
     if (0 == 0) {
-      Toast.show('Sending the Amount.');
+      // toast('Sending the Amount.');
       let transaction = {
         from: accounts[0],
         to: location.state.address, //contractAddress of the concerned token (same in data below)
