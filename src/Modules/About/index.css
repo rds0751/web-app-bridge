@@ -5,10 +5,12 @@
   margin: 45px;
 }
 .connect-wallet {
+  margin-top: 10px;
   width: 284px;
   height: 44px;
-  border-radius: 106px;
-  margin-Left: 220px;
+  border-radius: 22px;
+  margin-Left: 210px;
+  opacity: 1;
 }
 .connect-wallet>img {
   position: relative;

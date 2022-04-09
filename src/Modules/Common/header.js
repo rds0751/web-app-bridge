@@ -18,7 +18,10 @@ export default function Drawer() {
           {""}
         </Typography>
         <Button color="inherit">
-          <img style={{ marginBottom: "19px" }} src="/images/wallet.svg"></img>
+          <img
+            style={{ marginBottom: "19px" }}
+            src="/images/wallet_header.svg"
+          ></img>
         </Button>
       </Toolbar>
     </AppBar>

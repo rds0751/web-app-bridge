@@ -50,7 +50,7 @@ export default function About() {
     } else {
       console.log("Account", accounts);
       account = true;
-      setButtonText("Wallet Connected");
+      setButtonText("Connect Wallet");
     }
   });
 
@@ -62,7 +62,17 @@ export default function About() {
         alignItems="center"
         justifyContent="center"
       >
-        <h2 style={{ marginLeft: "220px" }}> Welcome to SmartSwap</h2>
+        <h2
+          style={{
+            width: "347px",
+            height: "36px",
+            marginLeft: "210px",
+            color: "#102C78",
+          }}
+        >
+          {" "}
+          Welcome to SmartSwap
+        </h2>
         <Button
           onClick={() => handleXDCPayWallet()}
           className="connect-wallet"
@@ -72,7 +82,7 @@ export default function About() {
           {buttonText}
         </Button>{" "}
       </Box>
-      <Grid item xs={12} style={{ marginTop: "52px" }}>
+      <Grid item xs={12} style={{ marginTop: "52px", marginLeft: "200px" }}>
         <Grid container justifyContent="center" spacing={3}>
           <Grid item>
             <Paper
