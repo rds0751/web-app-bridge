@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import toast from 'react-toastify';
 import { toast } from 'react-toastify';
+
 import "./styles.css";
 import 'react-toastify/dist/ReactToastify.css';
 import { ProgressBar, Step } from "react-step-progress-bar";
@@ -377,65 +378,74 @@ export default function App() {
 
 
 
-  return (
-    <div className="App">
-      <ProgressBar percent={progress}>
-        <Step>
-          {({ accomplished, index }) => (
-            <>
-              <div 
-                className={`indexedStep ${accomplished ? "accomplished" : null
+    return (
+      <div className="App">
+        <ProgressBar
+          filledBackground="#20AA15"
+          hasStepZero="false"
+          height="1px"
+          percent={progress}
+        >
+          <Step>
+            {({ accomplished, index }) => (
+              <>
+                <div
+                  style={{ borderWidth: "2px" }}
+                  className={`indexedStep ${
+                    accomplished ? "accomplished" : null
                   }`}
-              >
-                {index + 1}
-              </div>
-              <div className={"test"}>Approve</div>
-            </>
-          )}
-        </Step>
-        <Step>
-          {({ accomplished, index }) => (
-            <>
-              <div
-                className={`indexedStep ${accomplished ? "accomplished" : null
+                >
+                  {index + 1}
+                </div>
+                <div className={"test"}>Approve</div>
+              </>
+            )}
+          </Step>
+          <Step>
+            {({ accomplished, index }) => (
+              <>
+                <div
+                  className={`indexedStep ${
+                    accomplished ? "accomplished" : null
                   }`}
-              >
-                {index + 1}
-              </div>
-              <div className={"test"}>Transfer</div>
-            </>
-          )}
-        </Step>
-        <Step >
-          {({ accomplished, index }) => (
-            <>
-              <div
-                className={`indexedStep ${accomplished ? "accomplished" : null
+                >
+                  {index + 1}
+                </div>
+                <div className={"test"}>Transfer</div>
+              </>
+            )}
+          </Step>
+          <Step>
+            {({ accomplished, index }) => (
+              <>
+                <div
+                  className={`indexedStep ${
+                    accomplished ? "accomplished" : null
                   }`}
-              >
-                { index  + 1}
-              </div>
-              <div className={"test"}>Confirmation</div>
-            </>
-          )}
-        </Step>
-        <Step>
-          {({ accomplished, index }) => (
-            <>
-              <div
-                className={`indexedStep ${accomplished ? "accomplished" : null
+                >
+                  {index + 1}
+                </div>
+                <div className={"test"}>Confirmation</div>
+              </>
+            )}
+          </Step>
+          <Step>
+            {({ accomplished, index }) => (
+              <>
+                <div
+                  className={`indexedStep ${
+                    accomplished ? "accomplished" : null
                   }`}
-              >
-                {index + 1}
-              </div>
-              <div className={"test"}>Recieve</div>
-            </>
-          )}
-        </Step>
-      </ProgressBar>
-      {/* <center> <a href={'https://explorer.apothem.network/txs/' + hash} target='_blank' style={{ color: "black", fontSize: "5px" }}> Hi{hash} </a></center>
-        <center>  <a href={'https://ropsten.etherscan.io/tx/' + hasher} target='_blank' style={{ color: "black", fontSize: "5px" }}> {hasher} </a> </center> */}
-    </div>
-
-  );
-}
+                >
+                  {index + 1}
+                </div>
+                <div className={"test"}>Recieve</div>
+              </>
+            )}
+          </Step>
+        </ProgressBar>
+        {/* <center> <a href={'https://explorer.apothem.network/txs/' + hash} target='_blank' style={{ color: "black", fontSize: "5px" }}> Hi{hash} </a></center>
+          <center>  <a href={'https://ropsten.etherscan.io/tx/' + hasher} target='_blank' style={{ color: "black", fontSize: "5px" }}> {hasher} </a> </center> */}
+      </div>
+    );
+  }

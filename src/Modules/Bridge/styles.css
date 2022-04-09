@@ -1,37 +1,78 @@
 .App {
-    font-family: sans-serif;
-    text-align: center;
- 
-    /* height: 30%; */
-    padding: 30px;
+
+  font-family: sans-serif;
+  
+  text-align: center;
+  
+  /* height: 30%; */
+  
+  padding: 30px;
+  
   }
+  
   .indexedStep {
-    color: #2358E5;
-    top: 68px;
-    left: 1002px;
-    width: 32px;
-    height: 32px;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    border-radius: 1px !important;
-    border-color  : #2358E5 !important;
-    border-width: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  
+  color: #2358E5;
+  
+  top: 68px;
+  
+  left: 1002px;
+  
+  width: 32px;
+  
+  height: 32px;
+  
+  background: #ffffff 0% 0% no-repeat padding-box;
+  
+  border-radius: 50% !important;
+  
+  border : solid #2358E5 .5px !important;
+  
+  display: flex;
+  
+  justify-content: center;
+  
+  align-items: center;
+  
   }
   
   .indexedStep.accomplished {
-    
-    /* background-color: #20AA15; */
-    
+  
+  border : solid #2358E5 0px !important;
+  
+  background-color: #20AA15;
+  
+  color: #ffffff;
+  
   }
-
-
+  
+  
+  
   
   .test {
-    position: absolute;
-    margin-top: 60px;
-    color: black;
-    white-space: nowrap;
+  
+  font: normal normal medium 14px/17px Inter;
+  
+  position: absolute;
+  
+  margin-top: 70px;
+  
+  white-space: nowrap;
+  
+  text-align: center;
+  
   }
   
+  .margintp{
+  
+  margin-top: 30px;
+  
+  }
+  
+  .done{
+  
+  align-items: center;
+  
+  flex-direction: column;
+  
+  }
