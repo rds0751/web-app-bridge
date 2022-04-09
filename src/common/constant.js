@@ -1,5 +1,5 @@
-export const xBridgeAddress = '0xE4200cbf10ea0D3F8FE35B59cF9fCF21e911a743';
-export const eBridgeAddress = '0x19dcc5d3753404db0b98016f32557a9f3b54572a';
+export const xBridgeAddress = '0x88558Aff81c3cEC1004f2105A087B3C7e348156F';
+export const eBridgeAddress = '0xE6525d0208aD035436AE27816C0D8759a644fd6d';
 export const deployee       = '0xeB186e9BA850a710FaA241E48770D5260f9b0ab6';
 export const tokenAddress   = "0xdf1Efd50Fc91b377DA328F42f408f3BF904143D0";
 export const tokenBridge    = '0xeAe46f035CfAA057D31F9a3777285beC69d9679C';
