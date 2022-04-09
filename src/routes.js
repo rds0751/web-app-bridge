@@ -26,7 +26,7 @@ function App() {
         {/* <Tile__homepage /> */}
         {/* <Switch> */}
         <Routes>
-          <Route path="/" element={<Card />} />
+          <Route path="/" element={<About />} />
           <Route path="/card" element={<Card />} />
           <Route path="/about" element={<About />} />
           <Route path="/bridge" element={<Bridge />} />
