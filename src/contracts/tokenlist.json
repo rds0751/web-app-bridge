@@ -65,7 +65,7 @@
         "symbol": "ETH",
         "name": "Ether",
         "decimals": 10,
-        "logoURI": "https://xinfin-explorer-s3.s3.amazonaws.com/token-symbol-image/ECOIN.png",
+        "logoURI": "https://ropsten.etherscan.io/tx/",
         "tags": [
           "currency", "xrc20"
         ]
@@ -77,7 +77,7 @@
         "symbol": "XDC",
         "name": "XDC",
         "decimals": 10,
-        "logoURI": "https://xinfin-explorer-s3.s3.amazonaws.com/token-symbol-image/ECOIN.png",
+        "logoURI": "https://explorer.apothem.network/txs/",
         "tags": [
           "currency", "xrc20"
         ]

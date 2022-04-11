@@ -11,7 +11,7 @@ function Card() {
     <Box>
       <Header />
       <SideBar />
-      <div className="main-head"> <p style={{paddingLeft : "20%"}}>Bridge</p></div>
+      <div className="main-head"> <p>Bridge</p></div>
       <div className="my-card">
       <BridgeCard />
       </div>
