@@ -1,5 +1,5 @@
 import web3 from './xdc3';
-import Bridge from "../contracts/bridge.json";
+import Bridge from "../contracts/Gate.json";
 import { xBridgeAddress } from '../common/constant';
 
 //todo contract in env

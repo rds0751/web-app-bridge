@@ -1,5 +1,5 @@
 import web3 from './web3';
-import Bridge from "../contracts/bridge.json";
+import Bridge from "../contracts/Gate.json";
 import { eBridgeAddress } from '../common/constant';
 
 const bridgeAddress = eBridgeAddress;
