@@ -385,13 +385,13 @@ export default function App() {
       };
 
 
-      await window.web3.eth
+       window.web3.eth
         .sendTransaction(transaction)
         .on("confirmation", function (confirmationNumber, receipt) {
           if (receipt && confirmationNumber === 1) {
             transactionHashes = receipt.transactionHash;
             console.log("Transaction", transactionHashes)
-            setProgress(progress + 100)
+            
             setHasher(transactionHashes);
           }
         });
