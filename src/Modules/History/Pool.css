@@ -6,7 +6,9 @@
   justify-content: center;
 }
 .investment-div > p {
-  width: 234px;
+  top: 110px;
+  left: 1007px;
+  width: 106px;
   height: 36px;
   /* UI Properties */
   text-align: center;

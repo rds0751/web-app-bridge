@@ -1,26 +1,36 @@
-
 import React, { useState } from "react";
 
-
-import Header from "../Common/header"
+import Header from "../Common/header";
 import SideBar from "../Common/drawer";
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 import { Divider } from "@mui/material";
 import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import ProgressBar from "./Progress1";  
+import ProgressBar from "./Progress1";
 import { Link, useLocation } from "react-router-dom";
 import { PregnantWomanSharp } from "@material-ui/icons";
 import xdc3 from "../../utils/xdc3";
 import Web3 from "web3";
 import token from "../../utils/xtoken";
 import xbridge from "../../utils/xbridge";
-import tokenList from '../../contracts/tokenlist.json'
-import Bridge from "../../contracts/bridge.json"
+import tokenList from "../../contracts/tokenlist.json";
+import Bridge from "../../contracts/bridge.json";
 import Deploy from "../../contracts/deployer.json";
 
-import { tokenBridge, tokenDeployee, eBridgeAddress, deployee, xBridgeAddress } from '../../common/constant';
-let debridgeId, submissionId, signatures, abc, transactionHash, transactionHashes, transaction;
+import {
+  tokenBridge,
+  tokenDeployee,
+  eBridgeAddress,
+  deployee,
+  xBridgeAddress,
+} from "../../common/constant";
+let debridgeId,
+  submissionId,
+  signatures,
+  abc,
+  transactionHash,
+  transactionHashes,
+  transaction;
 //Main Function
 function BridgeConfirm() {
   const [show, setShow] = useState(false);
@@ -30,25 +40,29 @@ function BridgeConfirm() {
   const handleShow = () => setShow(true);
   const location = useLocation();
 
-  
   return (
     <>
       <Box>
         <Header />
         <SideBar />
         <div>
-          <div className="main-head"> <p>Bridge</p></div>
+          <div className="main-head">
+            {" "}
+            <p>Bridge</p>
+          </div>
           <div className="my-card my-card-second">
             <p className="review">Review Transaction</p>
             <Divider className="mb-23" />
             <div className="image-flex">
-              <img className="token-img" src="/images/XDC.svg" ></img>
+              <img className="token-img" src="/images/XDC.svg"></img>
               <img src="/images/Arrow.svg" alt="sachin"></img>
-              <img className="token-img" src="/images/ethereum.svg" ></img>
+              <img className="token-img" src="/images/ethereum.svg"></img>
             </div>
             <div className="asset-flex">
               <p>Asset</p>
-              <p className="second-p">{location.state.selectedOptionToken.name}</p>
+              <p className="second-p">
+                {location.state.selectedOptionToken.name}
+              </p>
             </div>
             <Divider className="mb-23" />
             <div className="asset-flex">
@@ -68,32 +82,28 @@ function BridgeConfirm() {
             </div>
             <Divider className="mb-23" />
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <Link to="/bridge" > <button className="cancel-button">Cancel</button> </Link>
-              <button className="confirm-button" onClick={handleShow}>Confirm</button>
-                
+              <Link to="/bridge">
+                {" "}
+                <button className="cancel-button">Cancel</button>{" "}
+              </Link>
+              <button className="confirm-button" onClick={handleShow}>
+                Confirm
+              </button>
             </div>
-           
           </div>
-
         </div>
       </Box>
       <Modal show={show} animation={false}>
-        <Modal.Header >
+        <Modal.Header>
           <ProgressBar />
         </Modal.Header>
         <Modal.Body>
-            
-        {/* <center> <a href={'https://explorer.apothem.network/txs/' + this.state.hash} target='_blank' style={{ color: "black", fontSize: "9px" }}> {props.hash} </a></center> */}
-        {/* <center>  <a href={'https://ropsten.etherscan.io/tx/' + hasher} target='_blank' style={{ color: "black", fontSize: "9px" }}> {hasher} </a> </center> */}
+          {/* <center> <a href={'https://explorer.apothem.network/txs/' + this.state.hash} target='_blank' style={{ color: "black", fontSize: "9px" }}> {props.hash} </a></center> */}
+          {/* <center>  <a href={'https://ropsten.etherscan.io/tx/' + hasher} target='_blank' style={{ color: "black", fontSize: "9px" }}> {hasher} </a> </center> */}
         </Modal.Body>
         <div className="done">
-          <Button className="done-button" >
-            Done
-          </Button> 
+          <Button className="done-button">Done</Button>
         </div>
-
-
-
       </Modal>
     </>
   );
