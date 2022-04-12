@@ -361,78 +361,44 @@ export default function App() {
     * @param signature to verify the contract
     */
 
-    if (location.state.selectedOptionToken.chainId === 1) {
- console.log("jnckjdznibnc")
-      window.web3 = new XDC3(window.xdc);
-      const xdc3 = new XDC3(window.xdc);
-
-      transaction = {
-
-        from: accounts[0],
-        to: xBridgeAddress, //contractAddress of the concerned token (same in data below)
-        value: '0',
-        data: xbridge.methods.claim(
-          location.state.selectedOptionToken.debridgeAddress,
-          amount,
-          '3',
-          accounts[0],
-          submissionId,
-          signatures,
-          autoParamsFrom
-
-        ).encodeABI()
-        //value given by user should be multiplied by 1000
-      };
+    setHasher(transactionHashes);
+    letToggle();
+    console.log("", submissionId);
 
 
-       window.web3.eth
-        .sendTransaction(transaction)
-        .on("confirmation", function (confirmationNumber, receipt) {
-          if (receipt && confirmationNumber === 1) {
-            transactionHashes = receipt.transactionHash;
-            console.log("Transaction", transactionHashes)
-            
-            setHasher(transactionHashes);
-          }
-        });
 
-
-    }
-    console.log("sjhkszhfkszehku")
-   
-    setProgress(progress + 100)
 
     console.log("", location.state.selectedOptionToken.chainId)
-    if (location.state.selectedOptionToken.chainId === 3) {
-      transaction = {
-        from: accounts[0],
-        to: xBridgeAddress, //contractAddress of the concerned token (same in data below)
-        value: '0',
-        data: xbridge.methods.claim(
-          location.state.selectedOptionToken.debridgeAddress,
-          amount,
-          location.state.selectedOptionToken.chainId,
-          accounts[0],
-          submissionId,
-          signatures,
-          autoParamsFrom
+    // if (location.state.selectedOptionToken.chainId != 50) {
+    //   transaction = {
+    //     from: accounts[0],
+    //     to: xBridgeAddress, //contractAddress of the concerned token (same in data below)
+    //     value: '0',
+    //     data: xbridge.methods.claim(
+    //       location.state.selectedOptionToken.debridgeAddress,
+    //       amount,
+    //       location.state.selectedOptionToken.chainId,
+    //       accounts[0],
+    //       submissionId,
+    //       signatures,
+    //       autoParamsFrom
 
-        ).encodeABI()
-        //value given by user should be multiplied by 1000
-      };
+    //     ).encodeABI()
+    //     //value given by user should be multiplied by 1000
+    //   };
 
 
-      await window.web3.eth
-        .sendTransaction(transaction)
-        .on("confirmation", function (confirmationNumber, receipt) {
-          if (receipt && confirmationNumber === 1) {
-            transactionHash = receipt.transactionHash;
-            console.log("Transaction", transactionHash)
-          }
-        });
-    }
+    //   await window.web3.eth
+    //     .sendTransaction(transaction)
+    //     .on("confirmation", function (confirmationNumber, receipt) {
+    //       if (receipt && confirmationNumber === 1) {
+    //         transactionHash = receipt.transactionHash;
+    //         console.log("Transaction", transactionHash)
+    //       }
+    //     });
+    // }
 
-    else {
+    if (location.state.selectedOptionToken.chainId === 50) {
       transaction = {
         from: accounts[0],
         to: eBridgeAddress, //contractAddress of the concerned token (same in data below)
@@ -460,17 +426,69 @@ export default function App() {
             console.log("Transaction", transactionHashes);
             setHasher(transactionHashes);
 
+            setProgress(progress + 100)
+            letToggle();
+            console.log("", submissionId);
+
 
           }
         });
+
+
     }
 
+    else {
+        transaction = {
+          from: accounts[0],
+          to: xBridgeAddress, //contractAddress of the concerned token (same in data below)
+          data: xbridge.methods.claim(
+            location.state.selectedOptionToken.debridgeAddress,
+            amount,
+            location.state.selectedOptionToken.chainId,
+            accounts[0],
+            submissionId,
+            signatures,
+            autoParamsFrom,
+            // _token
+          ).encodeABI()
+          //value given by user should be multiplied by 1000
+        };
+  
+        window.web3 = new XDC3(window.xdc);
+        const xdc3 = new XDC3(window.xdc);
+        await window.web3.eth
+          .sendTransaction(transaction)
+          // .on("confirmation", function (confirmationNumber, receipt) {
+            .on("transactionHash", function (hash) {
 
-    setProgress(progress + 100)
-    letToggle();
-    console.log("", submissionId);
+              console.log("transaction  " , hash)
+              transactionHashes = hash ;
+              setHasher(transactionHashes);
+              setProgress(progress + 100)
 
-    setHasher(transactionHashes);
+
+            })
+            .on("receipt", function (receipt)  {
+              if(receipt !== 0){
+                console.log("nanau", receipt.transactionHash)
+              }
+            });
+              
+        
+
+
+    }
+
+    
+    // if (location.state.selectedOptionToken.chainId === 1) {
+
+    //          console.log("sjhkszhfkszehku")
+
+
+
+    //      }
+
+
 
 
 
@@ -495,7 +513,7 @@ export default function App() {
       }
       return '0x';
     }
-
+    
   };
 
 
@@ -605,7 +623,7 @@ export default function App() {
         >
           View on XDC Explorer
         </Link>
-        <center> <a href={location.state.selectedOptionToken.logoURI + hash} target='_blank' style={{ color: "black", fontSize: "5px" }}> {hash} </a></center>
+        <center> <a href={"Transaction Hash" + hash} target='_blank' style={{ color: "black", fontSize: "12px" }}> {hash} </a></center>
 
         <Link
           className={a ? "viewOnXDCText" : "viewOnXDCTextDisable"}
@@ -618,7 +636,7 @@ export default function App() {
         >
           View on EtherScan
         </Link>
-        <center>  <a href={location.state.selectedOptionToken.logoURI + hasher} target='_blank' style={{ color: "black", fontSize: "5px" }}> {hasher} </a> </center>
+        <center>  <a href={"Transaction Hash" + hasher} target='_blank' style={{ color: "black", fontSize: "12px" }}> {hasher} </a> </center>
         {/* <Button onClick={() => letToggle()} className="done-button margintp">
             Done
           </Button> */}
