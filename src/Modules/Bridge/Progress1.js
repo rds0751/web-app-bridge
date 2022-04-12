@@ -623,7 +623,7 @@ export default function App() {
         >
           View on XDC Explorer
         </Link>
-        <center> <a href={"Transaction Hash" + hash} target='_blank' style={{ color: "black", fontSize: "12px" }}> {hash} </a></center>
+        <center> <p style={{ color: "black", fontSize: "12px" }}>  {hash} </p></center>
 
         <Link
           className={a ? "viewOnXDCText" : "viewOnXDCTextDisable"}
@@ -632,11 +632,11 @@ export default function App() {
             search: "?sort=name",
             hash: "#the-hash",
             state: { fromDashboard: true },
-          }}
+          }}  
         >
           View on EtherScan
         </Link>
-        <center>  <a href={"Transaction Hash" + hasher} target='_blank' style={{ color: "black", fontSize: "12px" }}> {hasher} </a> </center>
+        <center>  <p style={{ color: "black", fontSize: "12px" }}> {hasher} </p> </center>
         {/* <Button onClick={() => letToggle()} className="done-button margintp">
             Done
           </Button> */}
