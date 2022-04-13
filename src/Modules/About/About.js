@@ -50,7 +50,7 @@ export default function About() {
     } else {
       console.log("Account", accounts);
       account = true;
-      setButtonText("Connect Wallet");
+      setButtonText("Wallet Connected");
     }
   });
 

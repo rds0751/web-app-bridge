@@ -58,7 +58,7 @@ function BridgeCard() {
   const data = [
     {
       value: 3,
-      text: "Ropsten",
+      text: "Ethereum",
       icon: "/images/ethereum.svg",
     },
     {
@@ -76,7 +76,7 @@ function BridgeCard() {
     },
     {
       value: 3,
-      text: "Ropsten",
+      text: "Ethereum",
       icon: "/images/ethereum.svg",
     },
   ];
@@ -151,19 +151,21 @@ function BridgeCard() {
             />
 
             <div className="fl">
-              <div className="fs-12  c-b pt-3  left-label ">Destination*</div>
+              <div className="fs-12  c-b pt-3  left-label">Destination</div>
               <Select
                 isSearchable={false}
                 isClearable={false}
-                className="alignLeft input-box-1 fs-12 fw-b rm-border "
+                className="alignLeft input-box-1 fs-12 fw-b rm-border"
                 placeholder="Select Option"
-                styles={colourStyles}
                 value={selectedOptionDestination}
                 options={dataDestination}
                 onChange={handleChangeDestination}
                 getOptionLabel={(e) => (
                   <div style={{ display: "flex", alignItems: "center" }}>
-                    {e.icon}
+                    <img
+                      style={{ width: "24px", height: "24px" }}
+                      src={e.icon}
+                    />
                     <span style={{ marginLeft: 5, color: "black" }}>
                       {e.text}
                     </span>

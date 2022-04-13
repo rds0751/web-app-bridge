@@ -1,40 +1,63 @@
 .App {
-    font-family: sans-serif;
-    text-align: center;
-    padding: 30px;
-  }
-  .indexedStep {
-    color: white;
-    width: 35px;
-    height: 35px;
-    font-size: 12px;
-    background-color: green;
-    border-radius: 50%;
-    border-color: blue;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .indexedStep.accomplished {
-    background-color: green;
-  }
-  
-  .test {
-    position: absolute;
-    margin-top: 60px;
-    color: black;
-    white-space: nowrap;
-  }
-  ::placeholder { 
-    color: #9D9D9D;
-    opacity: 1; 
-  }
-  ::-webkit-scrollbar {
-    display: none;
-    overflow-y: hidden; /* Hide vertical scrollbar */
-  overflow-x: hidden;
-  }
-  
-
-
+  font-family: sans-serif;
+  text-align: center;
+  /* height: 30%; */
+  padding: 30px;
+}
+.indexedStep {
+  color: #2358E5;
+  top: 68px;
+  left: 1002px;
+  width: 32px;
+  height: 32px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border-radius: 50% !important;
+  border  : solid #2358E5 .5px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.indexedStep.accomplished {
+  border  : solid #2358E5 0px !important;
+  background-color: #20AA15;
+  color: #ffffff; 
+}
+.test {
+  font: normal normal medium 14px/17px Inter;
+  position: absolute;
+  margin-top: 70px;
+  white-space: nowrap;
+  text-align: center;
+}
+.margintp{
+margin-top: 30px;
+}
+.done{
+  align-items: center;
+  flex-direction: column;
+  margin-top: 88px;
+}
+.successImg{
+height: 70px;
+width: 70px;
+}  
+.progressText{
+text-align: center;
+font: normal normal normal 16px/20px Inter;
+letter-spacing: 0px;
+color: #101010;
+opacity: 1;
+margin-top: 24px;
+}
+.viewOnXDCText{
+font: normal normal normal 16px/20px Inter;
+letter-spacing: 0px;
+color: #2149B9;
+opacity: 1;
+text-decoration: none;
+margin-top: 28px;
+}
+.viewOnXDCTextDisable
+{
+display: none;
+}
