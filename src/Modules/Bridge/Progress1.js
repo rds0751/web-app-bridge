@@ -38,7 +38,6 @@ let debridgeId,
   bcd,
   cde,
   transaction;
-
 export default function App() {
   const [show, setShow] = useState(false);
   const [hash, setHash] = useState("");
@@ -51,9 +50,7 @@ export default function App() {
   const [ThirdStatus, setThirdStatus] = useState("");
   const location = useLocation();
   const [progress, setProgress] = useState(0);
-
   toast.configure();
-
   const OnSubmit = async () => {
     let account;
     //connecting to the xdc testnetwork using chain_id
@@ -66,14 +63,12 @@ export default function App() {
         account = true;
       }
     });
-
     console.log(" ", location.state.selectedOptionToken.address);
     //creating a object using getAccounts
     const accounts = await xdc3.eth.getAccounts();
     console.log("accounts", accounts[0]);
     console.log(" Destination", "3");
     console.log("", location.state.selectedOptionToken.address);
-
     /**
      * @dev Performing the Approve method for erc20 .
      * @param address Reciever Address.
@@ -81,9 +76,7 @@ export default function App() {
      * @param account[0] sender address.
      * @param data passing the approve method wih reciever address and amount
      */
-
     toast.info("Sending the Amount.");
-
     if (location.state.selectedOptionToken.chainId === 50) {
       console.log("nonu");
       transaction = {
@@ -113,7 +106,6 @@ export default function App() {
           }
         });
     }
-
     if (location.state.selectedOptionToken.chainId === 1) {
       window.web3 = new Web3(window.ethereum);
       await window.ethereum.request({ method: "eth_requestAccounts" });
@@ -139,7 +131,6 @@ export default function App() {
           .encodeABI(),
         //value given by user should be multiplied by 1000
       };
-
       await window.web3.eth
         .sendTransaction(transaction)
         .on("confirmation", function (confirmationNumber, result) {
@@ -153,7 +144,6 @@ export default function App() {
           }
         });
     }
-
     if (location.state.selectedOptionToken.chainId === 51) {
       let transaction = {
         from: accounts[0],
@@ -166,7 +156,6 @@ export default function App() {
           .encodeABI(),
         //value given by user should be multiplied by 1000
       };
-
       await window.web3.eth
         .sendTransaction(transaction)
         .on("confirmation", function (confirmationNumber, receipt) {
@@ -197,17 +186,14 @@ export default function App() {
           }
         });
     }
-
     allowance = parseInt(
       await token.methods
         .allowance("0xdcdde99d5a90446cfac723f1b685c04244a31a5f", xBridgeAddress)
         .call()
     );
     console.log("allowaNCE", allowance, location.state.amount);
-
     setProgress(progress + 30);
     letToggle();
-
     if (location.state.selectedOptionToken.chainId === 51) {
       transaction = {
         from: accounts[0],
@@ -270,7 +256,6 @@ export default function App() {
           }
         });
     }
-
     setProgress(progress + 65);
     letToggle();
     const requestOptions = {
@@ -295,15 +280,8 @@ export default function App() {
         var1 = 1;
       }
     }
-
     console.log("transaction hash", transactionHash);
-
     setSecoundStatus("The");
-
-    console.log("transaction hash", transactionHash);
-
-    setSecoundStatus("The");
-
     console.log(abc);
     debridgeId = abc.debridgeId;
     submissionId = abc.submissionId;
@@ -311,18 +289,15 @@ export default function App() {
     amount = abc.amount;
     setHash(transactionHash);
     console.log(submissionId, debridgeId);
-
     /**
      * @dev To claim the tokens from the sender.
      * @param tokenAddress The address of the token.
      */
-
     /**
      * @dev switching the network to the ropsten.
      * @param chainid chain id of the ropsten testnet.
      */
     setProgress(progress + 70);
-
     const bridgeAddress = eBridgeAddress;
     /**
      * @dev instance of ebridge, has been instilized because XDCPAY and METAMASK creats only once.
@@ -336,7 +311,6 @@ export default function App() {
      */
     const deploy = new web3.eth.Contract(Deploy.abi, deployerAddress);
     //fetching the address of the sender through metamask
-
     console.log("", accounts);
     console.log(" Destination", "3");
     const isSubmissionUsed = await ebridge.methods
@@ -345,14 +319,12 @@ export default function App() {
     const debridge_id = await ebridge.methods
       .getDebridgeId(location.state.selectedOptionToken.chainId, tokenBridge)
       .call();
-
     console.log("debridgeId", debridge_id);
     console.log(" Destination", location.state.selectedOptionToken.chainId);
     console.log("", location.state.selectedOptionToken.address);
     //deploying the smart contract ERC20
     // const deployAsset = await deploy.methods.deployAsset(debridge_id, 'Token Mapped with XDC Chain', 'WXDC1', 18).call();
     const _token = tokenDeployee;
-
     console.log("amountts", amount);
     /**
      * @dev Get the hash value and the result.
@@ -363,7 +335,6 @@ export default function App() {
       accounts[0],
       "0x"
     );
-
     /**
      * @dev Performing the ERC20 claim function.
      * @param debridge_id The address of the token.
@@ -373,11 +344,9 @@ export default function App() {
      * @param submissionId Submission id contains :- nonce, id , address
      * @param signature to verify the contract
      */
-
     setHasher(transactionHashes);
     letToggle();
     console.log("", submissionId);
-
     console.log("", location.state.selectedOptionToken.chainId);
     // if (location.state.selectedOptionToken.chainId != 50) {
     //   transaction = {
@@ -392,11 +361,9 @@ export default function App() {
     //       submissionId,
     //       signatures,
     //       autoParamsFrom
-
     //     ).encodeABI()
     //     //value given by user should be multiplied by 1000
     //   };
-
     //   await window.web3.eth
     //     .sendTransaction(transaction)
     //     .on("confirmation", function (confirmationNumber, receipt) {
@@ -406,7 +373,6 @@ export default function App() {
     //       }
     //     });
     // }
-
     if (location.state.selectedOptionToken.chainId === 50) {
       transaction = {
         from: accounts[0],
@@ -425,7 +391,6 @@ export default function App() {
           .encodeABI(),
         //value given by user should be multiplied by 1000
       };
-
       await window.ethereum.request({ method: "eth_requestAccounts" });
       window.web3 = new Web3(window.ethereum);
       const web3 = new Web3(window.ethereum);
@@ -436,7 +401,6 @@ export default function App() {
             transactionHashes = receipt.transactionHash;
             console.log("Transaction", transactionHashes);
             setHasher(transactionHashes);
-
             setProgress(progress + 100);
             letToggle();
             console.log("", submissionId);
@@ -460,7 +424,6 @@ export default function App() {
           .encodeABI(),
         //value given by user should be multiplied by 1000
       };
-
       window.web3 = new XDC3(window.xdc);
       const xdc3 = new XDC3(window.xdc);
       await window.web3.eth
@@ -478,13 +441,9 @@ export default function App() {
           }
         });
     }
-
     // if (location.state.selectedOptionToken.chainId === 1) {
-
     //          console.log("sjhkszhfkszehku")
-
     //      }
-
     /**
      *@dev Retrning the hash.
      * @param web3 Librabry.
@@ -518,11 +477,9 @@ export default function App() {
       return "0x";
     }
   };
-
   useEffect(() => {
     OnSubmit();
   }, []);
-
   const [spinnerLoading, setSpinnerLoading] = useState(true);
   const [show_Hide_Image, setShowHideImage] = useState("none");
   const [a, setA] = useState(false);
@@ -633,7 +590,6 @@ export default function App() {
           {" "}
           <p style={{ color: "black", fontSize: "12px" }}> {hash} </p>
         </center>
-
         <Link
           className={a ? "viewOnXDCText" : "viewOnXDCTextDisable"}
           to={{
