@@ -194,7 +194,7 @@ export default function App() {
           }
         });
     }
-
+    
 
     allowance = parseInt(await token.methods.allowance('0xdcdde99d5a90446cfac723f1b685c04244a31a5f', xBridgeAddress).call())
     console.log("allowaNCE", allowance, location.state.amount);

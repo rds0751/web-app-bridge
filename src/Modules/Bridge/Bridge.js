@@ -5,7 +5,7 @@ import copy from "../../assets/copy.png";
 import max from "../../assets/max.png";
 import "./FormMain.css";
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import Select from "react-select";
 import xdc3 from "../../utils/xdc3";
 import Web3 from "web3";
@@ -32,41 +32,13 @@ function BridgeCard() {
   const data = [
     {
       value: 3,
-      text: "Ethereum",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 48 48"
-          width="28px"
-          height="28px"
-        >
-          <path
-            fill="#4caf50"
-            d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"
-          />
-          <path fill="#fff" d="M21,14h6v20h-6V14z" />
-          <path fill="#fff" d="M14,21h20v6H14V21z" />
-        </svg>
-      ),
+      text: "Ropsten",
+      icon: "/images/ethereum.svg",
     },
     {
       value: 51,
       text: "XDC",
-      icon: (
-        <svg
-          xmlns="https://www.xinfin.org/assets/images/brand-assets/xdc-logo.svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          class="bi bi-arrow-right-circle"
-          viewBox="0 0 16 16"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"
-          />
-        </svg>
-      ),
+      icon: "/images/XDC.svg",
     },
   ];
 
@@ -74,40 +46,12 @@ function BridgeCard() {
     {
       value: 51,
       text: "XDC",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 48 48"
-          width="28px"
-          height="28px"
-        >
-          <path
-            fill="#4caf50"
-            d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"
-          />
-          <path fill="#fff" d="M21,14h6v20h-6V14z" />
-          <path fill="#fff" d="M14,21h20v6H14V21z" />
-        </svg>
-      ),
+      icon: "/images/XDC.svg",
     },
     {
       value: 3,
-      text: "Ethereum",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          class="bi bi-arrow-right-circle"
-          viewBox="0 0 16 16"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"
-          />
-        </svg>
-      ),
+      text: "Ropsten",
+      icon: "/images/ethereum.svg",
     },
   ];
 
@@ -121,18 +65,22 @@ function BridgeCard() {
 
 
   const [selectedOption, setSelectedOption] = useState(null);
-
+  const [icon, setIcon] = useState("");
   // handle onChange event of the dropdown
   const handleChange = (e) => {
     setSelectedOption(e);
+    setIcon(e?.icon);
   };
 
   const [selectedOptionDestination, setSelectedOptionDestination] = useState(null);
-
+  const [text, setText] = useState("");
   // handle onChange event of the dropdown 
   const handleChangeDestination = (e) => {
     setSelectedOptionDestination(e);
+    setText(e?.icon);
   };
+
+  useEffect(() => [selectedOptionDestination, selectedOption, icon]);
   return (
     <>
     {/* <div style={{display : "none"}}><BridgeConfirm amount={amount}/> </div> */}
@@ -142,22 +90,27 @@ function BridgeCard() {
           <div className="fl ">
             <div className="fs-12  c-b pt-3  left-label ">Source</div>
             <Select
-              isSearchable={false}
-              isClearable={false}
-              className="alignLeft input-box-1 fs-12 fw-b rm-border "
-              placeholder="Select Option"
-              value={selectedOption}
-              options={data}
-              onChange={handleChange}
-              getOptionLabel={(e) => (
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  {e.icon}
-                  <span style={{ marginLeft: 5, color: "black" }}>
-                    {e.text}
-                  </span>
-                </div>
-              )}
-            />
+                isSearchable={false}
+                isClearable={false}
+                className="alignLeft input-box-1 fs-12 fw-b rm-border "
+                placeholder="Select Option"
+                value={selectedOption}
+                options={data}
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                getOptionLabel={(e) => (
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <img
+                      style={{ width: "24px", height: "24px" }}
+                      src={e.icon}
+                    />
+                    <span style={{ marginLeft: 5, color: "black" }}>
+                      {e.text}
+                    </span>
+                  </div>
+                )}
+              />
           </div>
 
           <img className="exchane-img fl-img" src={exchange} />
@@ -165,22 +118,25 @@ function BridgeCard() {
           <div className="fl">
             <div className="fs-12  c-b pt-3  left-label">Destination</div>
             <Select
-              isSearchable={false}
-              isClearable={false}
-              className="alignLeft input-box-1 fs-12 fw-b rm-border"
-              placeholder="Select Option"
-              value={selectedOptionDestination}
-              options={dataDestination}
-              onChange={handleChangeDestination}
-              getOptionLabel={(e) => (
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  {e.icon}
-                  <span style={{ marginLeft: 5, color: "black" }}>
-                    {e.text}
-                  </span>
-                </div>
-              )}
-            />
+                isSearchable={false}
+                isClearable={false}
+                className="alignLeft input-box-1 fs-12 fw-b rm-border"
+                placeholder="Select Option"
+                value={selectedOptionDestination}
+                options={dataDestination}
+                onChange={handleChangeDestination}
+                getOptionLabel={(e) => (
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <img
+                      style={{ width: "24px", height: "24px" }}
+                      src={e.icon}
+                    />
+                    <span style={{ marginLeft: 5, color: "black" }}>
+                      {e.text}
+                    </span>
+                  </div>
+                )}
+              />
           </div>
         </div>
         <div>
@@ -240,9 +196,20 @@ function BridgeCard() {
             onChange={(e) => setAddress(e.target.value)}
           />
         </div> */}
-        <Link  to= "/bridge-confirm-transaction" state = {{amount , selectedOptionToken }}  >   <button type="submit" className="submit-button">
-        Next
-        </button>
+                 <Link
+            to="/bridge-confirm-transaction"
+            state={{
+              address,
+              amount,
+              selectedOptionToken,
+              source: `${icon}`,
+              destination: `${text}`,
+            }}
+          >
+            {" "}
+            <button type="submit" className="submit-button">
+              Next
+            </button>
           </Link>
           {/* , selectedOption , selectedOptionDestination */}
         
