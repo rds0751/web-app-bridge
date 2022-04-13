@@ -36,7 +36,25 @@ function BridgeCard() {
   const [buttonText, setButtonText] = useState("");
   const [address, setAddress] = useState("");
   const [amount, setAmount] = useState("");
+  const [txt, setTxt] = useState("");
 
+  const onInputChange = (e) => {
+    const { value } = e.target;
+    console.log("Input value: ", value);
+
+    const re = /^[A-Za-z]+$/;
+    if (value === "" || re.test(value)) {
+      setTxt(value);
+    }
+  };
+  const colourStyles = {
+    placeholder: (defaultStyles) => {
+      return {
+        ...defaultStyles,
+        color: "#9D9D9D",
+      };
+    },
+  };
   const data = [
     {
       value: 3,
@@ -44,16 +62,70 @@ function BridgeCard() {
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 48 48"
-          width="28px"
-          height="28px"
+          width="32"
+          height="32"
+          viewBox="0 0 38 38"
         >
-          <path
-            fill="#4caf50"
-            d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"
-          />
-          <path fill="#fff" d="M21,14h6v20h-6V14z" />
-          <path fill="#fff" d="M14,21h20v6H14V21z" />
+          <g id="Ether" transform="translate(-1012 -207)">
+            <g
+              id="Ethereum-icon-purple"
+              transform="translate(1021.854 211.106)"
+            >
+              <path
+                id="Path_2"
+                data-name="Path 2"
+                d="M429.377,80.7,420.1,96.1l9.277-4.217Z"
+                transform="translate(-420.1 -80.7)"
+                fill="#8a92b2"
+              />
+              <path
+                id="Path_3"
+                data-name="Path 3"
+                d="M429.377,731l-9.277,4.217,9.277,5.485Z"
+                transform="translate(-420.1 -719.821)"
+                fill="#62688f"
+              />
+              <path
+                id="Path_4"
+                data-name="Path 4"
+                d="M969.079,96.1,959.8,80.7V91.879Z"
+                transform="translate(-950.523 -80.7)"
+                fill="#62688f"
+              />
+              <path
+                id="Path_5"
+                data-name="Path 5"
+                d="M959.8,740.7l9.279-5.485L959.8,731Z"
+                transform="translate(-950.523 -719.821)"
+                fill="#454a75"
+              />
+              <path
+                id="Path_6"
+                data-name="Path 6"
+                d="M420.1,1078.7l9.277,13.075v-7.593Z"
+                transform="translate(-420.1 -1061.544)"
+                fill="#8a92b2"
+              />
+              <path
+                id="Path_7"
+                data-name="Path 7"
+                d="M959.8,1084.182v7.593l9.284-13.075Z"
+                transform="translate(-950.523 -1061.544)"
+                fill="#62688f"
+              />
+            </g>
+            <g
+              id="Ellipse_1"
+              data-name="Ellipse 1"
+              transform="translate(1012 207)"
+              fill="none"
+              stroke="#ebebeb"
+              stroke-width="1"
+            >
+              <circle cx="19" cy="19" r="19" stroke="none" />
+              <circle cx="19" cy="19" r="18.5" fill="none" />
+            </g>
+          </g>
         </svg>
       ),
     },
@@ -118,16 +190,70 @@ function BridgeCard() {
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          class="bi bi-arrow-right-circle"
-          viewBox="0 0 16 16"
+          width="32"
+          height="32"
+          viewBox="0 0 38 38"
         >
-          <path
-            fill-rule="evenodd"
-            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"
-          />
+          <g id="Ether" transform="translate(-1012 -207)">
+            <g
+              id="Ethereum-icon-purple"
+              transform="translate(1021.854 211.106)"
+            >
+              <path
+                id="Path_2"
+                data-name="Path 2"
+                d="M429.377,80.7,420.1,96.1l9.277-4.217Z"
+                transform="translate(-420.1 -80.7)"
+                fill="#8a92b2"
+              />
+              <path
+                id="Path_3"
+                data-name="Path 3"
+                d="M429.377,731l-9.277,4.217,9.277,5.485Z"
+                transform="translate(-420.1 -719.821)"
+                fill="#62688f"
+              />
+              <path
+                id="Path_4"
+                data-name="Path 4"
+                d="M969.079,96.1,959.8,80.7V91.879Z"
+                transform="translate(-950.523 -80.7)"
+                fill="#62688f"
+              />
+              <path
+                id="Path_5"
+                data-name="Path 5"
+                d="M959.8,740.7l9.279-5.485L959.8,731Z"
+                transform="translate(-950.523 -719.821)"
+                fill="#454a75"
+              />
+              <path
+                id="Path_6"
+                data-name="Path 6"
+                d="M420.1,1078.7l9.277,13.075v-7.593Z"
+                transform="translate(-420.1 -1061.544)"
+                fill="#8a92b2"
+              />
+              <path
+                id="Path_7"
+                data-name="Path 7"
+                d="M959.8,1084.182v7.593l9.284-13.075Z"
+                transform="translate(-950.523 -1061.544)"
+                fill="#62688f"
+              />
+            </g>
+            <g
+              id="Ellipse_1"
+              data-name="Ellipse 1"
+              transform="translate(1012 207)"
+              fill="none"
+              stroke="#ebebeb"
+              stroke-width="1"
+            >
+              <circle cx="19" cy="19" r="19" stroke="none" />
+              <circle cx="19" cy="19" r="18.5" fill="none" />
+            </g>
+          </g>
         </svg>
       ),
     },
@@ -161,12 +287,13 @@ function BridgeCard() {
         <form>
           <div className="parent-row">
             <div className="fl ">
-              <div className="fs-12  c-b pt-3  left-label ">Source</div>
+              <div className="fs-12  c-b pt-3  left-label ">Source*</div>
               <Select
                 isSearchable={false}
                 isClearable={false}
-                className="alignLeft input-box-1 fs-12 fw-b rm-border "
+                className="alignLeft input-box-1 fs-12 fw-b rm-border css-14el2xx-placeholder"
                 placeholder="Select Option"
+                styles={colourStyles}
                 value={selectedOption}
                 options={data}
                 onChange={handleChange}
@@ -183,21 +310,24 @@ function BridgeCard() {
 
             <img
               style={{
-                marginBottom: "-31px",
-                marginLeft: "-21px",
-                marginRight: "7px",
-                marginTop: "4px",
+                width: "28px",
+                height: "27px",
+                marginBottom: "-37px",
+                marginLeft: "-9px",
+                marginRight: "12px",
+                marginTop: "41px",
               }}
               src="/images/Arrow (1).svg"
             />
 
             <div className="fl">
-              <div className="fs-12  c-b pt-3  left-label">Destination</div>
+              <div className="fs-12  c-b pt-3  left-label ">Destination*</div>
               <Select
                 isSearchable={false}
                 isClearable={false}
-                className="alignLeft input-box-1 fs-12 fw-b rm-border"
+                className="alignLeft input-box-1 fs-12 fw-b rm-border "
                 placeholder="Select Option"
+                styles={colourStyles}
                 value={selectedOptionDestination}
                 options={dataDestination}
                 onChange={handleChangeDestination}
@@ -219,6 +349,7 @@ function BridgeCard() {
               isClearable={false}
               className="alignLeft drop-padding token-select fs-12 fw-b rm-border"
               placeholder="Select Option"
+              styles={colourStyles}
               value={selectedOptionToken}
               options={tokenList.tokens}
               onChange={handleChangeToken}
@@ -248,27 +379,15 @@ function BridgeCard() {
           <div className="fs-12  c-b pt-3  left-label">Amount*</div>
           <div className="amount-box-outer fs-12 fw-b">
             <input
-              type="number"
-              min="0"
-              onkeypress="return event.charCode != 45"
+              type="text"
               name="amount"
               className="amount-box-inner fs-12 fw-b rm-border-amount"
               onChange={(e) => {
-                const str = e.target.value.toString();
-                console.log("str", str);
-                let val = parseInt(e.target.value, 10);
-                if (str.includes("--")) {
-                  val = 0;
-                  setAmount(val);
-                }
-
-                if (isNaN(val)) {
-                  setAmount("");
-                } else {
-                  // is A Number
-                  val = val >= 0 ? val : 0;
-                  setAmount(val);
-                }
+                const val = e.target.value
+                  .replace(/[^0-9.]/g, "")
+                  .replace(/(\..*?)\..*/g, "$1")
+                  .replace(/^0[^.]/, "0");
+                setAmount(val);
               }}
               // Assign State
               value={amount}
@@ -284,13 +403,14 @@ function BridgeCard() {
           </div>
           <div className="destination">
             <input
-              type="number"
-              min="0"
-              oninput="this.value = Math.abs(this.value)"
-              name="amount"
+              type="text"
+              name="address"
               className="input-box-1 fs-12 fw-b "
-              placeholder="Wallet Address"
+              // oninput="this.value = this.value.replace
               onChange={(e) => setAddress(e.target.value)}
+              // Assign State
+              value={address}
+              placeholder="Wallet Address"
             />
           </div>
           <Link

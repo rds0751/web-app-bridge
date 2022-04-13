@@ -75,14 +75,18 @@ export default function About() {
         </h2>
         <Button
           onClick={() => handleXDCPayWallet()}
-          className="connect-wallet"
+          className="connect-wallet btn-primary"
           variant="primary"
         >
           <img src="/images/wallet.svg"></img>
           {buttonText}
         </Button>{" "}
       </Box>
-      <Grid item xs={12} style={{ marginTop: "52px", marginLeft: "200px" }}>
+      <Grid
+        item
+        xs={12}
+        style={{ marginTop: "52px", marginLeft: "200px", paddingTop: "26px" }}
+      >
         <Grid container justifyContent="center" spacing={3}>
           <Grid item>
             <Paper
@@ -92,7 +96,7 @@ export default function About() {
               }}
               className="card-paper"
             >
-              <img src="/images/Swap (1).svg" alt="swap"></img>
+              <img src="/images/Bridge.svg" alt="bridge"></img>
               <p className="p-heading">BRIDGE</p>
               <p className="p-subheading">
                 Transfer data (e.g. digital asset ownership information) between
@@ -111,7 +115,7 @@ export default function About() {
               }}
               className="card-paper"
             >
-              <img src="/images/Swap (1).svg" alt="swap"></img>
+              <img src="/images/Swap_1.svg" alt="swap"></img>
               <p className="p-heading">SWAP</p>
               <p className="p-subheading">
                 Swap tokens supported on XDC Network

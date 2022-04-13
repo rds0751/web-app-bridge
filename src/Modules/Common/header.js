@@ -19,7 +19,7 @@ export default function Drawer() {
         </Typography>
         <Button color="inherit">
           <img
-            style={{ marginBottom: "19px" }}
+            style={{ marginBottom: "15px", marginLeft: "19.21px" }}
             src="/images/wallet_header.svg"
           ></img>
         </Button>
