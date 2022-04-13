@@ -1,7 +1,7 @@
 .my-card {
   background-color: white;
-  width: 606px;
-  height: 500px;
+  width: 640px;
+  height: 716px;
   border-radius: 10px;
   padding: 20px;
   margin-left: 37%;
@@ -12,3 +12,5 @@
 .my-card-second {
     margin-top: 1.5% !important;
 }
+
+
