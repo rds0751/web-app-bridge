@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "../Common/header";
 import SideBar from "../Common/drawer";
 import Box from "@mui/material/Box";
+import { Button } from "react-bootstrap";
 import { Divider } from "@mui/material";
 import { Modal } from "react-bootstrap";
 import ProgressBar from "./Progress1";
@@ -49,9 +50,12 @@ function BridgeConfirm() {
             <p className="review">Review Transaction</p>
             <Divider className="mb-23" />
             <div className="image-flex">
-              <img className="token-img" src="/images/XDC.svg"></img>
+              <img className="token-img" src={location?.state?.source}></img>
               <img src="/images/Arrow.svg" alt="sachin"></img>
-              <img className="token-img" src="/images/ethereum.svg"></img>
+              <img
+                className="token-img"
+                src={location?.state?.destination}
+              ></img>
             </div>
             <div className="asset-flex">
               <p>Asset</p>
