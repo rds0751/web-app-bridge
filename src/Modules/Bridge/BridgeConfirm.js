@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-
 import Header from "../Common/header";
 import SideBar from "../Common/drawer";
 import Box from "@mui/material/Box";
+import { Button } from "react-bootstrap";
 import { Divider } from "@mui/material";
 import { Modal } from "react-bootstrap";
-import { Button } from "react-bootstrap";
 import ProgressBar from "./Progress1";
 import { Link, useLocation } from "react-router-dom";
 import { PregnantWomanSharp } from "@material-ui/icons";
@@ -16,7 +15,6 @@ import xbridge from "../../utils/xbridge";
 import tokenList from "../../contracts/tokenlist.json";
 import Bridge from "../../contracts/bridge.json";
 import Deploy from "../../contracts/deployer.json";
-
 import {
   tokenBridge,
   tokenDeployee,
@@ -34,12 +32,10 @@ let debridgeId,
 //Main Function
 function BridgeConfirm() {
   const [show, setShow] = useState(false);
-
   const [chainTo, setChainTo] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const location = useLocation();
-
   return (
     <>
       <Box>
@@ -54,9 +50,12 @@ function BridgeConfirm() {
             <p className="review">Review Transaction</p>
             <Divider className="mb-23" />
             <div className="image-flex">
-              <img className="token-img" src="/images/XDC.svg"></img>
+              <img className="token-img" src={location?.state?.source}></img>
               <img src="/images/Arrow.svg" alt="sachin"></img>
-              <img className="token-img" src="/images/ethereum.svg"></img>
+              <img
+                className="token-img"
+                src={location?.state?.destination}
+              ></img>
             </div>
             <div className="asset-flex">
               <p>Asset</p>
@@ -70,11 +69,11 @@ function BridgeConfirm() {
               <p>{location.state.amount}</p>
               {console.log("njnvd", location.state.amount)}
             </div>
-            <Divider className="mb-23" />
+            {/* <Divider className="mb-23" />
             <div className="asset-flex">
               <p>Destination</p>
               <p>{location.state.address}</p>
-            </div>
+            </div> */}
             <Divider className="mb-23" />
             <div className="asset-flex">
               <p>You will get</p>
@@ -93,20 +92,17 @@ function BridgeConfirm() {
           </div>
         </div>
       </Box>
-      <Modal show={show} animation={false}>
+      <Modal
+        style={{ marginTop: "5px", zIndex: "999999999" }}
+        show={show}
+        animation={false}
+      >
         <Modal.Header>
           <ProgressBar />
         </Modal.Header>
-        <Modal.Body>
-          {/* <center> <a href={'https://explorer.apothem.network/txs/' + this.state.hash} target='_blank' style={{ color: "black", fontSize: "9px" }}> {props.hash} </a></center> */}
-          {/* <center>  <a href={'https://ropsten.etherscan.io/tx/' + hasher} target='_blank' style={{ color: "black", fontSize: "9px" }}> {hasher} </a> </center> */}
-        </Modal.Body>
-        <div className="done">
-          <Button className="done-button">Done</Button>
-        </div>
+        <Modal.Body></Modal.Body>
       </Modal>
     </>
   );
 }
-
 export default BridgeConfirm;

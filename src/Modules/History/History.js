@@ -41,6 +41,7 @@ function HistoryCard() {
   const [xhash, selectHash] = useState("");
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedClickHash, setSelectedClickHash] = useState(null);
+  const [selectedTime, setSelectedTime] = useState("");
 
   // handle onChange event of the dropdown
   const handleChange = (e) => {
@@ -48,13 +49,14 @@ function HistoryCard() {
   };
   let transaction;
   let transactionTime;
+  let transactionTimes;
   let non;
   let hashing;
   let amount;
   let dateTimeStamp;
   let bcd;
 
-  const fetchURL = "http://3.109.251.40";
+  const fetchURL = "https://testapi.xdcbridge.com";
   const getData = () => fetch(`${fetchURL}/txns`).then((res) => res.json());
   useEffect(() => {
     getData().then((data) => setData(data));
@@ -74,17 +76,21 @@ function HistoryCard() {
     const accounts = await web3.eth.getAccounts();
     console.log(accounts);
 
-    for (var i = 0; i <= 60; i++) {
+    for (var i = 0; i <= data.data.length; i++) {
       hashing = data.data[i];
       console.log("mond", hashing);
 
       transaction = await web3.eth.getTransaction(hashing);
       //timestamp
       non = await web3.eth.getBlock(transaction["blockNumber"]);
-      amount = await web3.utils.fromWei(transaction.value, "ether");
+      if (web3.utils.fromWei(transaction.value, "ether"))
+        amount = await web3.utils.fromWei(transaction.value, "ether");
       dateTimeStamp = non["timestamp"];
       // transactionTime = new Date(dateTimeStamp);
-      transactionTime = moment(dateTimeStamp).fromNow();
+      const transactionTime = moment(dateTimeStamp * 1000).fromNow();
+      transactionTimes = new Date(dateTimeStamp * 1000).toLocaleString();
+      setSelectedTime(transactionTimes);
+      console.log("time", dateTimeStamp);
       var time = selectHash(hashing);
       setSelectedOption(hashing);
       console.log("hdhdhdjd", transaction);
@@ -107,9 +113,7 @@ function HistoryCard() {
     }
   };
 
-  useEffect(() => {
-    History();
-  }, []);
+  // useEffect(() => {History();}, [])
 
   return (
     <Box className="pool-box">
@@ -157,7 +161,9 @@ function HistoryCard() {
           </svg>
           Filter
         </button>
-        <button className="filter-button">Export</button>
+        <button onClick={History} className="filter-button">
+          Export
+        </button>
       </div>
       <Tabs
         defaultActiveKey="Top Tokens"
@@ -197,7 +203,7 @@ function HistoryCard() {
                     <Link
                       className="link"
                       to="/HistoryDetails"
-                      state={{ xhash, setAmount, row }}
+                      state={{ xhash, setAmount, row, selectedTime }}
                     >
                       <TableCell
                         onClick={() => setSelectedClickHash(row.Hash)}

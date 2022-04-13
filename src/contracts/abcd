@@ -57,19 +57,6 @@
     },
     "timestamp": "2021-03-03T19:57:21+0000",
     "tokens": [
-
-      {
-        "chainId": 1,
-        "address": "0x0000000000000000000000000000000000000000",
-        "debridgeAddress" : "0xd419c8dcf9fbc39e392896e28ae683351d9b4e001339f92de4fd3d893cc4b2c2",
-        "symbol": "ETH",
-        "name": "Ether",
-        "decimals": 10,
-        "logoURI": "https://ropsten.etherscan.io/tx/",
-        "tags": [
-          "currency", "xrc20"
-        ]
-      },
       {
         "chainId": 51,
         "address": "0x6b97589be27C827A9e6108D5717E7a2D35acb82f",
@@ -83,15 +70,61 @@
       },
       {
         "chainId": 50,
+        "address": "0x536dd70445cea1e97f9bf1bada04cbda5199a2a1",
+        "symbol": "ECOIN",
+        "name": "ECOIN",
+        "decimals": 10,
+        "logoURI": "https://xinfin-explorer-s3.s3.amazonaws.com/token-symbol-image/ECOIN.png",
+        "tags": [
+          "currency", "xrc20"
+        ]
+      },
+      {
+        "chainId": 1,
+        "address": "0x0000000000000000000000000000000000000000",
+        "debridgeAddress" : "0xd419c8dcf9fbc39e392896e28ae683351d9b4e001339f92de4fd3d893cc4b2c2",
+        "symbol": "ETH",
+        "name": "Ether",
+        "decimals": 10,
+        "logoURI": "https://xinfin-explorer-s3.s3.amazonaws.com/token-symbol-image/ECOIN.png",
+        "tags": [
+          "currency", "xrc20"
+        ]
+      },
+      {
+        "chainId": 50,
         "address": "0x0000000000000000000000000000000000000000",
         "debridgeAddress" : "0x0e4ff116d2faf056156d31da16ff7c3c906d57187440adbb77baf74d1b60f6a9",
         "symbol": "XDC",
         "name": "XDC",
         "decimals": 10,
-        "logoURI": "https://explorer.apothem.network/txs/",
+        "logoURI": "https://xinfin-explorer-s3.s3.amazonaws.com/token-symbol-image/ECOIN.png",
         "tags": [
           "currency", "xrc20"
         ]
+      },  
+      {
+        "chainId": 50,
+        "address": "0x5d5f074837f5d4618b3916ba74de1bf9662a3fed",
+        "symbol": "SRX",
+        "name": "STORX",
+        "decimals": 8,
+        "logoURI": "https://xinfin-explorer-s3.s3.amazonaws.com/token-symbol-image/SRX.png",
+        "tags": [
+          "ethereum",
+          "wrapped",
+          "Bridged"
+        ],
+        "extensions": {
+          "address": "0x1a7e4e63778B4f12a199C062f3eFdD288afCBce8",
+          "assetContract": "https://etherscan.io/address/0x1a7e4e63778B4f12a199C062f3eFdD288afCBce8",
+          "bridgeContract": "https://etherscan.io/address/0x3ee18B2214AFF97000D974cf647E7C347E8fa585",
+          "coingeckoId": "ageur",
+          "description": "Angle is the first decentralized, capital efficient and over-collateralized stablecoin protocol",
+          "discord": "https://discord.gg/z3kCpTaKMh",
+          "twitter": "https://twitter.com/AngleProtocol",
+          "website": "https://www.angle.money"
+        }
       }
     ]
   }

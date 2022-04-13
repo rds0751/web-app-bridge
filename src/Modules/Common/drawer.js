@@ -90,12 +90,10 @@ export default function SideBar() {
         </List>
         <div style={{ position: "absolute", bottom: "0", left: "18px" }}>
           <div style={{ display: "flex", marginBottom: "11px" }}>
-            <img src="/images/Night mode.svg"></img>
-            <input className="footer-input" placeholder="$USD"></input>
+            {/* <img src="/images/Night mode.png"></img> */}
+            {/* <input className="footer-input" placeholder="$USD"></input> */}
           </div>
-          <div>
-            <p className="powered">Powered by:&nbsp;XDC</p>
-          </div>
+          <div>{/* <p className="powered">Powered by:&nbsp;XDC</p> */}</div>
         </div>
       </Drawer>
     </Box>

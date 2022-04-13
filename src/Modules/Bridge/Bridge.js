@@ -5,7 +5,7 @@ import copy from "../../assets/copy.png";
 import max from "../../assets/max.png";
 import "./FormMain.css";
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import xdc3 from "../../utils/xdc3";
 import Web3 from "web3";
@@ -59,101 +59,12 @@ function BridgeCard() {
     {
       value: 3,
       text: "Ropsten",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          viewBox="0 0 38 38"
-        >
-          <g id="Ether" transform="translate(-1012 -207)">
-            <g
-              id="Ethereum-icon-purple"
-              transform="translate(1021.854 211.106)"
-            >
-              <path
-                id="Path_2"
-                data-name="Path 2"
-                d="M429.377,80.7,420.1,96.1l9.277-4.217Z"
-                transform="translate(-420.1 -80.7)"
-                fill="#8a92b2"
-              />
-              <path
-                id="Path_3"
-                data-name="Path 3"
-                d="M429.377,731l-9.277,4.217,9.277,5.485Z"
-                transform="translate(-420.1 -719.821)"
-                fill="#62688f"
-              />
-              <path
-                id="Path_4"
-                data-name="Path 4"
-                d="M969.079,96.1,959.8,80.7V91.879Z"
-                transform="translate(-950.523 -80.7)"
-                fill="#62688f"
-              />
-              <path
-                id="Path_5"
-                data-name="Path 5"
-                d="M959.8,740.7l9.279-5.485L959.8,731Z"
-                transform="translate(-950.523 -719.821)"
-                fill="#454a75"
-              />
-              <path
-                id="Path_6"
-                data-name="Path 6"
-                d="M420.1,1078.7l9.277,13.075v-7.593Z"
-                transform="translate(-420.1 -1061.544)"
-                fill="#8a92b2"
-              />
-              <path
-                id="Path_7"
-                data-name="Path 7"
-                d="M959.8,1084.182v7.593l9.284-13.075Z"
-                transform="translate(-950.523 -1061.544)"
-                fill="#62688f"
-              />
-            </g>
-            <g
-              id="Ellipse_1"
-              data-name="Ellipse 1"
-              transform="translate(1012 207)"
-              fill="none"
-              stroke="#ebebeb"
-              stroke-width="1"
-            >
-              <circle cx="19" cy="19" r="19" stroke="none" />
-              <circle cx="19" cy="19" r="18.5" fill="none" />
-            </g>
-          </g>
-        </svg>
-      ),
+      icon: "/images/ethereum.svg",
     },
     {
       value: 51,
       text: "XDC",
-      icon: (
-        <svg
-          id="XDC"
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          viewBox="0 0 38 38"
-        >
-          <path
-            id="Combined_Shape"
-            data-name="Combined Shape"
-            d="M19,38A19.15,19.15,0,0,1,6.213,33.125,18.921,18.921,0,0,1,0,21.133L4.293,19,0,16.867A18.92,18.92,0,0,1,6.213,4.875a19.209,19.209,0,0,1,25.575,0A18.921,18.921,0,0,1,38,16.868L33.707,19,38,21.133a18.92,18.92,0,0,1-6.212,11.992A19.148,19.148,0,0,1,19,38Z"
-            fill="#2149b9"
-          />
-          <path
-            id="X"
-            d="M2.956,14.547,6.113,9.212,9.26,14.547h2.966L7.7,7.214,12.125,0H9.189L6.113,5.255,3.036,0H.1L4.534,7.214,0,14.547Z"
-            transform="translate(12.855 11.761)"
-            fill="#fff"
-          />
-        </svg>
-      ),
+      icon: "/images/XDC.svg",
     },
   ];
 
@@ -161,101 +72,12 @@ function BridgeCard() {
     {
       value: 51,
       text: "XDC",
-      icon: (
-        <svg
-          id="XDC"
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          viewBox="0 0 38 38"
-        >
-          <path
-            id="Combined_Shape"
-            data-name="Combined Shape"
-            d="M19,38A19.15,19.15,0,0,1,6.213,33.125,18.921,18.921,0,0,1,0,21.133L4.293,19,0,16.867A18.92,18.92,0,0,1,6.213,4.875a19.209,19.209,0,0,1,25.575,0A18.921,18.921,0,0,1,38,16.868L33.707,19,38,21.133a18.92,18.92,0,0,1-6.212,11.992A19.148,19.148,0,0,1,19,38Z"
-            fill="#2149b9"
-          />
-          <path
-            id="X"
-            d="M2.956,14.547,6.113,9.212,9.26,14.547h2.966L7.7,7.214,12.125,0H9.189L6.113,5.255,3.036,0H.1L4.534,7.214,0,14.547Z"
-            transform="translate(12.855 11.761)"
-            fill="#fff"
-          />
-        </svg>
-      ),
+      icon: "/images/XDC.svg",
     },
     {
       value: 3,
       text: "Ropsten",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          viewBox="0 0 38 38"
-        >
-          <g id="Ether" transform="translate(-1012 -207)">
-            <g
-              id="Ethereum-icon-purple"
-              transform="translate(1021.854 211.106)"
-            >
-              <path
-                id="Path_2"
-                data-name="Path 2"
-                d="M429.377,80.7,420.1,96.1l9.277-4.217Z"
-                transform="translate(-420.1 -80.7)"
-                fill="#8a92b2"
-              />
-              <path
-                id="Path_3"
-                data-name="Path 3"
-                d="M429.377,731l-9.277,4.217,9.277,5.485Z"
-                transform="translate(-420.1 -719.821)"
-                fill="#62688f"
-              />
-              <path
-                id="Path_4"
-                data-name="Path 4"
-                d="M969.079,96.1,959.8,80.7V91.879Z"
-                transform="translate(-950.523 -80.7)"
-                fill="#62688f"
-              />
-              <path
-                id="Path_5"
-                data-name="Path 5"
-                d="M959.8,740.7l9.279-5.485L959.8,731Z"
-                transform="translate(-950.523 -719.821)"
-                fill="#454a75"
-              />
-              <path
-                id="Path_6"
-                data-name="Path 6"
-                d="M420.1,1078.7l9.277,13.075v-7.593Z"
-                transform="translate(-420.1 -1061.544)"
-                fill="#8a92b2"
-              />
-              <path
-                id="Path_7"
-                data-name="Path 7"
-                d="M959.8,1084.182v7.593l9.284-13.075Z"
-                transform="translate(-950.523 -1061.544)"
-                fill="#62688f"
-              />
-            </g>
-            <g
-              id="Ellipse_1"
-              data-name="Ellipse 1"
-              transform="translate(1012 207)"
-              fill="none"
-              stroke="#ebebeb"
-              stroke-width="1"
-            >
-              <circle cx="19" cy="19" r="19" stroke="none" />
-              <circle cx="19" cy="19" r="18.5" fill="none" />
-            </g>
-          </g>
-        </svg>
-      ),
+      icon: "/images/ethereum.svg",
     },
   ];
 
@@ -267,19 +89,23 @@ function BridgeCard() {
   };
 
   const [selectedOption, setSelectedOption] = useState(null);
-
+  const [icon, setIcon] = useState("");
   // handle onChange event of the dropdown
   const handleChange = (e) => {
     setSelectedOption(e);
+    setIcon(e?.icon);
   };
 
   const [selectedOptionDestination, setSelectedOptionDestination] =
     useState(null);
-
+  const [text, setText] = useState("");
   // handle onChange event of the dropdown
   const handleChangeDestination = (e) => {
     setSelectedOptionDestination(e);
+    setText(e?.icon);
   };
+
+  useEffect(() => [selectedOptionDestination, selectedOption, icon]);
   return (
     <>
       {/* <div style={{display : "none"}}><BridgeConfirm amount={amount}/> </div> */}
@@ -287,19 +113,23 @@ function BridgeCard() {
         <form>
           <div className="parent-row">
             <div className="fl ">
-              <div className="fs-12  c-b pt-3  left-label ">Source*</div>
+              <div className="fs-12  c-b pt-3  left-label ">Source</div>
               <Select
                 isSearchable={false}
                 isClearable={false}
-                className="alignLeft input-box-1 fs-12 fw-b rm-border css-14el2xx-placeholder"
+                className="alignLeft input-box-1 fs-12 fw-b rm-border "
                 placeholder="Select Option"
-                styles={colourStyles}
                 value={selectedOption}
                 options={data}
-                onChange={handleChange}
+                onChange={(e) => {
+                  handleChange(e);
+                }}
                 getOptionLabel={(e) => (
                   <div style={{ display: "flex", alignItems: "center" }}>
-                    {e.icon}
+                    <img
+                      style={{ width: "24px", height: "24px" }}
+                      src={e.icon}
+                    />
                     <span style={{ marginLeft: 5, color: "black" }}>
                       {e.text}
                     </span>
@@ -398,24 +228,25 @@ function BridgeCard() {
             </Link>
           </div>
 
-          <div className="fs-12  c-b pt-3  left-label">
-            Destination Address*
-          </div>
-          <div className="destination">
-            <input
-              type="text"
-              name="address"
-              className="input-box-1 fs-12 fw-b "
-              // oninput="this.value = this.value.replace
-              onChange={(e) => setAddress(e.target.value)}
-              // Assign State
-              value={address}
-              placeholder="Wallet Address"
-            />
-          </div>
+          {/* <div className="fs-12  c-b pt-3  left-label">Destination Address*</div>
+        <div className="destination">
+          <input
+            type="name"
+            name="amount"
+            className="input-box-1 fs-12 fw-b "
+            placeholder="Wallet Address"
+            onChange={(e) => setAddress(e.target.value)}
+          />
+        </div> */}
           <Link
             to="/bridge-confirm-transaction"
-            state={{ amount, address, selectedOptionToken }}
+            state={{
+              address,
+              amount,
+              selectedOptionToken,
+              source: `${icon}`,
+              destination: `${text}`,
+            }}
           >
             {" "}
             <button type="submit" className="submit-button">
