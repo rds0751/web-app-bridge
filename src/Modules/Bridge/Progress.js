@@ -1,343 +1,43 @@
-
-// // import "./styles.css";
-// import React, { useState } from "react";
-
-// import StepProgressBar from "react-step-progress";
-
-// // import the stylesheet
-
-
-// export default function Progress(props) {
-//   const [show, setShow] = useState(false);
-//   const [hash, setHash] = useState("");
-//   const [hasher, setHasher] = useState("");
-//   const [chainTo, setChainTo] = useState("");
-//   const handleClose = () => setShow(false);
-//   const handleShow = () => setShow(true);
-//   const location = useLocation();
-//   const step1Content = <h1></h1>;
-//   const step2Content = <h1></h1>;
-//   const step3Content = <h1></h1>;
-
-//   // setup step validators, will be called before proceeding to the next step
-//   function step2Validator() {
-//     return true;
-//   }
-
-//   function step3Validator() {
-//     // return a boolean
-//   }
-//   const OnSubmit = async () => {
-    
-//     let account
-//     //connecting to the xdc testnetwork using chain_id
-//     await window.web3.eth.getAccounts((err, accounts) => {
-//       if (err !== null) console.error("");
-//       else if (accounts.length === 0) {
-//         account = false;
-//       } else {
-//         // console.log("Account",accounts);
-//         account = true;
-//       }
-//     })
-//       ;
-
-//     console.log(" ", location.state.selectedOptionToken.address);
-//     //creating a object using getAccounts
-//     const accounts = await xdc3.eth.getAccounts();
-//     console.log("accounts", accounts[0]);
-//     console.log(" Destination", '3');
-//     console.log("", location.state.selectedOptionToken.address);
-
-//     /**
-//      * @dev Performing the Approve method for erc20 .
-//      * @param address Reciever Address.
-//      * @param amount token should be approved to the reciever address
-//      * @param account[0] sender address.
-//      * @param data passing the approve method wih reciever address and amount
-//      */
-   
-//       alert("Sending the Transaction");
-//       let transaction = {
-//         from: accounts[0],
-//         to: location.state.address, //contractAddress of the concerned token (same in data below)
-//         gas: 28000,
-
-//         data: token.methods.approve(location.state.address, xdc3.utils.toWei(location.state.amount, "ether")).encodeABI()
-//         //value given by user should be multiplied by 1000
-//       };
-
-//       if (51 === 51) {
-//         await window.web3.eth
-//           .sendTransaction(transaction)
-//           .on("confirmation", function (confirmationNumber, receipt) {
-//             if (receipt && confirmationNumber === 1) {
-//               console.log("transaction hash ", receipt.transactionHash);
-//             }
-//           });
-//       }
-//       else {
-//         await window.ethereum.request({ method: 'eth_requestAccounts' });
-//         window.web3 = new Web3(window.ethereum);
-//         const web3 = new Web3(window.ethereum);
-//         await window.web3.eth
-//           .sendTransaction(transaction)
-//           .on("confirmation", function (confirmationNumber, receipt) {
-//             if (receipt && confirmationNumber === 1) {
-//               console.log("transaction hash ", receipt.transactionHash);
-//             }
-//           });
-//       }
-
-//     await console.log("accounts", accounts[0]);
-
-//       await alert("Accepted the Request");
-//       step2Validator();
-
-//     transaction = {
-//       from: accounts[0],
-//       to: xBridgeAddress, //contractAddress of the concerned token (same in data below)
-//       gas: 150000,
-//       value: xdc3.utils.toWei(location.state.amount, "ether"), // token _amount
-//       data: xbridge.methods.send(
-//         location.state.selectedOptionToken.address,//address _tokenAddress,
-//         xdc3.utils.toWei(location.state.amount, "ether"), // token _amount
-//         '3',// _chainIdTo
-//         location.state.address, //_receiver
-//         "0x", // _permit
-//         false, //_useAssetFee
-//         0, //_referralCode  
-//         "0x" //_autoParams
-//       ).encodeABI()
-//       //value given by user should be multiplied by 1000
-//     };
-//     await window.web3.eth
-//       .sendTransaction(transaction)
-//       .on("confirmation", function (confirmationNumber, result) {
-//         if (result && confirmationNumber === 1) {
-//           transactionHash = result.transactionHash;
-//           console.log("transactinsnsns" , transactionHash);
-//         }
-
-//       });
-
-
-//     const requestOptions = {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify({ "id": transactionHash })
-//     };
-//     let var1 = 0;
-//     while (var1 == 0) {
-//       const requestOptions = {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({ "id": transactionHash })
-//       };
-//       await fetch('http://3.109.251.40/', requestOptions)
-//         .then(response => response.json())
-//         .then(data => { abc = data });
-//       console.log(abc.status)
-//       if (abc.status != 0) {
-//         var1 = 1;
-//       }
-//     };
-
-
-//     console.log("transaction hash", transactionHash);
-//     alert("Its in Progress");
-//     alert("Successfully sent the Token");
-//     console.log(abc);
-//     debridgeId = abc.debridgeId;
-//     submissionId = abc.submissionId;
-//     signatures = abc.signature;
-//     setHash(transactionHash);
-//     console.log(submissionId, debridgeId);
-
-
-
-//     /**
-//      * @dev To claim the tokens from the sender.
-//      * @param tokenAddress The address of the token.
-//      */
-
-//     /**
-//      * @dev switching the network to the ropsten.
-//      * @param chainid chain id of the ropsten testnet.
-//      */
-
-
-//     const bridgeAddress = eBridgeAddress;
-//     /**
-//     * @dev instance of ebridge, has been instilized because XDCPAY and METAMASK creats only once.
-//     */
-//     window.web3 = new Web3(window.ethereum);
-//     const web3 = new Web3(window.ethereum);
-//     const ebridge = new web3.eth.Contract(Bridge.abi, bridgeAddress);
-//     const deployerAddress = deployee;
-//     /**
-//     * @dev instance of deploye, has been instilized because XDCPAY and METAMASK creats only once.
-//     */
-//     const deploy = new web3.eth.Contract(Deploy.abi, deployerAddress);
-//     //fetching the address of the sender through metamask
-
-//     console.log("", accounts);
-//     console.log(" Destination", '3');
-//     const isSubmissionUsed = await ebridge.methods.isSubmissionUsed(submissionId).call();
-//     const debridge_id = await ebridge.methods.getDebridgeId(location.state.selectedOptionToken.chainId, tokenBridge).call();
-//     alert("GetDebridgeId successfully fetched");
-//     console.log("debridgeId", debridge_id);
-//     console.log(" Destination", location.state.selectedOptionToken.chainId);
-//     console.log("", location.state.selectedOptionToken.address);
-//     //deploying the smart contract ERC20
-//     const deployAsset = await deploy.methods.deployAsset(debridge_id, 'Token Mapped with XDC Chain', 'WXDC1', 18).call();
-//     const _token = tokenDeployee;
-//     console.log(deployAsset, _token);
-
-//     /**
-//      * @dev Get the hash value and the result.
-//      * @param web3 fetching the web3 from the library.
-//      */
-//     const autoParamsFrom = await _packSubmissionAutoParamsFrom(web3, '0x');
-
-//     /**
-//     * @dev Performing the ERC20 claim function.
-//     * @param debridge_id The address of the token.
-//     * @param amount Token should be claim from the reciever
-//     * @param chain_id To chain ID
-//     * @param address To Address
-//     * @param submissionId Submission id contains :- nonce, id , address
-//     * @param signature to verify the contract
-//     */
-//     console.log("", location.state.selectedOptionToken.chainId)
-
-//     transaction = {
-//       from: accounts[0],
-//       to: eBridgeAddress, //contractAddress of the concerned token (same in data below)
-//       gas: 280000,
-//       value: '0',
-//       data: ebridge.methods.claim(
-//         debridge_id,
-//         location.state.amount,
-//         location.state.selectedOptionToken.chainId,
-//         location.state.address,
-//         submissionId,
-//         signatures,
-//         autoParamsFrom,
-//         _token
-//       ).encodeABI()
-//       //value given by user should be multiplied by 1000
-//     };
-
-//     if (3 === 51) {
-//       await window.web3.eth
-//         .sendTransaction(transaction)
-//         .on("confirmation", function (confirmationNumber, receipt) {
-//           if (receipt && confirmationNumber === 1) {
-//             transactionHash = receipt.transactionHash;
-//             console.log("Transaction", transactionHash)
-//           }
-//         });
-//     }
-//     else {
-//       await window.ethereum.request({ method: 'eth_requestAccounts' });
-//       window.web3 = new Web3(window.ethereum);
-//       const web3 = new Web3(window.ethereum);
-//       await window.web3.eth
-//         .sendTransaction(transaction)
-//         .on("confirmation", function (confirmationNumber, receipt) {
-//           if (receipt && confirmationNumber === 1) {
-//             transactionHashes = receipt.transactionHash;
-//             console.log("Transaction", transactionHashes);
-//           }
-//         });
-//     }
-
-
-//     console.log("", submissionId);
-//     alert("Successfully Recieved the Token");
-//     setHasher(transactionHashes);
-//     console.log("Transactiossn", transactionHashes);
-
-
-//     /**
-//      *@dev Retrning the hash.
-//     * @param web3 Librabry.
-//     * @param autoParams autoparam
-//     * @returns return the successfull hash value
-//     */
-//     async function _packSubmissionAutoParamsFrom(web3, autoParams) {
-//       if (autoParams !== '0x' && autoParams !== '') {
-//         const decoded = web3.eth.abi.decodeParameters(
-//           ['tuple(uint256,uint256, bytes, bytes)'], autoParams
-//         );
-//         const encoded = web3.eth.abi.encodeParameter(
-//           'tuple(uint256,uint256, address, bytes, bytes)',
-//           [decoded[0][0], decoded[0][1], decoded[0][2], decoded[0][3]]
-//         );
-//         return encoded;
-//       }
-//       return '0x';
-//     }
-
-//   };
-//   OnSubmit();
-
-//   return (
-//     <div className="App">
-//       <StepProgressBar
-//         startingStep={0}
-//         steps={[
-//           {
-//             label: "Approval",
-//             name: props.selectedApprove,
-//             content: step1Content
-//           },
-//           {
-//             label: "Transfer",
-//             name: props.selectedHash,
-//             content: step2Content,
-//             validator: step2Validator
-//           },
-//           {
-//             label: "Confirmation",
-//             name: "Confirmation",
-//             content: step3Content,
-//             validator: step3Validator
-//           },
-//           {
-//             label: "Recieve",
-//             name: "Recieve",
-//             content: step3Content
-//           }
-//         ]}
-//       />
-//     </div>
-//   );
-// }
-
-
-
-
-
-
-import React, { useState } from "react";
-import "react-step-progress-bar/styles.css";
+import React, { useState, useEffect } from "react";
+// import toast from 'react-toastify';
+import { toast } from "react-toastify";
+import XDC3 from "xdc3";
+import "./styles.css";
+import "react-toastify/dist/ReactToastify.css";
 import { ProgressBar, Step } from "react-step-progress-bar";
+import "react-step-progress-bar/styles.css";
 import xdc3 from "../../utils/xdc3";
 import Web3 from "web3";
 import token from "../../utils/xtoken";
 import { Link, useLocation } from "react-router-dom";
 import xbridge from "../../utils/xbridge";
-import tokenList from '../../contracts/tokenlist.json'
-import Bridge from "../../contracts/bridge.json"
+import tokenList from "../../contracts/tokenlist.json";
+import Bridge from "../../contracts/Gate.json";
 import Deploy from "../../contracts/deployer.json";
+import DeBridgeGateJson from "../../contracts/Gate.json";
+import { TailSpin } from "react-loader-spinner";
+import { Button } from "react-bootstrap";
 import "react-step-progress/dist/index.css";
-import { tokenBridge, tokenDeployee, eBridgeAddress, deployee, xBridgeAddress } from '../../common/constant';
-let debridgeId, submissionId, signatures, abc, transactionHash, transactionHashes,bcd,cde, transaction;
-
-
-
+import ebridge from "../../utils/ebridge";
+import {
+  tokenBridge,
+  tokenDeployee,
+  eBridgeAddress,
+  deployee,
+  xBridgeAddress,
+} from "../../common/constant";
+let debridgeId,
+  submissionId,
+  signatures,
+  abc,
+  transactionHash,
+  tx,
+  allowance,
+  amount,
+  transactionHashes,
+  bcd,
+  cde,
+  transaction;
 export default function App() {
   const [show, setShow] = useState(false);
   const [hash, setHash] = useState("");
@@ -345,38 +45,14 @@ export default function App() {
   const [chainTo, setChainTo] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [firstStatus , setFirstStatus] = useState("");
-  const [SecoundStatus , setSecoundStatus] = useState("");
-  const [ThirdStatus , setThirdStatus] = useState("");
+  const [firstStatus, setFirstStatus] = useState("");
+  const [SecoundStatus, setSecoundStatus] = useState("");
+  const [ThirdStatus, setThirdStatus] = useState("");
   const location = useLocation();
-  
-
- 
-const steps = [
-  {
-    status: "abc" .firstStatus
-  },
-  {
-    status: "Sync".SecoundStatus
-    
-  },
-  {
-    status: "Compile"
-  },
-  {
-    status: "Copy Build"
-  },
-  {
-    status: "Test"
-  },
-  {
-    status: "Post"
-  }
-];
+  const [progress, setProgress] = useState(0);
+  toast.configure();
   const OnSubmit = async () => {
-    
-    
-    let account
+    let account;
     //connecting to the xdc testnetwork using chain_id
     await window.web3.eth.getAccounts((err, accounts) => {
       if (err !== null) console.error("");
@@ -386,209 +62,336 @@ const steps = [
         // console.log("Account",accounts);
         account = true;
       }
-    })
-      ;
-
+    });
     console.log(" ", location.state.selectedOptionToken.address);
     //creating a object using getAccounts
     const accounts = await xdc3.eth.getAccounts();
     console.log("accounts", accounts[0]);
-     console.log(" Destination", '3');
+    console.log(" Destination", "3");
     console.log("", location.state.selectedOptionToken.address);
-
     /**
      * @dev Performing the Approve method for erc20 .
      * @param address Reciever Address.
-     * @param amount token should be approved to the reciever address
+     * @param amount token should be appr oved to the reciever address
      * @param account[0] sender address.
      * @param data passing the approve method wih reciever address and amount
      */
-   
-      alert("Sending the Transaction");
-      let transaction = {
+    toast.info("Sending the Amount.");
+    if (location.state.selectedOptionToken.chainId === 50) {
+      console.log("nonu");
+      transaction = {
         from: accounts[0],
-        to: location.state.address, //contractAddress of the concerned token (same in data below)
-        gas: 28000,
-
-        data: token.methods.approve(location.state.address, xdc3.utils.toWei(location.state.amount, "ether")).encodeABI()
+        to: xBridgeAddress, //contractAddress of the concerned token (same in data below)
+        value: xdc3.utils.toWei(location.state.amount), // token _amount
+        data: xbridge.methods
+          .send(
+            location.state.selectedOptionToken.address, //address _tokenAddress,
+            xdc3.utils.toWei(location.state.amount), // token _amount
+            3, // _chainIdTo
+            accounts[0], //_receiver
+            "0x", // _permit
+            false, //_useAssetFee
+            0, //_referralCode
+            "0x" //_autoParams
+          )
+          .encodeABI(),
         //value given by user should be multiplied by 1000
       };
-
-      if (51 === 51) {
-        await window.web3.eth
-          .sendTransaction(transaction)
-          .on("confirmation", function (confirmationNumber, receipt) {
-            if (receipt && confirmationNumber === 1) {
-              console.log("transaction hash ", receipt.transactionHash);
-            }
-          });
-      }
-      else {
-        await window.ethereum.request({ method: 'eth_requestAccounts' });
-        window.web3 = new Web3(window.ethereum);
-        const web3 = new Web3(window.ethereum);
-        await window.web3.eth
-          .sendTransaction(transaction)
-          .on("confirmation", function (confirmationNumber, receipt) {
-            if (receipt && confirmationNumber === 1) {
-              console.log("transaction hash ", receipt.transactionHash);
-            }
-          });
-      }
-
-    
-      setFirstStatus(accounts[0]);
-    
-      await alert("Accepted the Request");
-     
-
-    transaction = {
-      from: accounts[0],
-      to: xBridgeAddress, //contractAddress of the concerned token (same in data below)
-      gas: 150000,
-      value: xdc3.utils.toWei(location.state.amount, "ether"), // token _amount
-      data: xbridge.methods.send(
-        location.state.selectedOptionToken.address,//address _tokenAddress,
-        xdc3.utils.toWei(location.state.amount, "ether"), // token _amount
-        '3',// _chainIdTo
-        location.state.address, //_receiver
-        "0x", // _permit
-        false, //_useAssetFee
-        0, //_referralCode  
-        "0x" //_autoParams
-      ).encodeABI()
-      //value given by user should be multiplied by 1000
-    };
-    await window.web3.eth
-      .sendTransaction(transaction)
-      .on("confirmation", function (confirmationNumber, result) {
-        if (result && confirmationNumber === 1) {
-          transactionHash = result.transactionHash;
-          console.log("transactinsnsns" , transactionHash);
-        }
-
-      });
-
-
+      await window.web3.eth
+        .sendTransaction(transaction)
+        .on("confirmation", function (confirmationNumber, result) {
+          if (result && confirmationNumber === 1) {
+            transactionHash = result.transactionHash;
+            console.log("transactinsnsns", transactionHash);
+          }
+        });
+    }
+    if (location.state.selectedOptionToken.chainId === 1) {
+      window.web3 = new Web3(window.ethereum);
+      await window.ethereum.request({ method: "eth_requestAccounts" });
+      window.web3 = new Web3(window.ethereum);
+      const web3 = new Web3(window.ethereum);
+      const bridgeAddress = eBridgeAddress;
+      const ebridge = new web3.eth.Contract(Bridge.abi, bridgeAddress);
+      transaction = {
+        from: accounts[0],
+        to: eBridgeAddress, //contractAddress of the concerned token (same in data below)
+        value: xdc3.utils.toWei(location.state.amount), // token _amount
+        data: ebridge.methods
+          .send(
+            location.state.selectedOptionToken.address, //address _tokenAddress,
+            xdc3.utils.toWei(location.state.amount), // token _amount
+            51, // _chainIdTo
+            accounts[0], //_receiver
+            "0x", // _permit
+            false, //_useAssetFee
+            0, //_referralCode
+            "0x" //_autoParams
+          )
+          .encodeABI(),
+        //value given by user should be multiplied by 1000
+      };
+      await window.web3.eth
+        .sendTransaction(transaction)
+        .on("confirmation", function (confirmationNumber, result) {
+          if (result && confirmationNumber === 1) {
+            transactionHash = result.transactionHash;
+            console.log("transactinsnsns", transactionHash);
+            console.log(
+              "abcs",
+              location.state.selectedOptionToken.debridgeAddress
+            );
+          }
+        });
+    }
+    if (location.state.selectedOptionToken.chainId === 51) {
+      let transaction = {
+        from: accounts[0],
+        to: location.state.selectedOptionToken.address, //contractAddress of the concerned token (same in data below)
+        data: token.methods
+          .approve(
+            xBridgeAddress,
+            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          )
+          .encodeABI(),
+        //value given by user should be multiplied by 1000
+      };
+      await window.web3.eth
+        .sendTransaction(transaction)
+        .on("confirmation", function (confirmationNumber, receipt) {
+          if (receipt && confirmationNumber === 1) {
+            console.log("transaction hash ", receipt.transactionHash);
+          }
+        });
+    } else if (location.state.selectedOptionToken.chainId === 3) {
+      let transaction = {
+        from: accounts[0],
+        to: location.state.selectedOptionToken.address, //contractAddress of the concerned token (same in data below)
+        data: token.methods
+          .approve(
+            eBridgeAddress,
+            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          )
+          .encodeABI(),
+        //value given by user should be multiplied by 1000
+      };
+      await window.ethereum.request({ method: "eth_requestAccounts" });
+      window.web3 = new Web3(window.ethereum);
+      const web3 = new Web3(window.ethereum);
+      await window.web3.eth
+        .sendTransaction(transaction)
+        .on("confirmation", function (confirmationNumber, receipt) {
+          if (receipt && confirmationNumber === 1) {
+            console.log("transaction hash ", receipt.transactionHash);
+          }
+        });
+    }
+    allowance = parseInt(
+      await token.methods
+        .allowance("0xdcdde99d5a90446cfac723f1b685c04244a31a5f", xBridgeAddress)
+        .call()
+    );
+    console.log("allowaNCE", allowance, location.state.amount);
+    setProgress(progress + 30);
+    letToggle();
+    if (location.state.selectedOptionToken.chainId === 51) {
+      transaction = {
+        from: accounts[0],
+        to: xBridgeAddress, //contractAddress of the concerned token (same in data below)
+        gas: 150000,
+        value: xdc3.utils.toWei("0.01"), // token _amount
+        data: xbridge.methods
+          .send(
+            location.state.selectedOptionToken.address, //address _tokenAddress,
+            xdc3.utils.toWei(location.state.amount), // token _amount
+            3, // _chainIdTo
+            accounts[0], //_receiver
+            "0x", // _permit
+            false, //_useAssetFee
+            0, //_referralCode
+            "0x" //_autoParams
+          )
+          .encodeABI(),
+        //value given by user should be multiplied by 1000
+      };
+      await window.web3.eth
+        .sendTransaction(transaction)
+        .on("confirmation", function (confirmationNumber, result) {
+          if (result && confirmationNumber === 1) {
+            transactionHash = result.transactionHash;
+            console.log("transactinsnsns", transactionHash);
+          }
+        });
+    }
+    if (location.state.selectedOptionToken.chainId === 3) {
+      window.web3 = new Web3(window.ethereum);
+      const web3 = new Web3(window.ethereum);
+      const bridgeAddress = eBridgeAddress;
+      const ebridge = new web3.eth.Contract(Bridge.abi, bridgeAddress);
+      transaction = {
+        from: accounts[0],
+        to: eBridgeAddress, //contractAddress of the concerned token (same in data below)
+        gas: 1500000,
+        value: xdc3.utils.toWei("0.01"), // token _amount
+        data: ebridge.methods
+          .send(
+            location.state.selectedOptionToken.address, //address _tokenAddress,
+            xdc3.utils.toWei(location.state.amount), // token _amount
+            51, // _chainIdTo
+            accounts[0], //_receiver
+            "0x", // _permit
+            false, //_useAssetFee
+            0, //_referralCode
+            "0x" //_autoParams
+          )
+          .encodeABI(),
+        //value given by user should be multiplied by 1000
+      };
+      await window.web3.eth
+        .sendTransaction(transaction)
+        .on("confirmation", function (confirmationNumber, result) {
+          if (result && confirmationNumber === 1) {
+            transactionHash = result.transactionHash;
+            console.log("transactinsnsns", transactionHash);
+          }
+        });
+    }
+    setProgress(progress + 50);
+    letToggle();
     const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ "id": transactionHash })
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: transactionHash }),
     };
     let var1 = 0;
     while (var1 == 0) {
       const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ "id": transactionHash })
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: transactionHash }),
       };
-      await fetch('http://3.109.251.40/', requestOptions)
-        .then(response => response.json())
-        .then(data => { abc = data });
-      console.log(abc.status)
+      await fetch("https://testapi.xdcbridge.com", requestOptions)
+        .then((response) => response.json())
+        .then((data) => {
+          abc = data;
+        });
+      console.log(abc.status);
       if (abc.status != 0) {
         var1 = 1;
       }
-    };
-
-
-   console.log("transaction hash", transactionHash);
-   setSecoundStatus('The')
-    alert("Successfully sent the Token");
+    }
+    console.log("transaction hash", transactionHash);
+    setSecoundStatus("The");
     console.log(abc);
     debridgeId = abc.debridgeId;
     submissionId = abc.submissionId;
     signatures = abc.signature;
+    amount = abc.amount;
     setHash(transactionHash);
     console.log(submissionId, debridgeId);
-
-
-
     /**
      * @dev To claim the tokens from the sender.
      * @param tokenAddress The address of the token.
      */
-
     /**
      * @dev switching the network to the ropsten.
      * @param chainid chain id of the ropsten testnet.
      */
-
-
+    setProgress(progress + 70);
     const bridgeAddress = eBridgeAddress;
     /**
-    * @dev instance of ebridge, has been instilized because XDCPAY and METAMASK creats only once.
-    */
+     * @dev instance of ebridge, has been instilized because XDCPAY and METAMASK creats only once.
+     */
     window.web3 = new Web3(window.ethereum);
     const web3 = new Web3(window.ethereum);
     const ebridge = new web3.eth.Contract(Bridge.abi, bridgeAddress);
     const deployerAddress = deployee;
     /**
-    * @dev instance of deploye, has been instilized because XDCPAY and METAMASK creats only once.
-    */
+     * @dev instance of deploye, has been instilized because XDCPAY and METAMASK creats only once.
+     */
     const deploy = new web3.eth.Contract(Deploy.abi, deployerAddress);
     //fetching the address of the sender through metamask
-
     console.log("", accounts);
-    console.log(" Destination", '3');
-    const isSubmissionUsed = await ebridge.methods.isSubmissionUsed(submissionId).call();
-    const debridge_id = await ebridge.methods.getDebridgeId(location.state.selectedOptionToken.chainId, tokenBridge).call();
-    alert("GetDebridgeId successfully fetched");
+    console.log(" Destination", "3");
+    const isSubmissionUsed = await ebridge.methods
+      .isSubmissionUsed(submissionId)
+      .call();
+    const debridge_id = await ebridge.methods
+      .getDebridgeId(location.state.selectedOptionToken.chainId, tokenBridge)
+      .call();
     console.log("debridgeId", debridge_id);
     console.log(" Destination", location.state.selectedOptionToken.chainId);
     console.log("", location.state.selectedOptionToken.address);
     //deploying the smart contract ERC20
-    const deployAsset = await deploy.methods.deployAsset(debridge_id, 'Token Mapped with XDC Chain', 'WXDC1', 18).call();
+    // const deployAsset = await deploy.methods.deployAsset(debridge_id, 'Token Mapped with XDC Chain', 'WXDC1', 18).call();
     const _token = tokenDeployee;
-    console.log(deployAsset, _token);
-
+    console.log("amountts", amount);
     /**
      * @dev Get the hash value and the result.
      * @param web3 fetching the web3 from the library.
      */
-    const autoParamsFrom = await _packSubmissionAutoParamsFrom(web3, '0x');
-
+    const autoParamsFrom = await _packSubmissionAutoParamsFrom(
+      web3,
+      accounts[0],
+      "0x"
+    );
     /**
-    * @dev Performing the ERC20 claim function.
-    * @param debridge_id The address of the token.
-    * @param amount Token should be claim from the reciever
-    * @param chain_id To chain ID
-    * @param address To Address
-    * @param submissionId Submission id contains :- nonce, id , address
-    * @param signature to verify the contract
-    */
-    console.log("", location.state.selectedOptionToken.chainId)
-
-    transaction = {
-      from: accounts[0],
-      to: eBridgeAddress, //contractAddress of the concerned token (same in data below)
-      gas: 280000,
-      value: '0',
-      data: ebridge.methods.claim(
-        debridge_id,
-        location.state.amount,
-        location.state.selectedOptionToken.chainId,
-        location.state.address,
-        submissionId,
-        signatures,
-        autoParamsFrom,
-        _token
-      ).encodeABI()
-      //value given by user should be multiplied by 1000
-    };
-
-    if (3 === 51) {
-      await window.web3.eth
-        .sendTransaction(transaction)
-        .on("confirmation", function (confirmationNumber, receipt) {
-          if (receipt && confirmationNumber === 1) {
-            transactionHash = receipt.transactionHash;
-            console.log("Transaction", transactionHash)
-          }
-        });
-    }
-    else {
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
+     * @dev Performing the ERC20 claim function.
+     * @param debridge_id The address of the token.
+     * @param amount Token should be claim from the reciever
+     * @param chain_id To chain ID
+     * @param address To Address
+     * @param submissionId Submission id contains :- nonce, id , address
+     * @param signature to verify the contract
+     */
+    setHasher(transactionHashes);
+    letToggle();
+    console.log("", submissionId);
+    console.log("", location.state.selectedOptionToken.chainId);
+    // if (location.state.selectedOptionToken.chainId != 50) {
+    //   transaction = {
+    //     from: accounts[0],
+    //     to: xBridgeAddress, //contractAddress of the concerned token (same in data below)
+    //     value: '0',
+    //     data: xbridge.methods.claim(
+    //       location.state.selectedOptionToken.debridgeAddress,
+    //       amount,
+    //       location.state.selectedOptionToken.chainId,
+    //       accounts[0],
+    //       submissionId,
+    //       signatures,
+    //       autoParamsFrom
+    //     ).encodeABI()
+    //     //value given by user should be multiplied by 1000
+    //   };
+    //   await window.web3.eth
+    //     .sendTransaction(transaction)
+    //     .on("confirmation", function (confirmationNumber, receipt) {
+    //       if (receipt && confirmationNumber === 1) {
+    //         transactionHash = receipt.transactionHash;
+    //         console.log("Transaction", transactionHash)
+    //       }
+    //     });
+    // }
+    if (location.state.selectedOptionToken.chainId === 50) {
+      transaction = {
+        from: accounts[0],
+        to: eBridgeAddress, //contractAddress of the concerned token (same in data below)
+        data: ebridge.methods
+          .claim(
+            location.state.selectedOptionToken.debridgeAddress,
+            amount,
+            location.state.selectedOptionToken.chainId,
+            accounts[0],
+            submissionId,
+            signatures,
+            autoParamsFrom
+            // _token
+          )
+          .encodeABI(),
+        //value given by user should be multiplied by 1000
+      };
+      await window.ethereum.request({ method: "eth_requestAccounts" });
       window.web3 = new Web3(window.ethereum);
       const web3 = new Web3(window.ethereum);
       await window.web3.eth
@@ -597,139 +400,202 @@ const steps = [
           if (receipt && confirmationNumber === 1) {
             transactionHashes = receipt.transactionHash;
             console.log("Transaction", transactionHashes);
+            setHasher(transactionHashes);
+            setProgress(progress + 100);
+            letToggle();
+            console.log("", submissionId);
+          }
+        });
+    } else {
+      transaction = {
+        from: accounts[0],
+        to: xBridgeAddress, //contractAddress of the concerned token (same in data below)
+        data: xbridge.methods
+          .claim(
+            location.state.selectedOptionToken.debridgeAddress,
+            amount,
+            location.state.selectedOptionToken.chainId,
+            accounts[0],
+            submissionId,
+            signatures,
+            autoParamsFrom
+            // _token
+          )
+          .encodeABI(),
+        //value given by user should be multiplied by 1000
+      };
+      window.web3 = new XDC3(window.xdc);
+      const xdc3 = new XDC3(window.xdc);
+      await window.web3.eth
+        .sendTransaction(transaction)
+        // .on("confirmation", function (confirmationNumber, receipt) {
+        .on("transactionHash", function (hash) {
+          console.log("transaction  ", hash);
+          transactionHashes = hash;
+          setHasher(transactionHashes);
+          setProgress(progress + 100);
+        })
+        .on("receipt", function (receipt) {
+          if (receipt !== 0) {
+            console.log("nanau", receipt.transactionHash);
           }
         });
     }
-
-
-    console.log("", submissionId);
-    alert("Successfully Recieved the Token");
-    setHasher(transactionHashes);
-   setThirdStatus("Transactiossn", transactionHashes);
-
-
+    // if (location.state.selectedOptionToken.chainId === 1) {
+    //          console.log("sjhkszhfkszehku")
+    //      }
     /**
      *@dev Retrning the hash.
-    * @param web3 Librabry.
-    * @param autoParams autoparam
-    * @returns return the successfull hash value
-    */
-    async function _packSubmissionAutoParamsFrom(web3, autoParams) {
-      if (autoParams !== '0x' && autoParams !== '') {
+     * @param web3 Librabry.
+     * @param autoParams autoparam
+     * @returns return the successfull hash value
+     */
+    async function _packSubmissionAutoParamsFrom(
+      web3,
+      nativeSender,
+      autoParams
+    ) {
+      if (autoParams !== "0x" && autoParams !== "") {
         const decoded = web3.eth.abi.decodeParameters(
-          ['tuple(uint256,uint256, bytes, bytes)'], autoParams
+          ["tuple(uint256,uint256, bytes, bytes)"],
+          autoParams
         );
+        console.log(`autoParams: ${autoParams}, decoded: ${decoded}`);
         const encoded = web3.eth.abi.encodeParameter(
-          'tuple(uint256,uint256, address, bytes, bytes)',
-          [decoded[0][0], decoded[0][1], decoded[0][2], decoded[0][3]]
+          "tuple(uint256,uint256, address, bytes, bytes)",
+          [
+            decoded[0][0],
+            decoded[0][1],
+            decoded[0][2],
+            decoded[0][3],
+            nativeSender,
+          ]
         );
+        console.log(`encoded: ${encoded}`);
         return encoded;
       }
-      return '0x';
+      return "0x";
     }
-
   };
-
-  OnSubmit();
-  
-
-  const transfer = {
-    status: "abc".firstStatus,
-    status : "Sync". SecoundStatus , // change transfer status to progress bar 
-    status : ThirdStatus,
-    
-    
-  };  
- 
-  const getStepPosition = (transferStatus) => {
-    
-    return steps.findIndex(({ status }) => status === transferStatus);
-    
-
+  useEffect(() => {
+    OnSubmit();
+  }, []);
+  const [spinnerLoading, setSpinnerLoading] = useState(true);
+  const [show_Hide_Image, setShowHideImage] = useState("none");
+  const [a, setA] = useState(false);
+  const [progressText, setProgressText] = useState("Show Image Component");
+  const letToggle = () => {
+    if (show_Hide_Image === "flex") {
+      setA(true);
+      setSpinnerLoading(true);
+      setShowHideImage("none");
+      setProgressText("Transafering the Amount");
+    } else {
+      setShowHideImage("flex");
+      setSpinnerLoading(false);
+      setProgressText("Transferd your assests");
+    }
   };
- 
   return (
-    <>
-      <div style={{ margin: 50 }}>
-        <ProgressBar
-          width={500}
-          percent={
-            100 *
-              ((getStepPosition(transfer.status) + 1))
-          }
-          filledBackground="linear-gradient(to right, #41ad49, #41ad49)"
+    <div className="App">
+      <ProgressBar
+        filledBackground="#20AA15"
+        hasStepZero="false"
+        height="1px"
+        percent={progress}
+      >
+        <Step>
+          {({ accomplished, index }) => (
+            <>
+              <div
+                className={`indexedStep ${
+                  accomplished ? "accomplished" : null
+                }`}
+              >
+                {index + 1}
+              </div>
+              <div className={"test"}>Transfer</div>
+            </>
+          )}
+        </Step>
+        <Step>
+          {({ accomplished, index }) => (
+            <>
+              <div
+                className={`indexedStep ${
+                  accomplished ? "accomplished" : null
+                }`}
+              >
+                {index + 1}
+              </div>
+              <div className={"test"}>Confirmation</div>
+            </>
+          )}
+        </Step>
+        <Step>
+          {({ accomplished, index }) => (
+            <>
+              <div
+                className={`indexedStep ${
+                  accomplished ? "accomplished" : null
+                }`}
+              >
+                {index + 1}
+              </div>
+              <div className={"test"}>Recieve</div>
+            </>
+          )}
+        </Step>
+      </ProgressBar>
+      <div className="done">
+        <TailSpin
+          color="#2358E5"
+          height={70}
+          width={70}
+          visible={spinnerLoading}
+        />
+        <img
+          style={{ display: show_Hide_Image }}
+          className="successImg"
+          src="/images/successful.svg"
+          alt="Successful"
+        ></img>
+        <Link
+          className={a ? "viewOnXDCText" : "viewOnXDCTextDisable"}
+          to={{
+            pathname: "/courses",
+            search: "?sort=name",
+            hash: "#the-hash",
+            state: { fromDashboard: true },
+          }}
         >
-          {steps.map((step, index, arr) => {
-            return (
-              <Step
-                // position={100 * (index / arr.length)}
-                transition="scale"
-                children={({ accomplished }) => (
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      borderRadius: "50%",
-                      width: 20,
-                      height: 20,
-                      color: "black",
-                      backgroundColor: accomplished ? "green" : "gray"
-                    }}
-                  >
-                    <br />
-                    <br />
-                    <br />
-                    {step.status}
-                  </div>
-                )}
-              />
-            );
-          })}
-        </ProgressBar>
-      </div>
-      <br />
-      <div style={{ margin: 50 }}>
-        <ProgressBar
-          width={500}
-          percent={
-            100 *
-              ((getStepPosition(transfer.status) + 1) / (steps.length - 1)) -
-            1
-          }
-          filledBackground="linear-gradient(to right, #41ad49, #41ad49)"
+          View on XDC Explorer
+        </Link>
+        <center>
+          {" "}
+          <p style={{ color: "black", fontSize: "12px" }}> {hash} </p>
+        </center>
+        <Link
+          className={a ? "viewOnXDCText" : "viewOnXDCTextDisable"}
+          to={{
+            pathname: "/courses",
+            search: "?sort=name",
+            hash: "#the-hash",
+            state: { fromDashboard: true },
+          }}
         >
-          {steps.map((step, index, arr) => {
-            return (
-              <Step
-                // position={100 * (index / arr.length)}
-                transition="scale"
-                children={({ accomplished }) => (
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      borderRadius: "50%",
-                      width: 20,
-                      height: 20,
-                      color: "black",
-                      backgroundColor: accomplished ? "green" : "gray"
-                    }}
-                  >
-                    <br />
-                    <br />
-                    <br />
-                    {step.status}
-                  </div>
-                )}
-              />
-            );
-          })}
-        </ProgressBar>
+          View on EtherScan
+        </Link>
+        <center>
+          {" "}
+          <p style={{ color: "black", fontSize: "12px" }}> {hasher} </p>{" "}
+        </center>
+        {/* <Button onClick={() => letToggle()} className="done-button margintp">
+            Done
+          </Button> */}
       </div>
-    </>
-    
+      {/* <center> <a href={'https://explorer.apothem.network/txs/' + hash} target='_blank' style={{ color: "black", fontSize: "5px" }}> Hi{hash} </a></center>
+          <center>  <a href={'https://ropsten.etherscan.io/tx/' + hasher} target='_blank' style={{ color: "black", fontSize: "5px" }}> {hasher} </a> </center> */}
+    </div>
   );
-  
 }

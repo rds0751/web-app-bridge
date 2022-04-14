@@ -6,6 +6,7 @@ import { Button } from "react-bootstrap";
 import { Divider } from "@mui/material";
 import { Modal } from "react-bootstrap";
 import ProgressBar from "./Progress1";
+import ProgressBar1 from "./Progress";
 import { Link, useLocation } from "react-router-dom";
 import { PregnantWomanSharp } from "@material-ui/icons";
 import xdc3 from "../../utils/xdc3";
@@ -98,7 +99,11 @@ function BridgeConfirm() {
         animation={false}
       >
         <Modal.Header>
-          <ProgressBar />
+          {location?.state?.selectedOptionToken?.Type === 100 ? (
+            <ProgressBar1 />
+          ) : (
+            <ProgressBar />
+          )}
         </Modal.Header>
         <Modal.Body></Modal.Body>
       </Modal>
