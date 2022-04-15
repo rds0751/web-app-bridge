@@ -55,7 +55,7 @@ export default function About() {
     if (accounts.length === 0) {
       setButtonText("Connect Wallet");
       // window.location.reload(false);
-      alert("Please Connect to The XDCPAY")
+      // alert("Please Connect to The XDCPAY")
       account = false;
     } else {
       console.log("Account", accounts);

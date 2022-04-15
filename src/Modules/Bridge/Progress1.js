@@ -369,35 +369,6 @@ export default function App() {
 
 
     console.log("", location.state.selectedOptionToken.chainId)
-    // if (location.state.selectedOptionToken.chainId != 50) {
-    //   transaction = {
-    //     from: accounts[0],
-    //     to: xBridgeAddress, //contractAddress of the concerned token (same in data below)
-    //     value: '0',
-    //     data: xbridge.methods.claim(
-    //       location.state.selectedOptionToken.debridgeAddress,
-    //       amount,
-    //       location.state.selectedOptionToken.chainId,
-    //       accounts[0],
-    //       submissionId,
-    //       signatures,
-    //       autoParamsFrom
-
-    //     ).encodeABI()
-    //     //value given by user should be multiplied by 1000
-    //   };
-
-
-    //   await window.web3.eth
-    //     .sendTransaction(transaction)
-    //     .on("confirmation", function (confirmationNumber, receipt) {
-    //       if (receipt && confirmationNumber === 1) {
-    //         transactionHash = receipt.transactionHash;
-    //         console.log("Transaction", transactionHash)
-    //       }
-    //     });
-    // }
-
     if (location.state.selectedOptionToken.chainId === 50) {
       transaction = {
         from: accounts[0],
@@ -474,19 +445,10 @@ export default function App() {
               }
             });
               
-        
-
-
     }
 
     
-    // if (location.state.selectedOptionToken.chainId === 1) {
-
-    //          console.log("sjhkszhfkszehku")
-
-
-
-    //      }
+    
 
 
 

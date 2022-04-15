@@ -65,6 +65,7 @@
         "symbol": "ETH",
         "name": "Ether",
         "decimals": 10,
+        "type" : 100,
         "logoURI": "https://ropsten.etherscan.io/tx/",
         "tags": [
           "currency", "xrc20"
@@ -87,6 +88,7 @@
         "debridgeAddress" : "0x0e4ff116d2faf056156d31da16ff7c3c906d57187440adbb77baf74d1b60f6a9",
         "symbol": "XDC",
         "name": "XDC",
+        "type" : 100,
         "decimals": 10,
         "logoURI": "https://explorer.apothem.network/txs/",
         "tags": [
