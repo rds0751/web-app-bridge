@@ -59,15 +59,15 @@ function BridgeConfirm() {
               ></img>
             </div>
             <div className="asset-flex">
-              <p>Asset</p>
-              <p className="second-p">
+              <p className="content">Asset</p>
+              <p className="second-p sub-content">
                 {location.state.selectedOptionToken.name}
               </p>
             </div>
             <Divider className="mb-23" />
             <div className="asset-flex">
-              <p>Amount</p>
-              <p>{location.state.amount}</p>
+              <p className="content">Amount</p>
+              <p className="sub-content">{location.state.amount}</p>
               {console.log("njnvd", location.state.amount)}
             </div>
             {/* <Divider className="mb-23" />
@@ -77,8 +77,8 @@ function BridgeConfirm() {
             </div> */}
             <Divider className="mb-23" />
             <div className="asset-flex">
-              <p>You will get</p>
-              <p>{location.state.amount}</p>
+              <p className="content">You will get</p>
+              <p className="sub-content">{location.state.amount}</p>
             </div>
             <Divider className="mb-23" />
             <div style={{ display: "flex", justifyContent: "space-between" }}>

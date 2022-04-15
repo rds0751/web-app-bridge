@@ -1,41 +1,43 @@
-.css-h4y409-MuiList-root{
-  padding-top: 20px !important;
+.drawer-content {
+  padding-top: 40px !important;
 }
-.drawer-content>div {
-    background: #102C78 0% 0% no-repeat padding-box !important;
+.drawer-content > div {
+  background: #102c78 0% 0% no-repeat padding-box !important;
 }
 .list-text {
-    width: 44px;
-height: 19px;
-font: normal normal 600 15px/19px Inter;
-letter-spacing: 0px;
-color: #97AFF4;
-opacity: 1;
-margin-right: 100px;
+  width: 44px;
+  height: 19px;
+  font-size: 15px;
+  font-family: "Inter";
+  font-weight: 500;
+  letter-spacing: 0px;
+  color: #97aff4;
+  opacity: 1;
+  margin-right: 100px;
 }
 .list-item {
-    margin-bottom: 10px !important;
+  margin-bottom: 10px !important;
 }
-.footer-input{
-    width: 114px;
-height: 32px;
-/* UI Properties */
-background: #0E276C 0% 0% no-repeat padding-box;
-border-radius: 6px;
-opacity: 1;
-border: none;
-margin-left: 11px;
+.footer-input {
+  width: 114px;
+  height: 32px;
+  /* UI Properties */
+  background: #0e276c 0% 0% no-repeat padding-box;
+  border-radius: 6px;
+  opacity: 1;
+  border: none;
+  margin-left: 11px;
 }
-.powered{
-    text-align: left;
-    font: normal normal medium 12px/15px Inter;
-letter-spacing: 0px;
-color: #D9E3FF;
-opacity: 1;
+.powered {
+  text-align: left;
+  font-size: 12px;
+  font-family: "Inter";
+  letter-spacing: 0px;
+  color: #d9e3ff;
+  opacity: 1;
+}
 
+.mapTab-selected-mode {
+  font-size: 12px;
+  color: #09184b;
 }
-
-.mapTab-selected-mode{
-    font-size: 12px;
-    color: #09184B;
-  }
