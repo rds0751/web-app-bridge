@@ -66,6 +66,7 @@
         "Type":100,
         "name": "Ether",
         "decimals": 10,
+        "type" : 100,
         "logoURI": "https://ropsten.etherscan.io/tx/",
         "tags": [
           "currency", "xrc20"
@@ -89,6 +90,7 @@
         "symbol": "XDC",
         "Type":100,
         "name": "XDC",
+        "type" : 100,
         "decimals": 10,
         "logoURI": "https://explorer.apothem.network/txs/",
         "tags": [

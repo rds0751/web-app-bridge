@@ -347,32 +347,11 @@ export default function App() {
     setHasher(transactionHashes);
     letToggle();
     console.log("", submissionId);
-    console.log("", location.state.selectedOptionToken.chainId);
-    // if (location.state.selectedOptionToken.chainId != 50) {
-    //   transaction = {
-    //     from: accounts[0],
-    //     to: xBridgeAddress, //contractAddress of the concerned token (same in data below)
-    //     value: '0',
-    //     data: xbridge.methods.claim(
-    //       location.state.selectedOptionToken.debridgeAddress,
-    //       amount,
-    //       location.state.selectedOptionToken.chainId,
-    //       accounts[0],
-    //       submissionId,
-    //       signatures,
-    //       autoParamsFrom
-    //     ).encodeABI()
-    //     //value given by user should be multiplied by 1000
-    //   };
-    //   await window.web3.eth
-    //     .sendTransaction(transaction)
-    //     .on("confirmation", function (confirmationNumber, receipt) {
-    //       if (receipt && confirmationNumber === 1) {
-    //         transactionHash = receipt.transactionHash;
-    //         console.log("Transaction", transactionHash)
-    //       }
-    //     });
-    // }
+
+
+
+
+    console.log("", location.state.selectedOptionToken.chainId)
     if (location.state.selectedOptionToken.chainId === 50) {
       transaction = {
         from: accounts[0],
@@ -420,30 +399,39 @@ export default function App() {
             signatures,
             autoParamsFrom
             // _token
-          )
-          .encodeABI(),
-        //value given by user should be multiplied by 1000
-      };
-      window.web3 = new XDC3(window.xdc);
-      const xdc3 = new XDC3(window.xdc);
-      await window.web3.eth
-        .sendTransaction(transaction)
-        // .on("confirmation", function (confirmationNumber, receipt) {
-        .on("transactionHash", function (hash) {
-          console.log("transaction  ", hash);
-          transactionHashes = hash;
-          setHasher(transactionHashes);
-          setProgress(progress + 100);
-        })
-        .on("receipt", function (receipt) {
-          if (receipt !== 0) {
-            console.log("nanau", receipt.transactionHash);
-          }
-        });
+          ).encodeABI()
+          //value given by user should be multiplied by 1000
+        };
+  
+        window.web3 = new XDC3(window.xdc);
+        const xdc3 = new XDC3(window.xdc);
+        await window.web3.eth
+          .sendTransaction(transaction)
+          // .on("confirmation", function (confirmationNumber, receipt) {
+            .on("transactionHash", function (hash) {
+
+              console.log("transaction  " , hash)
+              transactionHashes = hash ;
+              setHasher(transactionHashes);
+              setProgress(progress + 100)
+
+
+            })
+            .on("receipt", function (receipt)  {
+              if(receipt !== 0){
+                console.log("nanau", receipt.transactionHash)
+              }
+            });
+              
     }
-    // if (location.state.selectedOptionToken.chainId === 1) {
-    //          console.log("sjhkszhfkszehku")
-    //      }
+
+    
+    
+
+
+
+
+
     /**
      *@dev Retrning the hash.
      * @param web3 Librabry.
