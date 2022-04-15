@@ -1,12 +1,16 @@
+
 .content-box {
   position: relative;
   right: 312px;
   margin: 45px;
 }
 .connect-wallet {
+  margin-top: 10px;
   width: 284px;
   height: 44px;
-  border-radius: 106px;
+  border-radius: 22px;
+  margin-Left: 210px;
+  opacity: 1;
 }
 .connect-wallet>img {
   position: relative;
@@ -24,7 +28,7 @@
   padding: 34px 0 0 5%;
 }
 .card-paper>img {
-margin-left: 40px;
+margin-left: -9px;
 position: relative;
 top: -13px;
 }
@@ -51,4 +55,9 @@ top: -13px;
     color: #404040;
     opacity: 1;
     margin-left: 14px;
+}
+.btn-primary{
+  color: #ffffff;
+  background-color: #2358E5 ;
+  border-color:#0d6efd ;
 }

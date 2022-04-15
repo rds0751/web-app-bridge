@@ -93,7 +93,11 @@ function BridgeConfirm() {
           </div>
         </div>
       </Box>
-      <Modal style={{marginTop : "5px" , zIndex :"999999999" }} show={show} animation={false}>
+      <Modal
+        style={{ marginTop: "5px", zIndex: "999999999" }}
+        show={show}
+        animation={false}
+      >
         <Modal.Header>
             {location?.state?.selectedOptionToken?.type === 100 ?<ProgressBar1/> : <ProgressBar/>  }
           

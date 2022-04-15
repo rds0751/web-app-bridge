@@ -5,34 +5,60 @@ import copy from "../../assets/copy.png";
 import max from "../../assets/max.png";
 import "./FormMain.css";
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import xdc3 from "../../utils/xdc3";
 import Web3 from "web3";
 import token from "../../utils/xtoken";
 import xbridge from "../../utils/xbridge";
-import tokenList from '../../contracts/tokenlist.json'
-import Bridge from "../../contracts/bridge.json"
+import tokenList from "../../contracts/tokenlist.json";
+import Bridge from "../../contracts/bridge.json";
 import Deploy from "../../contracts/deployer.json";
-import BridgeConfirm from "./BridgeConfirm"
-import { tokenBridge, tokenDeployee, eBridgeAddress, deployee, xBridgeAddress } from '../../common/constant';
+import BridgeConfirm from "./BridgeConfirm";
+import {
+  tokenBridge,
+  tokenDeployee,
+  eBridgeAddress,
+  deployee,
+  xBridgeAddress,
+} from "../../common/constant";
 
 //defining the Global variable
-let debridgeId, submissionId, signatures, abc, transactionHash, transactionHashes;
+let debridgeId,
+  submissionId,
+  signatures,
+  abc,
+  transactionHash,
+  transactionHashes;
 
 //Main Function
 function BridgeCard() {
-
-  const [buttonText, setButtonText] = useState(""); 
+  const [buttonText, setButtonText] = useState("");
   const [address, setAddress] = useState("");
   const [amount, setAmount] = useState("");
+  const [txt, setTxt] = useState("");
 
+  const onInputChange = (e) => {
+    const { value } = e.target;
+    console.log("Input value: ", value);
 
-
+    const re = /^[A-Za-z]+$/;
+    if (value === "" || re.test(value)) {
+      setTxt(value);
+    }
+  };
+  const colourStyles = {
+    placeholder: (defaultStyles) => {
+      return {
+        ...defaultStyles,
+        color: "#9D9D9D",
+      };
+    },
+  };
   const data = [
     {
       value: 3,
-      text: "Ropsten",
+      text: "Ethereum",
       icon: "/images/ethereum.svg",
     },
     {
@@ -50,11 +76,10 @@ function BridgeCard() {
     },
     {
       value: 3,
-      text: "Ropsten",
+      text: "Ethereum",
       icon: "/images/ethereum.svg",
     },
   ];
-
 
   const [selectedOptionToken, setSelectedOptionToken] = useState(null);
 
@@ -62,7 +87,6 @@ function BridgeCard() {
   const handleChangeToken = (e) => {
     setSelectedOptionToken(e);
   };
-
 
   const [selectedOption, setSelectedOption] = useState(null);
   const [icon, setIcon] = useState("");
@@ -72,9 +96,10 @@ function BridgeCard() {
     setIcon(e?.icon);
   };
 
-  const [selectedOptionDestination, setSelectedOptionDestination] = useState(null);
+  const [selectedOptionDestination, setSelectedOptionDestination] =
+    useState(null);
   const [text, setText] = useState("");
-  // handle onChange event of the dropdown 
+  // handle onChange event of the dropdown
   const handleChangeDestination = (e) => {
     setSelectedOptionDestination(e);
     setText(e?.icon);
@@ -83,13 +108,13 @@ function BridgeCard() {
   useEffect(() => [selectedOptionDestination, selectedOption, icon]);
   return (
     <>
-    {/* <div style={{display : "none"}}><BridgeConfirm amount={amount}/> </div> */}
-    <div>
-      <form>
-        <div className="parent-row">
-          <div className="fl ">
-            <div className="fs-12  c-b pt-3  left-label ">Source</div>
-            <Select
+      {/* <div style={{display : "none"}}><BridgeConfirm amount={amount}/> </div> */}
+      <div>
+        <form>
+          <div className="parent-row">
+            <div className="fl ">
+              <div className="fs-12  c-b pt-3  left-label ">Source</div>
+              <Select
                 isSearchable={false}
                 isClearable={false}
                 className="alignLeft input-box-1 fs-12 fw-b rm-border "
@@ -111,13 +136,23 @@ function BridgeCard() {
                   </div>
                 )}
               />
-          </div>
+            </div>
 
-          <img className="exchane-img fl-img" src={exchange} />
+            <img
+              style={{
+                width: "28px",
+                height: "27px",
+                marginBottom: "-37px",
+                marginLeft: "-9px",
+                marginRight: "12px",
+                marginTop: "41px",
+              }}
+              src="/images/Arrow (1).svg"
+            />
 
-          <div className="fl">
-            <div className="fs-12  c-b pt-3  left-label">Destination</div>
-            <Select
+            <div className="fl">
+              <div className="fs-12  c-b pt-3  left-label">Destination</div>
+              <Select
                 isSearchable={false}
                 isClearable={false}
                 className="alignLeft input-box-1 fs-12 fw-b rm-border"
@@ -137,56 +172,65 @@ function BridgeCard() {
                   </div>
                 )}
               />
+            </div>
           </div>
-        </div>
-        <div>
-          <div className="fs-12  c-b pt-3    left-label ">Select Token*</div>
-          <Select
-            isSearchable={false}
-            isClearable={false}
-            className="alignLeft drop-padding token-select fs-12 fw-b rm-border"
-            placeholder="Select Option"
-            value={selectedOptionToken}
-            options={tokenList.tokens}
-            onChange={handleChangeToken}
-            getOptionLabel={(e) => (
-              <div style={{ display: "flex", alignItems: "center" }}>
-                {e.name}
-                <span style={{ marginLeft: 5, color: "black" }}></span>
+          <div>
+            <div className="fs-12  c-b pt-3    left-label ">Select Token*</div>
+            <Select
+              isSearchable={false}
+              isClearable={false}
+              className="alignLeft drop-padding token-select fs-12 fw-b rm-border"
+              placeholder="Select Option"
+              styles={colourStyles}
+              value={selectedOptionToken}
+              options={tokenList.tokens}
+              onChange={handleChangeToken}
+              getOptionLabel={(e) => (
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  {e.name}
+                  <span style={{ marginLeft: 5, color: "black" }}></span>
+                </div>
+              )}
+            />
+          </div>
+          <div className="hint-label fs-10  c-b ">
+            Copy XETH Token Address
+            <Link className="copy-link" to="#">
+              <div className="copy-token">
+                <img src={copy} height="12px" />
+                <div>XDC Network</div>
               </div>
-            )}
-          />
-        </div>
-        <div className="hint-label fs-10  c-b ">
-          Copy XETH Token Address
-          <Link className="copy-link" to="#">
-            <div className="copy-token">
-              <img src={copy} height="12px" />
-              <div>XDC Network</div>
-            </div>
-          </Link>
-          <Link className="copy-link" to="#">
-            <div className="copy-token">
-              <img src={copy} height="12px" />
-              <div>Ethereum</div>
-            </div>
-          </Link>
-        </div>
-        <div className="fs-12  c-b pt-3  left-label">Amount*</div>
-        <div className="amount-box-outer fs-12 fw-b">
-          <input
-            type="number"
-            name="amount"
-            className="amount-box-inner fs-12 fw-b rm-border-amount"
-            onChange={(e) => setAmount(e.target.value)}
-            placeholder="0"
-          />
-          <Link to="#">
-            <img src={max} height="20px" />
-          </Link>
-        </div>
+            </Link>
+            <Link className="copy-link" to="#">
+              <div className="copy-token">
+                <img src={copy} height="12px" />
+                <div>Ethereum</div>
+              </div>
+            </Link>
+          </div>
+          <div className="fs-12  c-b pt-3  left-label">Amount*</div>
+          <div className="amount-box-outer fs-12 fw-b">
+            <input
+              type="text"
+              name="amount"
+              className="amount-box-inner fs-12 fw-b rm-border-amount"
+              onChange={(e) => {
+                const val = e.target.value
+                  .replace(/[^0-9.]/g, "")
+                  .replace(/(\..*?)\..*/g, "$1")
+                  .replace(/^0[^.]/, "0");
+                setAmount(val);
+              }}
+              // Assign State
+              value={amount}
+              placeholder="0"
+            />
+            <Link to="#">
+              <img src={max} height="20px" />
+            </Link>
+          </div>
 
-        {/* <div className="fs-12  c-b pt-3  left-label">Destination Address*</div>
+          {/* <div className="fs-12  c-b pt-3  left-label">Destination Address*</div>
         <div className="destination">
           <input
             type="name"
@@ -196,7 +240,7 @@ function BridgeCard() {
             onChange={(e) => setAddress(e.target.value)}
           />
         </div> */}
-                 <Link
+          <Link
             to="/bridge-confirm-transaction"
             state={{
               address,
@@ -212,14 +256,11 @@ function BridgeCard() {
             </button>
           </Link>
           {/* , selectedOption , selectedOptionDestination */}
-        
-        
 
-        {/* <center> <a href={'https://explorer.apothem.network/txs/' + hash} target='_blank' style={{ color: "black", fontSize: "9px" }}> {hash} </a></center>
+          {/* <center> <a href={'https://explorer.apothem.network/txs/' + hash} target='_blank' style={{ color: "black", fontSize: "9px" }}> {hash} </a></center>
         <center>  <a href={'https://ropsten.etherscan.io/tx/' + hasher} target='_blank' style={{ color: "black", fontSize: "9px" }}> {hasher} </a> </center> */}
-      </form>
-    </div>
-
+        </form>
+      </div>
     </>
   );
 }

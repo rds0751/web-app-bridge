@@ -1,9 +1,9 @@
 import React from "react";
-import moment from 'moment';
+import moment from "moment";
 
 import { Box } from "@mui/material";
 import Tabs from "react-bootstrap/Tabs";
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Tab } from "react-bootstrap";
 import Faq from "react-faq-component";
@@ -22,10 +22,8 @@ import xdc3 from "../../utils/xdc3";
 import "./Pool.css";
 import { ContactlessOutlined, NoBackpackSharp } from "@mui/icons-material";
 
-
-
 let results;
-const rows = []
+const rows = [];
 
 const useStyles = makeStyles({
   table: {
@@ -34,9 +32,8 @@ const useStyles = makeStyles({
 });
 
 function HistoryCard() {
-
   const classes = useStyles();
-  const [data, setData] = useState("")
+  const [data, setData] = useState("");
   const [xdata, x] = useState("");
   const [setTime, time] = useState("");
   const [setAmount, selectAmount] = useState("");
@@ -44,7 +41,7 @@ function HistoryCard() {
   const [xhash, selectHash] = useState("");
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedClickHash, setSelectedClickHash] = useState(null);
-  const [selectedTime , setSelectedTime] = useState("");
+  const [selectedTime, setSelectedTime] = useState("");
 
   // handle onChange event of the dropdown
   const handleChange = (e) => {
@@ -58,87 +55,65 @@ function HistoryCard() {
   let amount;
   let dateTimeStamp;
   let bcd;
-  
-  const fetchURL = "https://testapi.xdcbridge.com"
-  const getData = () =>
-    fetch(`${fetchURL}/txns`)
-      .then((res) => res.json())
-  useEffect(() => {
-    getData().then((data) => setData(data))
-  }, [],
-  )
 
-  console.log("acfsdtion", data.data );
+  const fetchURL = "https://testapi.xdcbridge.com";
+  const getData = () => fetch(`${fetchURL}/txns`).then((res) => res.json());
+  useEffect(() => {
+    getData().then((data) => setData(data));
+  }, []);
+
+  console.log("acfsdtion", data.data);
 
   //  const index =length.[0, abc];
-  
-  const History = async () => {
 
-    const Web3 = require('web3')
-    const web3 = new Web3(new Web3.providers.HttpProvider('https://apothemxdcpayrpc.blocksscan.io/'))
+  const History = async () => {
+    const Web3 = require("web3");
+    const web3 = new Web3(
+      new Web3.providers.HttpProvider("https://apothemxdcpayrpc.blocksscan.io/")
+    );
 
     // Get address
-    const accounts = await web3.eth.getAccounts()
-    console.log(accounts)
+    const accounts = await web3.eth.getAccounts();
+    console.log(accounts);
 
-
-
-    for (var i = 0; i <=data.data.length; i++) {
-    
+    for (var i = 0; i <= data.data.length; i++) {
       hashing = data.data[i];
       console.log("mond", hashing);
-      
-      
-     
 
       transaction = await web3.eth.getTransaction(hashing);
       //timestamp
-       non = await web3.eth.getBlock(transaction['blockNumber']);
-       if(web3.utils.fromWei(transaction.value, 'ether'))
-      amount = await web3.utils.fromWei(transaction.value, 'ether');
-      dateTimeStamp = non['timestamp'];
+      non = await web3.eth.getBlock(transaction["blockNumber"]);
+      if (web3.utils.fromWei(transaction.value, "ether"))
+        amount = await web3.utils.fromWei(transaction.value, "ether");
+      dateTimeStamp = non["timestamp"];
       // transactionTime = new Date(dateTimeStamp);
-      const transactionTime = moment(dateTimeStamp*1000).fromNow();
-      transactionTimes =  new Date(dateTimeStamp *1000).toLocaleString();
-      setSelectedTime(transactionTimes)
-      console.log("time",dateTimeStamp)
-      var time =  
-
-      selectHash(hashing);
-      setSelectedOption(hashing)
+      const transactionTime = moment(dateTimeStamp * 1000).fromNow();
+      transactionTimes = new Date(dateTimeStamp * 1000).toLocaleString();
+      setSelectedTime(transactionTimes);
+      console.log("time", dateTimeStamp);
+      var time = selectHash(hashing);
+      setSelectedOption(hashing);
       console.log("hdhdhdjd", transaction);
-      console.log("okay", );
-      console.log("tran",transaction);
-      console.log("kiki",transactionTime);
+      console.log("okay");
+      console.log("tran", transaction);
+      console.log("kiki", transactionTime);
       x(transaction);
       selectAmount(amount);
-      
-      rows.push(
-        {
-          "ActionImg": " /images/XDC.svg",
-          "Action": " to Ropsten",
-          "Tokens": amount,
-          "TokensImg": "/images/XDC.svg",
-          "TokensTo": "",
-          "Hash": hashing,
-          "TokensToImg": "",
-          "Time": transactionTime
-        }
-      )
 
+      rows.push({
+        ActionImg: " /images/XDC.svg",
+        Action: " to Ropsten",
+        Tokens: amount,
+        TokensImg: "/images/XDC.svg",
+        TokensTo: "",
+        Hash: hashing,
+        TokensToImg: "",
+        Time: transactionTime,
+      });
     }
-
-    
   };
 
-
-
- 
-
   // useEffect(() => {History();}, [])
-  
-  
-  
 
   return (
     <Box className="pool-box">
@@ -146,10 +121,49 @@ function HistoryCard() {
         <p>History</p>
       </div>
       <div className="filter-Export">
-        <button  className="filter-button mr12">
+        <button className="filter-button mr12">
+          <svg
+            class="filter__icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+          >
+            <g id="filter" transform="translate(-1391 -195)">
+              <rect
+                id="Rectangle_68"
+                data-name="Rectangle 68"
+                width="16"
+                height="16"
+                transform="translate(1391 195)"
+                fill="none"
+              />
+              <g
+                id="Filter-2"
+                data-name="Filter"
+                transform="translate(1392.006 197)"
+              >
+                <g
+                  id="Group_835"
+                  data-name="Group 835"
+                  transform="translate(-0.006)"
+                >
+                  <path
+                    id="Path_817"
+                    data-name="Path 817"
+                    d="M7.929,5.889,11.9,1.044H1.664L5.674,5.889a.674.674,0,0,1,.125.376v4.343l1.963.961V6.223A.516.516,0,0,1,7.929,5.889ZM13.441.877,8.848,6.431V12.4a.531.531,0,0,1-.752.5L5.047,11.443a.564.564,0,0,1-.334-.5V6.431L.119.877A.537.537,0,0,1,.537,0H13.024A.532.532,0,0,1,13.441.877Z"
+                    transform="translate(0.006)"
+                    fill="#fff"
+                  />
+                </g>
+              </g>
+            </g>
+          </svg>
           Filter
         </button>
-        <button  onClick={History} className="filter-button">Export</button>
+        <button onClick={History} className="filter-button">
+          Export
+        </button>
       </div>
       <Tabs
         defaultActiveKey="Top Tokens"
@@ -170,8 +184,6 @@ function HistoryCard() {
               </TableHead>
               <TableBody>
                 {rows.map((row) => (
-
-                  
                   <TableRow key={row.name}>
                     {/* <TableCell component="th" scope="row">
                       {row.number}
@@ -179,9 +191,7 @@ function HistoryCard() {
                     <TableCell>
                       <img src={row.ActionImg} />
                       &nbsp;&nbsp;
-
                       {row.Action}
-
                     </TableCell>
                     <TableCell>
                       <img src={row.TokensImg} />
@@ -189,10 +199,19 @@ function HistoryCard() {
                       <img src={row.TokensToImg} />
                       &nbsp;&nbsp;{row.TokensTo}
                     </TableCell>
-                    
-                    <Link className="link" to="/HistoryDetails" state={{ xhash, setAmount,  row ,selectedTime}} >
-                      <TableCell onClick={ ()=> setSelectedClickHash (row.Hash)
-                      } onChange={handleChange} value={selectedOption}  >{row.Hash}</TableCell>
+
+                    <Link
+                      className="link"
+                      to="/HistoryDetails"
+                      state={{ xhash, setAmount, row, selectedTime }}
+                    >
+                      <TableCell
+                        onClick={() => setSelectedClickHash(row.Hash)}
+                        onChange={handleChange}
+                        value={selectedOption}
+                      >
+                        {row.Hash}
+                      </TableCell>
                     </Link>
                     <TableCell>{row.Time}</TableCell>
                     {/* <TableCell>{row.apr}</TableCell> */}
@@ -231,7 +250,7 @@ function HistoryCard() {
                       &nbsp;&nbsp;{row.TokensTo}
                     </TableCell>
 
-                    <TableCell onChange={handleChange} >{row.Hash}</TableCell>
+                    <TableCell onChange={handleChange}>{row.Hash}</TableCell>
                     <TableCell>{row.Time}</TableCell>
                     {/* <TableCell>{row.apr}</TableCell> */}
                   </TableRow>
@@ -243,8 +262,6 @@ function HistoryCard() {
       </Tabs>
     </Box>
   );
-  
-
 }
 
 export default HistoryCard;
