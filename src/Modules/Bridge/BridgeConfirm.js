@@ -99,11 +99,8 @@ function BridgeConfirm() {
         animation={false}
       >
         <Modal.Header>
-          {location?.state?.selectedOptionToken?.Type === 100 ? (
-            <ProgressBar1 />
-          ) : (
-            <ProgressBar />
-          )}
+            {location?.state?.selectedOptionToken?.type === 100 ?<ProgressBar1/> : <ProgressBar/>  }
+          
         </Modal.Header>
         <Modal.Body></Modal.Body>
       </Modal>
