@@ -343,7 +343,6 @@ export default function App() {
     //deploying the smart contract ERC20
     // const deployAsset = await deploy.methods.deployAsset(debridge_id, 'Token Mapped with XDC Chain', 'WXDC1', 18).call();
     const _token = tokenDeployee;
-
     console.log("amountts", amount);
     /**
      * @dev Get the hash value and the result.

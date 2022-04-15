@@ -36,7 +36,7 @@ export default function SideBar() {
             ></img>{" "}
           </Toolbar>
         </div>
-        <List>
+        <List className="drawer-content" >
           <ListItem className="list-item" button component={Link} to="/about">
             <ListItemIcon>
               <img
