@@ -62,6 +62,7 @@ export default function App() {
     console.log("accounts", accounts[0]);
     console.log(" Destination", '3');
     console.log("", location.state.selectedOptionToken.address);
+
     /**
      * @dev Performing the Approve method for erc20 .
      * @param address Reciever Address.
@@ -269,16 +270,16 @@ export default function App() {
     setProgress(progress + 50)
     letToggle();
     const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: transactionHash }),
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ "id": transactionHash })
     };
     let var1 = 0;
     while (var1 == 0) {
       const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: transactionHash }),
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ "id": transactionHash })
       };
       await fetch('https://testapi.xdcbridge.com', requestOptions)
         .then(response => response.json())
@@ -303,10 +304,14 @@ export default function App() {
     amount = abc.amount;
     setHash(transactionHash);
     console.log(submissionId, debridgeId);
+
+
+
     /**
      * @dev To claim the tokens from the sender.
      * @param tokenAddress The address of the token.
      */
+
     /**
      * @dev switching the network to the ropsten.
      * @param chainid chain id of the ropsten testnet.
@@ -315,17 +320,18 @@ export default function App() {
 
     const bridgeAddress = eBridgeAddress;
     /**
-     * @dev instance of ebridge, has been instilized because XDCPAY and METAMASK creats only once.
-     */
+    * @dev instance of ebridge, has been instilized because XDCPAY and METAMASK creats only once.
+    */
     window.web3 = new Web3(window.ethereum);
     const web3 = new Web3(window.ethereum);
     const ebridge = new web3.eth.Contract(Bridge.abi, bridgeAddress);
     const deployerAddress = deployee;
     /**
-     * @dev instance of deploye, has been instilized because XDCPAY and METAMASK creats only once.
-     */
+    * @dev instance of deploye, has been instilized because XDCPAY and METAMASK creats only once.
+    */
     const deploy = new web3.eth.Contract(Deploy.abi, deployerAddress);
     //fetching the address of the sender through metamask
+
     console.log("", accounts);
     console.log(" Destination", '3');
     const isSubmissionUsed = await ebridge.methods.isSubmissionUsed(submissionId).call();
@@ -456,8 +462,7 @@ export default function App() {
     async function _packSubmissionAutoParamsFrom(web3, nativeSender, autoParams) {
       if (autoParams !== '0x' && autoParams !== '') {
         const decoded = web3.eth.abi.decodeParameters(
-          ["tuple(uint256,uint256, bytes, bytes)"],
-          autoParams
+          ['tuple(uint256,uint256, bytes, bytes)'], autoParams
         );
         console.log(`autoParams: ${autoParams}, decoded: ${decoded}`);
         const encoded = web3.eth.abi.encodeParameter(
@@ -467,7 +472,7 @@ export default function App() {
         console.log(`encoded: ${encoded}`);
         return encoded;
       }
-      return "0x";
+      return '0x';
     }
     
   };
