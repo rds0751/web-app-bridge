@@ -69,7 +69,7 @@ function HistoryCard() {
   const History = async () => {
     const Web3 = require("web3");
     const web3 = new Web3(
-      new Web3.providers.HttpProvider("https://apothemxdcpayrpc.blocksscan.io/")
+      new Web3.providers.HttpProvider("https://rpc.apothem.network/")
     );
 
     // Get address
