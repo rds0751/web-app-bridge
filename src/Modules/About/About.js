@@ -1,7 +1,8 @@
 //Importing the libraries
 import { Box } from "@mui/system";
 import React, { useState } from "react";
-import { toast } from "react";
+
+import { toast } from 'react-toastify';
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { Button } from "react-bootstrap";
@@ -14,8 +15,13 @@ import { NETWORKS } from "../../common/constant";
 
 //Main function
 export default function About() {
+  let accountings;
   const [buttonText, setButtonText] = useState("");
   const [popup, setPopup] = useState(1);
+  const [accounting , setAccount ] = useState("");
+ 
+
+  toast.configure()
 
   window.web3 = new Web3(window.xdc ? window.xdc : window.ethereum);
   const handleXDCPayWallet = async () => {
@@ -43,14 +49,18 @@ export default function About() {
 
   window.web3.eth.getAccounts((err, accounts) => {
     if (accounts.length === 0) {
-      setButtonText("Connect Wallet");
+      setButtonText("Connect Wallet" ,  <img src="/images/wallet.svg"></img>);
+      
+      // toast.info('Please Connect to XDCPAY Wallet');
       // window.location.reload(false);
       // alert("Please Connect to The XDCPAY")
       account = false;
     } else {
       console.log("Account", accounts);
-      account = true;
-      setButtonText("Wallet Connected");
+      accountings = accounts
+      
+      setAccount(accounts);
+    
     }
   });
 
@@ -79,9 +89,10 @@ export default function About() {
           onClick={() => handleXDCPayWallet()}
           className="connect-wallet btn-primary"
           variant="primary"
-        >
-          <img src="/images/wallet.svg"></img>
-          {buttonText}
+        >  <p style={{fontSize : "11px" , paddingTop : "1%"}}> <p style={{fontSize : "16px" }}>{buttonText} </p> {accounting}   </p>
+    
+          
+        
         </Button>{" "}
       </Box>
       <Grid
