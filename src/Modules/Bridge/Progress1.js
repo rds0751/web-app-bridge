@@ -72,74 +72,7 @@ export default function App() {
      */
 
 
-    toast.info('Sending the Amount.');
-
-    if (location.state.selectedOptionToken.chainId === 50) {
-      console.log("nonu");
-      transaction = {
-        from: accounts[0],
-        to: xBridgeAddress, //contractAddress of the concerned token (same in data below)
-        value: xdc3.utils.toWei(location.state.amount), // token _amount
-        data: xbridge.methods.send(
-          location.state.selectedOptionToken.address,//address _tokenAddress,
-          xdc3.utils.toWei(location.state.amount), // token _amount
-          3,// _chainIdTo
-          accounts[0], //_receiver
-          "0x", // _permit
-          false, //_useAssetFee
-          0, //_referralCode  
-          "0x" //_autoParams
-        ).encodeABI()
-        //value given by user should be multiplied by 1000
-      };
-      await window.web3.eth
-        .sendTransaction(transaction)
-        .on("confirmation", function (confirmationNumber, result) {
-          if (result && confirmationNumber === 1) {
-            transactionHash = result.transactionHash;
-            console.log("transactinsnsns", transactionHash);
-
-          }
-
-        });
-    }
-
-    if (location.state.selectedOptionToken.chainId === 1) {
-      window.web3 = new Web3(window.ethereum);
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
-      window.web3 = new Web3(window.ethereum);
-      const web3 = new Web3(window.ethereum);
-      const bridgeAddress = eBridgeAddress;
-      const ebridge = new web3.eth.Contract(Bridge.abi, bridgeAddress);
-      transaction = {
-        from: accounts[0],
-        to: eBridgeAddress, //contractAddress of the concerned token (same in data below)
-        value: xdc3.utils.toWei(location.state.amount), // token _amount
-        data: ebridge.methods.send(
-          location.state.selectedOptionToken.address,//address _tokenAddress,
-          xdc3.utils.toWei(location.state.amount), // token _amount
-          51,// _chainIdTo
-          accounts[0], //_receiver
-          "0x", // _permit
-          false, //_useAssetFee
-          0, //_referralCode  
-          "0x" //_autoParams
-        ).encodeABI()
-        //value given by user should be multiplied by 1000
-      };
-
-      await window.web3.eth
-        .sendTransaction(transaction)
-        .on("confirmation", function (confirmationNumber, result) {
-          if (result && confirmationNumber === 1) {
-            transactionHash = result.transactionHash;
-            console.log("transactinsnsns", transactionHash);
-            console.log("abcs", location.state.selectedOptionToken.debridgeAddress)
-
-          }
-
-        });
-    }
+   
 
 
     if (location.state.selectedOptionToken.chainId === 51) {
@@ -154,17 +87,17 @@ export default function App() {
       };
 
 
-      await window.web3.eth
+      try {
+        await window.web3.eth
         .sendTransaction(transaction)
-        .on("confirmation", function (confirmationNumber, receipt) {
-          if (receipt && confirmationNumber === 1) {
-            console.log("transaction hash ", receipt.transactionHash);
-
-
-
-          }
-
-        });
+        .on("transactionHash", function (hash) {
+          console.log("transaction  ", hash)
+         
+         });
+        }
+        catch  {
+        
+        }
 
 
 
@@ -220,16 +153,18 @@ export default function App() {
         ).encodeABI()
         //value given by user should be multiplied by 1000
       };
-      await window.web3.eth
+      try {
+        await window.web3.eth
         .sendTransaction(transaction)
-        .on("confirmation", function (confirmationNumber, result) {
-          if (result && confirmationNumber === 1) {
-            transactionHash = result.transactionHash;
-            console.log("transactinsnsns", transactionHash);
-
-          }
-
-        });
+        .on("transactionHash", function (hash) {
+          console.log("transaction  ", hash)
+          transactionHash = hash;
+         
+         });
+        }
+        catch  {
+        
+        }
     }
     if (location.state.selectedOptionToken.chainId === 3) {
       window.web3 = new Web3(window.ethereum);

@@ -20,7 +20,7 @@ import { Button } from "react-bootstrap";
 import "react-step-progress/dist/index.css";
 import ebridge from "../../utils/ebridge";
 import { tokenBridge, tokenDeployee, eBridgeAddress, deployee, xBridgeAddress } from '../../common/constant';
-let debridgeId, submissionId, signatures, abc, transactionHash, tx, allowance, amount, transactionHashes, bcd, cde, transaction;
+let debridgeId, submissionId, signatures, abc, transactionHash, tx, allowance, amount, transactionHashes, bcd, cde, transaction, accountsing;
 
 export default function App() {
   const [show, setShow] = useState(false);
@@ -74,6 +74,7 @@ export default function App() {
     toast.info('Sending the Amount.');
 
     if (location.state.selectedOptionToken.chainId === 50) {
+    
       const Web3 = require("web3");
       const web3 = new Web3(new Web3.providers.HttpProvider("https://apothemxdcpayrpc.blocksscan.io/"));
       console.log("akshay");
@@ -85,7 +86,7 @@ export default function App() {
           location.state.selectedOptionToken.address,//address _tokenAddress,
           xdc3.utils.toWei(location.state.amount), // token _amount
           3,// _chainIdTo
-          accounts[0], //_receiver
+          location.state.address, //_receiver
           "0x", // _permit
           false, //_useAssetFee
           0, //_referralCode  
@@ -100,6 +101,7 @@ export default function App() {
       .on("transactionHash", function (hash) {
         console.log("transaction  ", hash)
         transactionHash = hash;
+        setProgress(progress + 50)
        
        });
       }
@@ -109,23 +111,35 @@ export default function App() {
     }
 
     if (location.state.selectedOptionToken.chainId === 1) {
+      
+     
       console.log("abc");
       window.web3 = new Web3(window.ethereum);
       await window.ethereum.request({ method: 'eth_requestAccounts' }); 
       window.web3 = new Web3(window.ethereum);
       const web3 = new Web3(window.ethereum);
-      console.log("accounts", accounts[0]);
+      await window.web3.eth.getAccounts((err, accounts) => {
+        if (err !== null) console.error("");
+        else if (accounts.length === 0) {
+          account = false;
+        } else {
+          console.log("Account",accounts);
+          accountsing = accounts
+          account = true;
+        }
+      });
+      console.log("yAKO", accountsing[0])
       const bridgeAddress = eBridgeAddress;
       const ebridge = new web3.eth.Contract(Bridge.abi, bridgeAddress);
       transaction = {
-        from: accounts[0],
+        from: accountsing[0],
         to: eBridgeAddress, //contractAddress of the concerned token (same in data below)
         value: xdc3.utils.toWei(location.state.amount), // token _amount
         data: ebridge.methods.send(
           location.state.selectedOptionToken.address,//address _tokenAddress,
           xdc3.utils.toWei(location.state.amount), // token _amount
           51,// _chainIdTo
-          accounts[0], //
+          location.state.address, //
           "0x", // _permit
           false, //_receiver_useAssetFee
           0, //_referralCode  
@@ -141,6 +155,7 @@ export default function App() {
             transactionHash = result.transactionHash;
             console.log("transactinsnsns", transactionHash);
             console.log("abcs", location.state.selectedOptionToken.debridgeAddress)
+            setProgress(progress + 50)
 
           }
 
@@ -150,7 +165,7 @@ export default function App() {
 
 
 
-    setProgress(progress + 50)
+    
    
     
     const requestOptions = {
@@ -233,7 +248,7 @@ export default function App() {
      * @dev Get the hash value and the result.
      * @param web3 fetching the web3 from the library.
      */
-    const autoParamsFrom = await _packSubmissionAutoParamsFrom(web3, accounts[0], '0x');
+    const autoParamsFrom = await _packSubmissionAutoParamsFrom(web3, location.state.address, '0x');
 
     /**
     * @dev Performing the ERC20 claim function.
@@ -252,14 +267,25 @@ export default function App() {
 
     console.log("", location.state.selectedOptionToken.chainId)
     if (location.state.selectedOptionToken.chainId === 50) {
+      await window.web3.eth.getAccounts((err, accounts) => {
+        if (err !== null) console.error("");
+        else if (accounts.length === 0) {
+          account = false;
+        } else {
+          console.log("Account",accounts);
+          accountsing = accounts
+          account = true;
+        }
+      });
+      console.log("yAKO", accountsing[0])
       transaction = {
-        from: accounts[0],
+        from: accountsing[0],
         to: eBridgeAddress, //contractAddress of the concerned token (same in data below)
         data: ebridge.methods.claim(
           location.state.selectedOptionToken.debridgeAddress,
           amount,
           location.state.selectedOptionToken.chainId,
-          accounts[0],
+          location.state.address,
           submissionId,
           signatures,
           autoParamsFrom,
@@ -267,7 +293,7 @@ export default function App() {
         ).encodeABI()
         //value given by user should be multiplied by 1000
       };
-
+       console.log("gdjn",transaction);
       await window.ethereum.request({ method: 'eth_requestAccounts' });
       window.web3 = new Web3(window.ethereum);
       const web3 = new Web3(window.ethereum);
@@ -291,14 +317,27 @@ export default function App() {
     }
 
     else {
+      window.web3 = new XDC3(window.xdc);
+      const xdc3 = new XDC3(window.xdc);
+      await window.web3.eth.getAccounts((err, accounts) => {
+        if (err !== null) console.error("");
+        else if (accounts.length === 0) {
+          account = false;
+        } else {
+          console.log("Account",accounts);
+          accountsing = accounts
+          account = true;
+        }
+      });
+      console.log("yAKO", accountsing[0])
       transaction = {
-        from: accounts[0],
+        from: accountsing[0],
         to: xBridgeAddress, //contractAddress of the concerned token (same in data below)
         data: xbridge.methods.claim(
           location.state.selectedOptionToken.debridgeAddress,
           amount,
           location.state.selectedOptionToken.chainId,
-          accounts[0],
+          location.state.address,
           submissionId,
           signatures,
           autoParamsFrom,
@@ -306,9 +345,7 @@ export default function App() {
         ).encodeABI()
         //value given by user should be multiplied by 1000
       };
-
-      window.web3 = new XDC3(window.xdc);
-      const xdc3 = new XDC3(window.xdc);
+      console.log("accifdnj", transaction)
       await window.web3.eth
         .sendTransaction(transaction)
         // .on("confirmation", function (confirmationNumber, receipt) {
