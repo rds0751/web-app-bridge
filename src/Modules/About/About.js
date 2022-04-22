@@ -24,12 +24,14 @@ export default function About() {
   toast.configure()
 
   window.web3 = new Web3(window.xdc ? window.xdc : window.ethereum);
+  
   const handleXDCPayWallet = async () => {
+    
     if (window.web3.currentProvider) {
       if (!window.web3.currentProvider.hasOwnProperty("chainId")) {
         if (!window.xdc) {
           setPopup(2);
-
+          
           alert();
         } else {
           const state = window.web3.givenProvider.publicConfigStore
@@ -50,6 +52,7 @@ export default function About() {
   window.web3.eth.getAccounts((err, accounts) => {
     if (accounts.length === 0) {
       setButtonText("Connect Wallet" ,  <img src="/images/wallet.svg"></img>);
+      window.web3.enable();
       
       // toast.info('Please Connect to XDCPAY Wallet');
       // window.location.reload(false);

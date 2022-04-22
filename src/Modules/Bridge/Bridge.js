@@ -92,10 +92,14 @@ function BridgeCard() {
   const [icon, setIcon] = useState("");
   // handle onChange event of the dropdown
   const handleChange = (e) => {
+    console.log(e);
     setSelectedOption(e);
     setIcon(e?.icon);
+    setSelectedOptionDestination(
+      e.text === "Ethereum" ? dataDestination[0] : dataDestination[1]
+    );
+    setText(e.text === "Ethereum" ? "/images/XDC.svg" : "/images/ethereum.svg");
   };
-
   const [selectedOptionDestination, setSelectedOptionDestination] =
     useState(null);
   const [text, setText] = useState("");
@@ -103,6 +107,10 @@ function BridgeCard() {
   const handleChangeDestination = (e) => {
     setSelectedOptionDestination(e);
     setText(e?.icon);
+    setSelectedOption(
+      e.text === "Ethereum" ? dataDestination[0] : dataDestination[1]
+    );
+    setIcon(e.text === "Ethereum" ? "/images/XDC.svg" : "/images/ethereum.svg");
   };
 
   useEffect(() => [selectedOptionDestination, selectedOption, icon , address]);
@@ -198,7 +206,8 @@ function BridgeCard() {
             <Link className="copy-link" to="#">
               <div className="copy-token">
                 <img src={copy} height="12px" />
-                <div>XDC Network</div>
+                <div 
+                >XDC Network</div>  
               </div>
             </Link>
             <Link className="copy-link" to="#">
