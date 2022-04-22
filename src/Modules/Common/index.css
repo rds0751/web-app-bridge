@@ -14,9 +14,12 @@
   color: #97aff4;
   opacity: 1;
   margin-right: 100px;
+
+  
+  
 }
 .list-item {
-  margin-bottom: 10px !important;
+  margin-bottom: 18px !important;
 }
 .footer-input {
   width: 114px;
@@ -33,11 +36,15 @@
   font-size: 12px;
   font-family: "Inter";
   letter-spacing: 0px;
-  color: #d9e3ff;
+  color: #D9E3FF;
   opacity: 1;
 }
 
 .mapTab-selected-mode {
   font-size: 12px;
   color: #09184b;
+}
+::placeholder { 
+  color: #95AEF4 !important;
+  opacity: 1; 
 }

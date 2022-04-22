@@ -4,6 +4,7 @@
 .investment-div {
   display: flex;
   justify-content: center;
+  margin-top: -12px;
 }
 .investment-div > p {
   top: 110px;

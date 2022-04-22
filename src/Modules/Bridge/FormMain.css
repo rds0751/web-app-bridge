@@ -31,12 +31,12 @@
   padding-left: 2%;
 }
 .copy-token {
-  display: flex;
-  flex-direction: row;
+  /* display: flex; */
+  /* flex-direction: row; */
   align-items: center;
 
   background-color: #6287d019;
-  padding: 2px 4px;
+  /* padding: 2px 4px; */
   border-radius: 3px;
 }
 .copy-link {
@@ -148,6 +148,7 @@ justify-content: space-between;
   align-items: left;
   justify-content: left;
   margin-top: 8px;
+  padding-left: 228px;
 }
 
 /* .col-cards-gap {
@@ -587,4 +588,8 @@ justify-content: space-between;
 }
 .css-14el2xx-placeholder{
   color: #9D9D9D !important;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #9D9D9D !important;
+  opacity: 1; /* Firefox */
 }

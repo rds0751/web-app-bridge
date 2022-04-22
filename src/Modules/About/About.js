@@ -1,8 +1,7 @@
 //Importing the libraries
 import { Box } from "@mui/system";
 import React, { useState } from "react";
-
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { Button } from "react-bootstrap";
@@ -12,24 +11,19 @@ import web3 from "../../utils/web3";
 import xdc3 from "../../utils/xdc3";
 import Web3 from "web3";
 import { NETWORKS } from "../../common/constant";
-
 //Main function
 export default function About() {
   let accountings;
   const [buttonText, setButtonText] = useState("");
   const [popup, setPopup] = useState(1);
-  const [accounting , setAccount ] = useState("");
- 
-
-  toast.configure()
-
+  const [accounting, setAccount] = useState("");
+  toast.configure();
   window.web3 = new Web3(window.xdc ? window.xdc : window.ethereum);
   const handleXDCPayWallet = async () => {
     if (window.web3.currentProvider) {
       if (!window.web3.currentProvider.hasOwnProperty("chainId")) {
         if (!window.xdc) {
           setPopup(2);
-
           alert();
         } else {
           const state = window.web3.givenProvider.publicConfigStore
@@ -44,28 +38,20 @@ export default function About() {
       }
     }
   };
-
   let account = false;
-
   window.web3.eth.getAccounts((err, accounts) => {
     if (accounts.length === 0) {
-      setButtonText("Connect Wallet" ,  <img src="/images/wallet.svg"></img>);
-      
+      setButtonText("Connect Wallet");
       // toast.info('Please Connect to XDCPAY Wallet');
       // window.location.reload(false);
       // alert("Please Connect to The XDCPAY")
       account = false;
     } else {
       console.log("Account", accounts);
-      accountings = accounts
-      
-      setAccount(accounts);
-    
+      accountings = accounts;
+      setButtonText(accounts);
     }
   });
-
-  
-
   return (
     <div>
       <Box
@@ -79,7 +65,9 @@ export default function About() {
             width: "347px",
             height: "36px",
             marginLeft: "210px",
+            marginBottom: "17px",
             color: "#102C78",
+            opacity: "1",
           }}
         >
           {" "}
@@ -87,12 +75,35 @@ export default function About() {
         </h2>
         <Button
           onClick={() => handleXDCPayWallet()}
-          className="connect-wallet btn-primary"
+          className="connect-wallet btn-primary label"
           variant="primary"
-        >  <p style={{fontSize : "11px" , paddingTop : "1%"}}> <p style={{fontSize : "16px" }}>{buttonText} </p> {accounting}   </p>
-    
-          
-        
+        >
+          {" "}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignContent: "top",
+            }}
+          >
+            <img
+              style={{
+                width: "50px",
+                marginBottom: "60px",
+                justifyContent: "center",
+              }}
+              src="/images/wallet.svg"
+            ></img>
+            <div
+              style={{
+                fontSize: "11px",
+                paddingTop: "10px",
+                justifyContent: "space-evenly",
+              }}
+            >
+              {buttonText}
+            </div>
+          </div>
         </Button>{" "}
       </Box>
       <Grid
@@ -117,7 +128,6 @@ export default function About() {
               </p>
             </Paper>
           </Grid>
-
           <Grid item>
             <Paper
               sx={{
@@ -135,7 +145,6 @@ export default function About() {
               </p>
             </Paper>
           </Grid>
-
           <Grid item>
             <Paper
               sx={{
@@ -154,7 +163,6 @@ export default function About() {
               </p>
             </Paper>
           </Grid>
-
           <Grid item>
             <Paper
               sx={{

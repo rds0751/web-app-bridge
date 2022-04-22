@@ -137,15 +137,15 @@ function BridgeCard() {
                 )}
               />
             </div>
-<div style={{    padding: "76px 11px 0 0px"}}>
-            <img
-              style={{
-                width: "28px",
-                height: "27px",
-              }}
-              src="/images/Arrow (1).svg"
-            />
-</div>
+            <div style={{ padding: "76px 11px 0 0px" }}>
+              <img
+                style={{
+                  width: "28px",
+                  height: "27px",
+                }}
+                src="/images/Arrow (1).svg"
+              />
+            </div>
             <div className="fl">
               <div className="fs-12  c-b pt-3  left-label">Destination</div>
               <Select
@@ -183,7 +183,7 @@ function BridgeCard() {
               onChange={handleChangeToken}
               getOptionLabel={(e) => (
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  {e.name}
+                  <img style={{ marginRight: "5px" }} src={e.image} /> {e.name}
                   <span style={{ marginLeft: 5, color: "black" }}></span>
                 </div>
               )}
