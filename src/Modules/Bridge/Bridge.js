@@ -105,7 +105,7 @@ function BridgeCard() {
     setText(e?.icon);
   };
 
-  useEffect(() => [selectedOptionDestination, selectedOption, icon , address]);
+  useEffect(() => [selectedOptionDestination, selectedOption, icon, address]);
   return (
     <>
       {/* <div style={{display : "none"}}><BridgeConfirm amount={amount}/> </div> */}
@@ -226,16 +226,18 @@ function BridgeCard() {
             </Link>
           </div>
 
-          <div className="fs-12  c-b pt-3  left-label">Destination Address*</div>
-        <div className="destination">
-          <input
-            type="name"
-            name="amount"
-            className="input-box-1 fs-12 fw-b "
-            placeholder="Wallet Address"
-            onChange={(e) => setAddress(e.target.value)}
-          />
-        </div>
+          <div className="fs-12  c-b pt-3  left-label">
+            Destination Address*
+          </div>
+          <div className="destination">
+            <input
+              type="name"
+              name="amount"
+              className="input-box-1 fs-12 fw-b "
+              placeholder="Wallet Address"
+              onChange={(e) => setAddress(e.target.value)}
+            />
+          </div>
           <Link
             to="/bridge-confirm-transaction"
             state={{
