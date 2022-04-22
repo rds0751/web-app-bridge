@@ -70,11 +70,11 @@ function BridgeConfirm() {
               <p className="sub-content">{location.state.amount}</p>
               {console.log("njnvd", location.state.amount)}
             </div>
-            {/* <Divider className="mb-23" />
+            <Divider className="mb-23" />
             <div className="asset-flex">
               <p>Destination</p>
               <p>{location.state.address}</p>
-            </div> */}
+            </div>
             <Divider className="mb-23" />
             <div className="asset-flex">
               <p className="content">You will get</p>

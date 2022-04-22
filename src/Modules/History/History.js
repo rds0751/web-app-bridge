@@ -30,7 +30,7 @@ const useStyles = makeStyles({
     minWidth: 650,
   },
 });
-
+ 
 function HistoryCard() {
   const classes = useStyles();
   const [data, setData] = useState("");
@@ -67,7 +67,7 @@ function HistoryCard() {
   //  const index =length.[0, abc];
 
   const History = async () => {
-    const Web3 = require("web3");
+    const Web3 = require("xdc3");
     const web3 = new Web3(
       new Web3.providers.HttpProvider("https://rpc.apothem.network/")
     );
@@ -80,7 +80,7 @@ function HistoryCard() {
       hashing = data.data[i];
       console.log("mond", hashing);
 
-      transaction = await web3.eth.getTransaction(hashing);
+      transaction = await web3.eth.getTransaction("0xd96b3c7a2d1fc62f039178e5042b86c3e237773fcbd5a569bbe42b6c1b288533");
       //timestamp
       non = await web3.eth.getBlock(transaction["blockNumber"]);
       if (web3.utils.fromWei(transaction.value, "ether"))

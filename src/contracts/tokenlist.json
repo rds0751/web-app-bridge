@@ -68,6 +68,18 @@
         "decimals": 10,
         "type" : 100,
         "logoURI": "https://ropsten.etherscan.io/tx/",
+        "image" : "/images/Ethereum.svg",
+        "tags": [
+          "currency", "xrc20"
+        ]
+      },
+      {
+        "chainId": 51,
+        "address": "0x6b97589be27C827A9e6108D5717E7a2D35acb82f",
+        "symbol": "MTK",
+        "name": "MyToken",
+        "decimals": 18,
+        "logoURI": "https://explorer.apothem.network/_nuxt/img/blocksscan-logo_white.3b8c377.svg",
         "tags": [
           "currency", "xrc20"
         ]
@@ -78,10 +90,11 @@
         "debridgeAddress" : "0x0e4ff116d2faf056156d31da16ff7c3c906d57187440adbb77baf74d1b60f6a9",
         "symbol": "XDC",
         "Type":100,
-        "name": "XDC",
+        "name": " XDC",
         "type" : 100,
         "decimals": 10,
         "logoURI": "https://explorer.apothem.network/txs/",
+        "image": "/images/XDC.svg",
         "tags": [
           "currency", "xrc20"
         ]
