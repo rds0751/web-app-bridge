@@ -294,21 +294,24 @@ export default function App() {
         //value given by user should be multiplied by 1000
       };
        console.log("gdjn",transaction);
-      await window.web3.eth
-        .sendTransaction(transaction)
-        .on("confirmation", function (confirmationNumber, receipt) {
-          if (receipt && confirmationNumber === 1) {
-            transactionHashes = receipt.transactionHash;
-            console.log("Transaction", transactionHashes);
-            setHasher(transactionHashes);
-
-            setProgress(progress + 100)
-            letToggle();
-            console.log("", submissionId);
-
-
-          }
-        });
+       console.log("accifdnj", transaction)
+       await window.web3.eth
+         .sendTransaction(transaction)
+         // .on("confirmation", function (confirmationNumber, receipt) {
+         .on("transactionHash", function (hash) {
+ 
+           console.log("transaction  ", hash)
+           transactionHashes = hash;
+           setHasher(transactionHashes);
+           setProgress(progress + 100)
+ 
+ 
+         })
+         .on("receipt", function (receipt) {
+           if (receipt !== 0) {
+             console.log("nanau", receipt.transactionHash)
+           }
+         });
 
 
     }
