@@ -76,6 +76,7 @@ export default function SideBar() {
     if (value === "bridge") setBridgeIcon("/images/bridge_Colored.svg");
     if (value === "history") setHistoryIcon("/images/history_Coloured.svg");
   };
+  const [wallet, setWallet] = React.useState(false);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -104,11 +105,7 @@ export default function SideBar() {
           <ListItem
             className="list-item"
             button
-            onClick={
-              (() => changeSourceForIcons,
-              changeOriginalSourceForIcons,
-              changeBackground)
-            }
+            onClick={() => setAboutIcon}
             // selected={selectedIndex === 1}
 
             onMouseOver={() => changeSourceForIcons("about")}
