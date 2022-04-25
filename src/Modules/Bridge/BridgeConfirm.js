@@ -45,7 +45,7 @@ function BridgeConfirm() {
         <div>
           <div className="main-head">
             {" "}
-            <p>Bridge</p>
+            <p style={{ marginTop: "-62px", marginBottom: "32px" }}>Bridge</p>
           </div>
           <div className="my-card my-card-second">
             <p className="review">Review Transaction</p>
@@ -99,8 +99,11 @@ function BridgeConfirm() {
         animation={false}
       >
         <Modal.Header>
-            {location?.state?.selectedOptionToken?.type === 100 ?<ProgressBar1/> : <ProgressBar/>  }
-          
+          {location?.state?.selectedOptionToken?.type === 100 ? (
+            <ProgressBar1 />
+          ) : (
+            <ProgressBar />
+          )}
         </Modal.Header>
         <Modal.Body></Modal.Body>
       </Modal>

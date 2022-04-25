@@ -11,8 +11,18 @@ import web3 from "../../utils/web3";
 import xdc3 from "../../utils/xdc3";
 import Web3 from "web3";
 import { NETWORKS } from "../../common/constant";
+import Link from "@mui/material/Link";
+import Jazzicon from "react-jazzicon";
 //Main function
+
 export default function About() {
+  function truncateString(str, num) {
+    if (str.length > 14) {
+      return str.slice(0, 14) + "..." + str.slice(37, str.length - 1);
+    } else {
+      return str;
+    }
+  }
   let accountings;
   const [buttonText, setButtonText] = useState("");
   const [popup, setPopup] = useState(1);
@@ -47,11 +57,11 @@ export default function About() {
       // alert("Please Connect to The XDCPAY")
       account = false;
     } else {
-      console.log("Account", accounts);
       accountings = accounts;
-      setButtonText(accounts);
+      setButtonText(truncateString(accounts.toString()));
     }
   });
+
   return (
     <div>
       <Box
@@ -63,48 +73,49 @@ export default function About() {
         <h2
           style={{
             width: "347px",
-            height: "36px",
+            height: "30px",
             marginLeft: "210px",
-            marginBottom: "17px",
+            letterspacing: "0px",
             color: "#102C78",
             opacity: "1",
+            textalign: "left",
           }}
         >
-          {" "}
           Welcome to SmartSwap
         </h2>
-        <Button
-          onClick={() => handleXDCPayWallet()}
-          className="connect-wallet btn-primary label"
-          variant="primary"
-        >
-          {" "}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignContent: "top",
-            }}
+        <div>
+          <Button
+            onClick={() => handleXDCPayWallet()}
+            className="connect-wallet btn-primary label"
+            variant="primary"
           >
-            <img
-              style={{
-                width: "50px",
-                marginBottom: "60px",
-                justifyContent: "center",
-              }}
-              src="/images/wallet.svg"
-            ></img>
+            {" "}
             <div
               style={{
-                fontSize: "11px",
-                paddingTop: "10px",
-                justifyContent: "space-evenly",
+                display: "flex",
+
+                alignContent: "top",
               }}
             >
-              {buttonText}
+              <Jazzicon
+                diameter={28}
+                seed={Math.round(Math.random() * 10000000)}
+              />
+              <div
+                style={{
+                  fontFamily: "Inter",
+                  fontSize: " normal normal 600 18px/21px",
+                  paddingTop: "5px",
+                  textAlign: "left",
+                  opacity: "1",
+                  marginLeft: "34px",
+                }}
+              >
+                {buttonText}
+              </div>
             </div>
-          </div>
-        </Button>{" "}
+          </Button>{" "}
+        </div>
       </Box>
       <Grid
         item

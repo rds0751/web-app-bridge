@@ -44,15 +44,19 @@ import { useEffect } from "react";
 //   },
 //   selected: {},
 // })(MuiListItem);
+function changeBackground(e) {
+  e.target.style.background = "red";
+}
 
 const drawerWidth = 200;
 export default function SideBar() {
   // const classes = useStyles();
 
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
-  const handleListItemClick = (index) => {
-    setSelectedIndex(index);
-  };
+  // const [selectedIndex, setSelectedIndex] = React.useState(1);
+  // const handleListItemClick = (index) => {
+  //   setSelectedIndex(index);
+  // };
+
   const [aboutIcon, setAboutIcon] = React.useState(
     "/images/noun_Home_coloured.svg"
   );
@@ -62,13 +66,17 @@ export default function SideBar() {
   const [historyIcon, setHistoryIcon] = React.useState(
     "/images/history_Coloured.svg"
   );
+  const changeSourceForIcons = (value) => {
+    if (value === "about") setAboutIcon("/images/noun_Home_white.svg");
+    if (value === "bridge") setBridgeIcon("/images/bridge_White.svg");
+    if (value === "history") setHistoryIcon("/images/history_White.svg");
+  };
+  const changeOriginalSourceForIcons = (value) => {
+    if (value === "about") setAboutIcon("/images/noun_Home_coloured.svg");
+    if (value === "bridge") setBridgeIcon("/images/bridge_Colored.svg");
+    if (value === "history") setHistoryIcon("/images/history_Coloured.svg");
+  };
 
-  // const changeSourceForIcons = (value) => {
-  //   if (value === "about") setAboutIcon("/images/noun_Home_white.svg");
-  // };
-  // const changeOriginalSourceForIcons = (value) => {
-  //   if (value === "about") setAboutIcon("/images/noun_Home_coloured.svg");
-  // };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Drawer
@@ -96,20 +104,20 @@ export default function SideBar() {
           <ListItem
             className="list-item"
             button
-            selected={selectedIndex === 1}
-            onClick={(event) => handleListItemClick(1)}
+            onClick={
+              (() => changeSourceForIcons,
+              changeOriginalSourceForIcons,
+              changeBackground)
+            }
+            // selected={selectedIndex === 1}
+
+            onMouseOver={() => changeSourceForIcons("about")}
+            onMouseOut={() => changeOriginalSourceForIcons("about")}
             component={Link}
             to="/about"
           >
             <ListItemIcon>
-              <img
-                style={{ paddingLeft: "10px" }}
-                src={
-                  selectedIndex == 1
-                    ? "/images/noun_Home_white.svg"
-                    : "/images/noun_Home_coloured.svg"
-                }
-              ></img>
+              <img style={{ paddingLeft: "10px" }} src={aboutIcon}></img>
             </ListItemIcon>
             <ListItemText className="list-text">About</ListItemText>
           </ListItem>
@@ -117,20 +125,15 @@ export default function SideBar() {
           <ListItem
             className="list-item"
             button
-            selected={selectedIndex === 2}
-            onClick={(event) => handleListItemClick(2)}
+            // selected={selectedIndex === 2}
+            // onClick={(event) => handleListItemClick(2)}
+            onMouseOver={() => changeSourceForIcons("bridge")}
+            onMouseOut={() => changeOriginalSourceForIcons("bridge")}
             component={Link}
             to="/bridge"
           >
             <ListItemIcon>
-              <img
-                style={{ paddingLeft: "10px" }}
-                src={
-                  selectedIndex == 2
-                    ? "/images/bridge_White.svg"
-                    : "/images/bridge_Colored.svg"
-                }
-              ></img>
+              <img style={{ paddingLeft: "10px" }} src={bridgeIcon}></img>
             </ListItemIcon>
             <ListItemText className="list-text">Bridge</ListItemText>
           </ListItem>
@@ -159,20 +162,15 @@ export default function SideBar() {
           <ListItem
             className="list-item"
             button
-            selected={selectedIndex === 3}
-            onClick={(event) => handleListItemClick(3)}
+            // selected={selectedIndex === 3}
+            // onClick={(event) => handleListItemClick(3)}
+            onMouseOver={() => changeSourceForIcons("history")}
+            onMouseOut={() => changeOriginalSourceForIcons("history")}
             component={Link}
             to="/history"
           >
             <ListItemIcon>
-              <img
-                style={{ paddingLeft: "10px" }}
-                src={
-                  selectedIndex == 3
-                    ? "/images/history_White.svg"
-                    : "/images/history_Coloured.svg"
-                }
-              ></img>
+              <img style={{ paddingLeft: "10px" }} src={historyIcon}></img>
             </ListItemIcon>
             <ListItemText className="list-text">History</ListItemText>
           </ListItem>

@@ -92,17 +92,27 @@ function BridgeCard() {
   const [icon, setIcon] = useState("");
   // handle onChange event of the dropdown
   const handleChange = (e) => {
+    console.log(e);
     setSelectedOption(e);
     setIcon(e?.icon);
+    setSelectedOptionDestination(
+      e.text === "Ethereum" ? dataDestination[0] : dataDestination[1]
+    );
+    setText(e.text === "Ethereum" ? "/images/XDC.svg" : "/images/ethereum.svg");
   };
 
   const [selectedOptionDestination, setSelectedOptionDestination] =
     useState(null);
+  const [name, setName] = useState();
   const [text, setText] = useState("");
   // handle onChange event of the dropdown
   const handleChangeDestination = (e) => {
     setSelectedOptionDestination(e);
     setText(e?.icon);
+    setSelectedOption(
+      e.text === "Ethereum" ? dataDestination[0] : dataDestination[1]
+    );
+    setIcon(e.text === "Ethereum" ? "/images/XDC.svg" : "/images/ethereum.svg");
   };
 
   useEffect(() => [selectedOptionDestination, selectedOption, icon, address]);
@@ -142,6 +152,9 @@ function BridgeCard() {
                 style={{
                   width: "28px",
                   height: "27px",
+                  marginTop: "-28px",
+                  marginLeft: "5px",
+                  marginRight: "-2.85px",
                 }}
                 src="/images/Arrow (1).svg"
               />
@@ -222,7 +235,13 @@ function BridgeCard() {
               placeholder="0"
             />
             <Link to="#">
-              <img src={max} height="20px" />
+              <img
+                style={{
+                  width: "30px",
+                  height: "19px",
+                }}
+                src={max}
+              />
             </Link>
           </div>
 
