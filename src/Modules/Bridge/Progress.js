@@ -112,12 +112,9 @@ export default function App() {
 
     if (location.state.selectedOptionToken.chainId === 1) {
       
-     
+      window.web3 = new XDC3(window.xdc);
+      const xdc3 = new XDC3(window.xdc);
       console.log("abc");
-      window.web3 = new Web3(window.ethereum);
-      await window.ethereum.request({ method: 'eth_requestAccounts' }); 
-      window.web3 = new Web3(window.ethereum);
-      const web3 = new Web3(window.ethereum);
       await window.web3.eth.getAccounts((err, accounts) => {
         if (err !== null) console.error("");
         else if (accounts.length === 0) {
@@ -130,7 +127,7 @@ export default function App() {
       });
       console.log("yAKO", accountsing[0])
       const bridgeAddress = eBridgeAddress;
-      const ebridge = new web3.eth.Contract(Bridge.abi, bridgeAddress);
+      const ebridge = new xdc3.eth.Contract(Bridge.abi, bridgeAddress);
       transaction = {
         from: accountsing[0],
         to: eBridgeAddress, //contractAddress of the concerned token (same in data below)
@@ -164,7 +161,7 @@ export default function App() {
 
 
 
-
+    toast.info("Change The Network To Ropsten")
     
    
     
@@ -265,7 +262,10 @@ export default function App() {
 
 
     console.log("", location.state.selectedOptionToken.chainId)
+  
     if (location.state.selectedOptionToken.chainId === 50) {
+      window.web3 = new XDC3(window.xdc);
+      const xdc3 = new XDC3(window.xdc);
       await window.web3.eth.getAccounts((err, accounts) => {
         if (err !== null) console.error("");
         else if (accounts.length === 0) {
@@ -293,24 +293,24 @@ export default function App() {
         //value given by user should be multiplied by 1000
       };
        console.log("gdjn",transaction);
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
-      window.web3 = new Web3(window.ethereum);
-      const web3 = new Web3(window.ethereum);
-      await window.web3.eth
-        .sendTransaction(transaction)
-        .on("confirmation", function (confirmationNumber, receipt) {
-          if (receipt && confirmationNumber === 1) {
-            transactionHashes = receipt.transactionHash;
-            console.log("Transaction", transactionHashes);
-            setHasher(transactionHashes);
-
-            setProgress(progress + 100)
-            letToggle();
-            console.log("", submissionId);
-
-
-          }
-        });
+       console.log("accifdnj", transaction)
+       await window.web3.eth
+         .sendTransaction(transaction)
+         // .on("confirmation", function (confirmationNumber, receipt) {
+         .on("transactionHash", function (hash) {
+ 
+           console.log("transaction  ", hash)
+           transactionHashes = hash;
+           setHasher(transactionHashes);
+           setProgress(progress + 100)
+ 
+ 
+         })
+         .on("receipt", function (receipt) {
+           if (receipt !== 0) {
+             console.log("nanau", receipt.transactionHash)
+           }
+         });
 
 
     }

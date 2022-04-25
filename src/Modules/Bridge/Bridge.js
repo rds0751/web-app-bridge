@@ -100,7 +100,6 @@ function BridgeCard() {
     );
     setText(e.text === "Ethereum" ? "/images/XDC.svg" : "/images/ethereum.svg");
   };
-
   const [selectedOptionDestination, setSelectedOptionDestination] =
     useState(null);
   const [name, setName] = useState();
@@ -207,7 +206,8 @@ function BridgeCard() {
             <Link className="copy-link" to="#">
               <div className="copy-token">
                 <img src={copy} height="12px" />
-                <div>XDC Network</div>
+                <div 
+                >XDC Network</div>  
               </div>
             </Link>
             <Link className="copy-link" to="#">

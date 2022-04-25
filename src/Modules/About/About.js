@@ -29,6 +29,7 @@ export default function About() {
   const [accounting, setAccount] = useState("");
   toast.configure();
   window.web3 = new Web3(window.xdc ? window.xdc : window.ethereum);
+
   const handleXDCPayWallet = async () => {
     if (window.web3.currentProvider) {
       if (!window.web3.currentProvider.hasOwnProperty("chainId")) {
