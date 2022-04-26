@@ -102,12 +102,14 @@ export default function App() {
         console.log("transaction  ", hash)
         transactionHash = hash;
         setProgress(progress + 50)
+        
        
        });
       }
       catch  {
       
       }
+      toast.info("Change The Network To Ropsten");
     }
 
     if (location.state.selectedOptionToken.chainId === 1) {
@@ -145,23 +147,26 @@ export default function App() {
         //value given by user should be multiplied by 1000
       };
 
-      await window.web3.eth
+      try {
+        await window.web3.eth
         .sendTransaction(transaction)
-        .on("confirmation", function (confirmationNumber, result) {
-          if (result && confirmationNumber === 1) {
-            transactionHash = result.transactionHash;
-            console.log("transactinsnsns", transactionHash);
-            console.log("abcs", location.state.selectedOptionToken.debridgeAddress)
-            setProgress(progress + 50)
-
-          }
-
-        });
+        .on("transactionHash", function (hash) {
+          console.log("transaction  ", hash)
+          transactionHash = hash;
+          setProgress(progress + 50)
+        
+         
+         });
+        }
+        catch  {
+        
+        }
+        toast.info("Change The Network To XDC Apothem ");
     }
 
 
 
-    toast.info("Change The Network To Ropsten")
+    
     
    
     
@@ -239,7 +244,6 @@ export default function App() {
     //deploying the smart contract ERC20
     // const deployAsset = await deploy.methods.deployAsset(debridge_id, 'Token Mapped with XDC Chain', 'WXDC1', 18).call();
     const _token = tokenDeployee;
-
     console.log("amountts", amount);
     /**
      * @dev Get the hash value and the result.

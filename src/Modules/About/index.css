@@ -11,6 +11,7 @@
   border-radius: 22px;
   margin-Left: 210px;
   opacity: 1;
+  margin-bottom: 17px;
 }
 .connect-wallet>img {
   position: relative;
@@ -60,4 +61,10 @@ top: -13px;
   color: #ffffff;
   background-color: #2358E5 ;
   border-color:#0d6efd ;
+}
+.label {
+  flexDirection: "column"
+}
+.css-8wqzlf-MuiGrid-root>.MuiGrid-item{
+  padding-left: 34px !important;
 }

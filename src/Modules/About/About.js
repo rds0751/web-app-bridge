@@ -1,8 +1,7 @@
 //Importing the libraries
 import { Box } from "@mui/system";
 import React, { useState } from "react";
-
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { Button } from "react-bootstrap";
@@ -12,26 +11,30 @@ import web3 from "../../utils/web3";
 import xdc3 from "../../utils/xdc3";
 import Web3 from "web3";
 import { NETWORKS } from "../../common/constant";
-
+import Link from "@mui/material/Link";
+import Jazzicon from "react-jazzicon";
 //Main function
+
 export default function About() {
+  function truncateString(str, num) {
+    if (str.length > 14) {
+      return str.slice(0, 14) + "..." + str.slice(37, str.length - 1);
+    } else {
+      return str;
+    }
+  }
   let accountings;
   const [buttonText, setButtonText] = useState("");
   const [popup, setPopup] = useState(1);
-  const [accounting , setAccount ] = useState("");
- 
-
-  toast.configure()
-
+  const [accounting, setAccount] = useState("");
+  toast.configure();
   window.web3 = new Web3(window.xdc ? window.xdc : window.ethereum);
-  
+
   const handleXDCPayWallet = async () => {
-    
     if (window.web3.currentProvider) {
       if (!window.web3.currentProvider.hasOwnProperty("chainId")) {
         if (!window.xdc) {
           setPopup(2);
-          
           alert();
         } else {
           const state = window.web3.givenProvider.publicConfigStore
@@ -46,28 +49,19 @@ export default function About() {
       }
     }
   };
-
   let account = false;
-
   window.web3.eth.getAccounts((err, accounts) => {
     if (accounts.length === 0) {
-      setButtonText("Connect Wallet" ,  <img src="/images/wallet.svg"></img>);
-      window.web3.enable();
-      
+      setButtonText("Connect Wallet");
       // toast.info('Please Connect to XDCPAY Wallet');
       // window.location.reload(false);
       // alert("Please Connect to The XDCPAY")
       account = false;
     } else {
-      console.log("Account", accounts);
-      accountings = accounts
-      
-      setAccount(accounts);
-    
+      accountings = accounts;
+      setButtonText(truncateString(accounts.toString()));
     }
   });
-
-  
 
   return (
     <div>
@@ -80,23 +74,49 @@ export default function About() {
         <h2
           style={{
             width: "347px",
-            height: "36px",
+            height: "30px",
             marginLeft: "210px",
+            letterspacing: "0px",
             color: "#102C78",
+            opacity: "1",
+            textalign: "left",
           }}
         >
-          {" "}
           Welcome to SmartSwap
         </h2>
-        <Button
-          onClick={() => handleXDCPayWallet()}
-          className="connect-wallet btn-primary"
-          variant="primary"
-        >  <p style={{fontSize : "11px" , paddingTop : "1%"}}> <p style={{fontSize : "16px" }}>{buttonText} </p> {accounting}   </p>
-    
-          
-        
-        </Button>{" "}
+        <div>
+          <Button
+            onClick={() => handleXDCPayWallet()}
+            className="connect-wallet btn-primary label"
+            variant="primary"
+          >
+            {" "}
+            <div
+              style={{
+                display: "flex",
+
+                alignContent: "top",
+              }}
+            >
+              <Jazzicon
+                diameter={28}
+                seed={Math.round(Math.random() * 10000000)}
+              />
+              <div
+                style={{
+                  fontFamily: "Inter",
+                  fontSize: " normal normal 600 18px/21px",
+                  paddingTop: "5px",
+                  textAlign: "left",
+                  opacity: "1",
+                  marginLeft: "34px",
+                }}
+              >
+                {buttonText}
+              </div>
+            </div>
+          </Button>{" "}
+        </div>
       </Box>
       <Grid
         item
@@ -120,7 +140,6 @@ export default function About() {
               </p>
             </Paper>
           </Grid>
-
           <Grid item>
             <Paper
               sx={{
@@ -138,7 +157,6 @@ export default function About() {
               </p>
             </Paper>
           </Grid>
-
           <Grid item>
             <Paper
               sx={{
@@ -157,7 +175,6 @@ export default function About() {
               </p>
             </Paper>
           </Grid>
-
           <Grid item>
             <Paper
               sx={{
