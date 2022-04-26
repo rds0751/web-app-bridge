@@ -456,6 +456,7 @@ justify-content: space-between;
 .asset-flex {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 8.36px;
 }
 .main-head {
   /* margin-left: 101px; */

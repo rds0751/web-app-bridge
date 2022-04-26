@@ -30,7 +30,7 @@ const useStyles = makeStyles({
     minWidth: 650,
   },
 });
- 
+
 function HistoryCard() {
   const classes = useStyles();
   const [data, setData] = useState("");
@@ -80,7 +80,9 @@ function HistoryCard() {
       hashing = data.data[i];
       console.log("mond", hashing);
 
-      transaction = await web3.eth.getTransaction("0xd96b3c7a2d1fc62f039178e5042b86c3e237773fcbd5a569bbe42b6c1b288533");
+      transaction = await web3.eth.getTransaction(
+        "0xd96b3c7a2d1fc62f039178e5042b86c3e237773fcbd5a569bbe42b6c1b288533"
+      );
       //timestamp
       non = await web3.eth.getBlock(transaction["blockNumber"]);
       if (web3.utils.fromWei(transaction.value, "ether"))
@@ -113,7 +115,9 @@ function HistoryCard() {
     }
   };
 
-  // useEffect(() => {History();}, [])
+  React.useEffect(() => {
+    History();
+  });
 
   return (
     <Box className="pool-box">
@@ -161,9 +165,7 @@ function HistoryCard() {
           </svg>
           Filter
         </button>
-        <button onClick={History} className="filter-button">
-          Export
-        </button>
+        <button className="filter-button">Export</button>
       </div>
       <Tabs
         defaultActiveKey="Top Tokens"
