@@ -267,7 +267,7 @@ function BridgeCard() {
             }}
           >
             {" "}
-            <button type="submit" className="submit-button">
+            <button disabled={!selectedOptionDestination || !selectedOption || !selectedOptionToken || !amount || !address ? true : false} type="submit" className={!selectedOptionDestination || !selectedOption || !selectedOptionToken || !amount || !address ? "disabled-submit-button" :"submit-button"}>
               Next
             </button>
           </Link>
