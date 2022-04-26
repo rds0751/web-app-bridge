@@ -187,7 +187,7 @@ function BridgeCard() {
             <Select
               isSearchable={false}
               isClearable={false}
-              className="alignLeft drop-padding token-select fs-12 fw-b rm-border"
+              className="alignLeft drop-padding token-select fs-12 fw-b rm-border css-1pahdxg-control"
               placeholder="Select Option"
               styles={colourStyles}
               value={selectedOptionToken}
@@ -206,8 +206,7 @@ function BridgeCard() {
             <Link className="copy-link" to="#">
               <div className="copy-token">
                 <img src={copy} height="12px" />
-                <div 
-                >XDC Network</div>  
+                <div>XDC Network</div>
               </div>
             </Link>
             <Link className="copy-link" to="#">

@@ -101,11 +101,11 @@ export default function SideBar() {
             ></img>{" "}
           </Toolbar>
         </div>
-        <List style={{ paddingTop: "18px" }}>
+        <List style={{ paddingTop: "73px" }}>
           <ListItem
             className="list-item"
             button
-            onClick={() => setAboutIcon}
+            onClick={() => changeSourceForIcons("about")}
             // selected={selectedIndex === 1}
 
             onMouseOver={() => changeSourceForIcons("about")}
