@@ -104,7 +104,7 @@ export default function App() {
         transactionHash = hash; 
         setProgress(progress + 50)
         setTimeout(() => {
-          toast.warning("Change The Network To Ropsten");
+          toast.warning("Change The Network To Ropsten and Please wait for Some time ");
         }, 5000);
         
        
@@ -114,7 +114,7 @@ export default function App() {
         toast.error("Transaction Has been rejected");
         setTimeout(() => {
          window.location.reload(1);
-        },8000);
+        },10000);
       }
       
     }
@@ -163,14 +163,14 @@ export default function App() {
           transactionHash = hash;
           setProgress(progress + 50)
           setTimeout(() => {
-            toast.warning("Change The Network To XDC Apothem ");
-          }, 8000);
+            toast.warning("Change The Network To XDC Apothem and Please wait for Some time");
+          }, 10000);
          
          
          });
         }
         catch  {
-          toast.info("Transaction Has been rejected");
+          toast.warning("Transaction Has been rejected");
           setTimeout(() => {
             window.location.reload(1);
            },5000);

@@ -94,10 +94,13 @@ function BridgeCard() {
     console.log(e);
     setSelectedOption(e);
     setIcon(e?.icon);
+
     setSelectedOptionDestination(
       e.text === "Ethereum" ? dataDestination[0] : dataDestination[1]
     );
     setText(e.text === "Ethereum" ? "/images/XDC.svg" : "/images/ethereum.svg");
+
+
   };
   const [selectedOptionDestination, setSelectedOptionDestination] =
     useState(null);
@@ -124,7 +127,20 @@ function BridgeCard() {
       console.log(" sczndzjn",selectedOption.value);
       console.log(" nkjsnd",e.chainId)
   }
-
+  setTimeout(() => {
+  if(50 === selectedOption.value){
+    toast.warning('Make Sure You change The NetWork To Apothem TestNet ', {position: toast.POSITION.TOP_RIGHT, autoClose:4000})
+    console.log(" sczndzjn",selectedOption.value);
+    console.log(" nkjsnd",e.chainId)
+}
+},3000);
+setTimeout(() => {
+if(1 === selectedOption.value){
+  toast.warning('Make Sure You change The NetWork To Ropsten TestNet ', {position: toast.POSITION.TOP_RIGHT, autoClose:4000})
+  console.log(" sczndzjn",selectedOption.value);
+  console.log(" nkjsnd",e.chainId)
+}
+},3000);
   };
   
 
