@@ -55,6 +55,21 @@ function BridgeCard() {
       };
     },
   };
+
+  const colourStyless = {
+    control: (styles) => ({ ...styles, backgroundColor: "none" }),
+    option: (styles, { isDisabled }) => {
+      return {
+        ...styles,
+        backgroundColor: isDisabled ? "red" : "none",
+
+        border: isDisabled ? "1px" : "none",
+        borderradius: isDisabled ? "1px" : "none",
+        outline: isDisabled ? "1px" : "none",
+        cursor: isDisabled ? "not-allowed" : "default",
+      };
+    },
+  };
   const data = [
     {
       value: 3,
@@ -130,6 +145,7 @@ function BridgeCard() {
                 placeholder="Select Option"
                 value={selectedOption}
                 options={data}
+                styles={colourStyless}
                 onChange={(e) => {
                   handleChange(e);
                 }}
@@ -151,7 +167,7 @@ function BridgeCard() {
                 style={{
                   width: "28px",
                   height: "27px",
-                  marginTop: "-28px",
+                  marginTop: "-44px",
                   marginLeft: "5px",
                   marginRight: "-2.85px",
                 }}
@@ -168,6 +184,7 @@ function BridgeCard() {
                 value={selectedOptionDestination}
                 options={dataDestination}
                 onChange={handleChangeDestination}
+                styles={colourStyless}
                 getOptionLabel={(e) => (
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <img
@@ -189,7 +206,6 @@ function BridgeCard() {
               isClearable={false}
               className="alignLeft drop-padding token-select fs-12 fw-b rm-border css-1pahdxg-control"
               placeholder="Select Option"
-              styles={colourStyles}
               value={selectedOptionToken}
               options={tokenList.tokens}
               onChange={handleChangeToken}
@@ -201,21 +217,7 @@ function BridgeCard() {
               )}
             />
           </div>
-          <div className="hint-label fs-10  c-b ">
-            Copy XETH Token Address
-            <Link className="copy-link" to="#">
-              <div className="copy-token">
-                <img src={copy} height="12px" />
-                <div>XDC Network</div>
-              </div>
-            </Link>
-            <Link className="copy-link" to="#">
-              <div className="copy-token">
-                <img src={copy} height="12px" />
-                <div>Ethereum</div>
-              </div>
-            </Link>
-          </div>
+
           <div className="fs-12  c-b pt-3  left-label">Amount*</div>
           <div className="amount-box-outer fs-12 fw-b">
             <input
@@ -236,8 +238,8 @@ function BridgeCard() {
             <Link to="#">
               <img
                 style={{
-                  width: "30px",
-                  height: "19px",
+                  width: "43px",
+                  height: "22px",
                 }}
                 src={max}
               />
@@ -267,7 +269,27 @@ function BridgeCard() {
             }}
           >
             {" "}
-            <button disabled={!selectedOptionDestination || !selectedOption || !selectedOptionToken || !amount || !address ? true : false} type="submit" className={!selectedOptionDestination || !selectedOption || !selectedOptionToken || !amount || !address ? "disabled-submit-button" :"submit-button"}>
+            <button
+              disabled={
+                !selectedOptionDestination ||
+                !selectedOption ||
+                !selectedOptionToken ||
+                !amount ||
+                !address
+                  ? true
+                  : false
+              }
+              type="submit"
+              className={
+                !selectedOptionDestination ||
+                !selectedOption ||
+                !selectedOptionToken ||
+                !amount ||
+                !address
+                  ? "disabled-submit-button"
+                  : "submit-button"
+              }
+            >
               Next
             </button>
           </Link>

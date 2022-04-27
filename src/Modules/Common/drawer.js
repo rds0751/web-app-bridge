@@ -104,7 +104,7 @@ export default function SideBar() {
             ></img>{" "}
           </Toolbar>
         </div>
-        <List style={{ paddingTop: "73px" }}>
+        <List style={{ paddingTop: "108px" }}>
           <ListItem
             className="list-item"
             button
@@ -215,10 +215,6 @@ export default function SideBar() {
           </ListItem>
         </List>
         <div style={{ position: "absolute", bottom: "0", left: "18px" }}>
-          <div style={{ display: "flex", marginBottom: "11px" }}>
-            {<img src="/images/Night_mode.svg"></img>}
-            {<input className="footer-input" placeholder="  $USD"></input>}
-          </div>
           <div style={{ marginLeft: "14px" }}>
             {
               <p className="powered">
