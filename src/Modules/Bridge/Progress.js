@@ -71,9 +71,10 @@ export default function App() {
      */
 
 
-    toast.info('Sending the Amount.');
+    
 
     if (location.state.selectedOptionToken.chainId === 50) {
+      toast.info('Sending the Amount.');
     
       const Web3 = require("web3");
       const web3 = new Web3(new Web3.providers.HttpProvider("https://apothemxdcpayrpc.blocksscan.io/"));
@@ -100,19 +101,21 @@ export default function App() {
       .sendTransaction(transaction)
       .on("transactionHash", function (hash) {
         console.log("transaction  ", hash)
-        transactionHash = hash;
+        transactionHash = hash; 
         setProgress(progress + 50)
-        
+        toast.info("Change The Network To Ropsten");
        
        });
       }
       catch  {
-      
+        toast.info("Transaction Has been rejected");
+         window.location.reload(1);
       }
-      toast.info("Change The Network To Ropsten");
+      
     }
 
     if (location.state.selectedOptionToken.chainId === 1) {
+      toast.info('Sending the Amount.');
       
       window.web3 = new XDC3(window.xdc);
       const xdc3 = new XDC3(window.xdc);
@@ -154,14 +157,15 @@ export default function App() {
           console.log("transaction  ", hash)
           transactionHash = hash;
           setProgress(progress + 50)
-        
+          toast.info("Change The Network To XDC Apothem ");
          
          });
         }
         catch  {
-        
+          toast.info("Transaction Has been rejected");
+          window.location.reload(1);
         }
-        toast.info("Change The Network To XDC Apothem ");
+       
     }
 
 
@@ -299,6 +303,7 @@ export default function App() {
       };
        console.log("gdjn",transaction);
        console.log("accifdnj", transaction)
+       try {
        await window.web3.eth
          .sendTransaction(transaction)
          // .on("confirmation", function (confirmationNumber, receipt) {
@@ -310,12 +315,12 @@ export default function App() {
            setProgress(progress + 100)
  
  
-         })
-         .on("receipt", function (receipt) {
-           if (receipt !== 0) {
-             console.log("nanau", receipt.transactionHash)
-           }
-         });
+         });     
+        } 
+        catch {
+          toast.info(" Dont worry if your money is deducted, you can apply for reversal/refund here")
+          window.location.reload(1);
+        }   
 
 
     }
@@ -350,6 +355,7 @@ export default function App() {
         //value given by user should be multiplied by 1000
       };
       console.log("accifdnj", transaction)
+      try {
       await window.web3.eth
         .sendTransaction(transaction)
         // .on("confirmation", function (confirmationNumber, receipt) {
@@ -361,12 +367,13 @@ export default function App() {
           setProgress(progress + 100)
 
 
-        })
-        .on("receipt", function (receipt) {
-          if (receipt !== 0) {
-            console.log("nanau", receipt.transactionHash)
-          }
         });
+      }
+
+      catch {
+        toast.info(" Dont worry if your money is deducted, you can apply for reversal/refund here")
+        window.location.reload(1);
+      }
 
     }
 

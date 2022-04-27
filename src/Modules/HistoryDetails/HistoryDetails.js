@@ -24,7 +24,11 @@ function createData(name, calories, fat, carbs, protein) {
 
 }
 
+ React.useEffect(() => {
 
+ createData(location.state.selectedTime)
+
+  }, []);
 
 const rows = [
   
@@ -32,11 +36,12 @@ const rows = [
   createData("From", "Ropsten"),
   createData("Amount", location.state.row.Tokens),
   createData("Hash",  location.state.row.Hash),
-  createData("Time",  location.state.selectedTime),
+  createData("Time",  location.state.selectedTime), 
   
 ];
 
 console.log("bruh", location.state.row.Hash);
+console.log("time", location.state.selectedTime);
   return (
     <Box className="pool-box">
       <TableContainer component={Paper}>

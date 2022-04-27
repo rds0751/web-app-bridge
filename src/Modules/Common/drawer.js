@@ -135,7 +135,7 @@ export default function SideBar() {
             <ListItemText className="list-text">Bridge</ListItemText>
           </ListItem>
 
-          {/* <ListItem className="list-item" button component={Link} to="/swap">
+          <ListItem className="list-item" button component={Link} to="/swap">
             <ListItemIcon>
             <img src="/images/swap2.svg"></img>
             </ListItemIcon>
@@ -154,7 +154,7 @@ export default function SideBar() {
             <img src="/images/chart.svg"></img>
             </ListItemIcon>
             <ListItemText className="list-text">Market</ListItemText>
-          </ListItem> */}
+          </ListItem>
 
           <ListItem
             className="list-item"

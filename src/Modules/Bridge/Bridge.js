@@ -22,6 +22,7 @@ import {
   deployee,
   xBridgeAddress,
 } from "../../common/constant";
+import { toast } from "react-toastify";
 
 //defining the Global variable
 let debridgeId,
@@ -37,6 +38,7 @@ function BridgeCard() {
   const [address, setAddress] = useState("");
   const [amount, setAmount] = useState("");
   const [txt, setTxt] = useState("");
+  toast.configure()
 
   const onInputChange = (e) => {
     const { value } = e.target;
@@ -47,6 +49,7 @@ function BridgeCard() {
       setTxt(value);
     }
   };
+
   const colourStyles = {
     placeholder: (defaultStyles) => {
       return {
@@ -57,12 +60,12 @@ function BridgeCard() {
   };
   const data = [
     {
-      value: 3,
+      value: 1,
       text: "Ethereum",
       icon: "/images/ethereum.svg",
     },
     {
-      value: 51,
+      value: 50,
       text: "XDC",
       icon: "/images/XDC.svg",
     },
@@ -70,23 +73,18 @@ function BridgeCard() {
 
   const dataDestination = [
     {
-      value: 51,
+      value: 50,
       text: "XDC",
       icon: "/images/XDC.svg",
     },
     {
-      value: 3,
+      value: 1,
       text: "Ethereum",
       icon: "/images/ethereum.svg",
     },
   ];
 
-  const [selectedOptionToken, setSelectedOptionToken] = useState(null);
 
-  // handle onChange event of the dropdown
-  const handleChangeToken = (e) => {
-    setSelectedOptionToken(e);
-  };
 
   const [selectedOption, setSelectedOption] = useState(null);
   const [icon, setIcon] = useState("");
@@ -112,7 +110,22 @@ function BridgeCard() {
       e.text === "Ethereum" ? dataDestination[0] : dataDestination[1]
     );
     setIcon(e.text === "Ethereum" ? "/images/XDC.svg" : "/images/ethereum.svg");
+    
   };
+
+  const [selectedOptionToken, setSelectedOptionToken] = useState(null);
+
+  // handle onChange event of the dropdown
+  const handleChangeToken = (e) => {
+    setSelectedOptionToken(e);
+    if(e.chainId != selectedOption.value){
+      toast.info('Select Proper Token ');
+      console.log(" sczndzjn",selectedOption.value);
+      console.log(" nkjsnd",e.chainId)
+  }
+
+  };
+  
 
   useEffect(() => [selectedOptionDestination, selectedOption, icon, address]);
   return (
@@ -229,6 +242,7 @@ function BridgeCard() {
                   .replace(/(\..*?)\..*/g, "$1")
                   .replace(/^0[^.]/, "0");
                 setAmount(val);
+
               }}
               // Assign State
               value={amount}
@@ -265,12 +279,14 @@ function BridgeCard() {
               selectedOptionToken,
               source: `${icon}`,
               destination: `${text}`,
+              
             }}
           >
             {" "}
             <button type="submit" className="submit-button">
               Next
-            </button>
+              
+            </button> 
           </Link>
           {/* , selectedOption , selectedOptionDestination */}
 
