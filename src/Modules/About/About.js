@@ -118,6 +118,7 @@ export default function About() {
           </Button>{" "}
         </div>
       </Box>
+      
       <Grid
         item
         xs={12}
@@ -133,7 +134,7 @@ export default function About() {
               className="card-paper"
             >
               <img src="/images/Bridge.svg" alt="bridge"></img>
-              <p className="p-heading">BRIDGE</p>
+             <p className="p-heading">BRIDGE</p> 
               <p className="p-subheading">
                 Transfer data (e.g. digital asset ownership information) between
                 two chains

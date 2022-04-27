@@ -4,6 +4,8 @@ export const deployee       = '0xeB186e9BA850a710FaA241E48770D5260f9b0ab6';
 export const tokenAddress   = "0xdf1Efd50Fc91b377DA328F42f408f3BF904143D0";
 export const tokenBridge    = '0xA08381dE1cAedD05413C42Fd7E59779DE1F0b4b0';
 export const tokenDeployee  = '0xA6B1E581234E95963148E6Ea5Bbf9410C7971061';
+export const Factory = '0x342aE7F71FD6844F89011fB20089081D5Be0004f';
+export const SwapRouter = '0x8d6137feb62c132f58f175f0d817ffaf3f7bfe36';
 
 
 export const NETWORKS = {
