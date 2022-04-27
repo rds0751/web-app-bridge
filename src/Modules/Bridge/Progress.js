@@ -74,7 +74,7 @@ export default function App() {
     
 
     if (location.state.selectedOptionToken.chainId === 50) {
-      toast.info('Sending the Amount.');
+      toast.info('Sending the Amount.', {position: toast.POSITION.TOP_RIGHT, autoClose:1000});
     
       const Web3 = require("web3");
       const web3 = new Web3(new Web3.providers.HttpProvider("https://apothemxdcpayrpc.blocksscan.io/"));
@@ -103,13 +103,18 @@ export default function App() {
         console.log("transaction  ", hash)
         transactionHash = hash; 
         setProgress(progress + 50)
-        toast.info("Change The Network To Ropsten");
+        setTimeout(() => {
+          toast.warning("Change The Network To Ropsten");
+        }, 5000);
+        
        
        });
       }
       catch  {
-        toast.info("Transaction Has been rejected");
+        toast.error("Transaction Has been rejected");
+        setTimeout(() => {
          window.location.reload(1);
+        },8000);
       }
       
     }
@@ -157,13 +162,18 @@ export default function App() {
           console.log("transaction  ", hash)
           transactionHash = hash;
           setProgress(progress + 50)
-          toast.info("Change The Network To XDC Apothem ");
+          setTimeout(() => {
+            toast.warning("Change The Network To XDC Apothem ");
+          }, 8000);
+         
          
          });
         }
         catch  {
           toast.info("Transaction Has been rejected");
-          window.location.reload(1);
+          setTimeout(() => {
+            window.location.reload(1);
+           },5000);
         }
        
     }
@@ -318,8 +328,10 @@ export default function App() {
          });     
         } 
         catch {
-          toast.info(" Dont worry if your money is deducted, you can apply for reversal/refund here")
+          toast.info(" Dont worry if your money is deducted, you can apply for reversal/refund here",{position: toast.POSITION.TOP_RIGHT, autoClose:15000})
+          setTimeout(() => {
           window.location.reload(1);
+        }, 5000);
         }   
 
 
@@ -371,8 +383,10 @@ export default function App() {
       }
 
       catch {
-        toast.info(" Dont worry if your money is deducted, you can apply for reversal/refund here")
-        window.location.reload(1);
+        toast.info(" Dont worry if your money is deducted, you can apply for reversal/refund here",{position: toast.POSITION.TOP_RIGHT, autoClose:15000})
+        setTimeout(() => {
+          window.location.reload(1);
+        }, 5000);
       }
 
     }

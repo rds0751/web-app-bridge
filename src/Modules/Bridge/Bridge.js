@@ -12,6 +12,7 @@ import Web3 from "web3";
 import token from "../../utils/xtoken";
 import xbridge from "../../utils/xbridge";
 import tokenList from "../../contracts/tokenlist.json";
+import 'react-toastify/dist/ReactToastify.css';
 import Bridge from "../../contracts/bridge.json";
 import Deploy from "../../contracts/deployer.json";
 import BridgeConfirm from "./BridgeConfirm";
@@ -119,7 +120,7 @@ function BridgeCard() {
   const handleChangeToken = (e) => {
     setSelectedOptionToken(e);
     if(e.chainId != selectedOption.value){
-      toast.info('Select Proper Token ');
+      toast.error('Select Proper Token ', {position: toast.POSITION.TOP_RIGHT, autoClose:15000})
       console.log(" sczndzjn",selectedOption.value);
       console.log(" nkjsnd",e.chainId)
   }
