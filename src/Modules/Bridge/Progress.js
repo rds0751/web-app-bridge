@@ -83,9 +83,12 @@ export default function App() {
      * @param data passing the approve method wih reciever address and amount
      */
 
-    toast.info("Sending the Amount.");
-
     if (location.state.selectedOptionToken.chainId === 50) {
+      toast.info("Sending the Amount.", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1000,
+      });
+
       const Web3 = require("web3");
       const web3 = new Web3(
         new Web3.providers.HttpProvider(
@@ -119,12 +122,21 @@ export default function App() {
             console.log("transaction  ", hash);
             transactionHash = hash;
             setProgress(progress + 50);
+            setTimeout(() => {
+              toast.warning("Change The Network To Ropsten");
+            }, 5000);
           });
-      } catch {}
-      toast.info("Change The Network To Ropsten");
+      } catch {
+        toast.error("Transaction Has been rejected");
+        setTimeout(() => {
+          window.location.reload(1);
+        }, 8000);
+      }
     }
 
     if (location.state.selectedOptionToken.chainId === 1) {
+      toast.info("Sending the Amount.");
+
       window.web3 = new XDC3(window.xdc);
       const xdc3 = new XDC3(window.xdc);
       console.log("abc");
@@ -167,9 +179,16 @@ export default function App() {
             console.log("transaction  ", hash);
             transactionHash = hash;
             setProgress(progress + 50);
+            setTimeout(() => {
+              toast.warning("Change The Network To XDC Apothem ");
+            }, 8000);
           });
-      } catch {}
-      toast.info("Change The Network To XDC Apothem ");
+      } catch {
+        toast.info("Transaction Has been rejected");
+        setTimeout(() => {
+          window.location.reload(1);
+        }, 5000);
+      }
     }
 
     const requestOptions = {
@@ -307,20 +326,25 @@ export default function App() {
       };
       console.log("gdjn", transaction);
       console.log("accifdnj", transaction);
-      await window.web3.eth
-        .sendTransaction(transaction)
-        // .on("confirmation", function (confirmationNumber, receipt) {
-        .on("transactionHash", function (hash) {
-          console.log("transaction  ", hash);
-          transactionHashes = hash;
-          setHasher(transactionHashes);
-          setProgress(progress + 100);
-        })
-        .on("receipt", function (receipt) {
-          if (receipt !== 0) {
-            console.log("nanau", receipt.transactionHash);
-          }
-        });
+      try {
+        await window.web3.eth
+          .sendTransaction(transaction)
+          // .on("confirmation", function (confirmationNumber, receipt) {
+          .on("transactionHash", function (hash) {
+            console.log("transaction  ", hash);
+            transactionHashes = hash;
+            setHasher(transactionHashes);
+            setProgress(progress + 100);
+          });
+      } catch {
+        toast.info(
+          " Dont worry if your money is deducted, you can apply for reversal/refund here",
+          { position: toast.POSITION.TOP_RIGHT, autoClose: 15000 }
+        );
+        setTimeout(() => {
+          window.location.reload(1);
+        }, 5000);
+      }
     } else {
       window.web3 = new XDC3(window.xdc);
       const xdc3 = new XDC3(window.xdc);
@@ -353,20 +377,25 @@ export default function App() {
         //value given by user should be multiplied by 1000
       };
       console.log("accifdnj", transaction);
-      await window.web3.eth
-        .sendTransaction(transaction)
-        // .on("confirmation", function (confirmationNumber, receipt) {
-        .on("transactionHash", function (hash) {
-          console.log("transaction  ", hash);
-          transactionHashes = hash;
-          setHasher(transactionHashes);
-          setProgress(progress + 100);
-        })
-        .on("receipt", function (receipt) {
-          if (receipt !== 0) {
-            console.log("nanau", receipt.transactionHash);
-          }
-        });
+      try {
+        await window.web3.eth
+          .sendTransaction(transaction)
+          // .on("confirmation", function (confirmationNumber, receipt) {
+          .on("transactionHash", function (hash) {
+            console.log("transaction  ", hash);
+            transactionHashes = hash;
+            setHasher(transactionHashes);
+            setProgress(progress + 100);
+          });
+      } catch {
+        toast.info(
+          " Dont worry if your money is deducted, you can apply for reversal/refund here",
+          { position: toast.POSITION.TOP_RIGHT, autoClose: 15000 }
+        );
+        setTimeout(() => {
+          window.location.reload(1);
+        }, 5000);
+      }
     }
 
     /**

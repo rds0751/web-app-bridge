@@ -164,26 +164,26 @@ export default function SideBar() {
             </ListItemText>
           </ListItem>
 
-          {/* <ListItem className="list-item" button component={Link} to="/swap">
+          <ListItem className="list-item" button component={Link} to="/swap">
             <ListItemIcon>
-            <img src="/images/swap2.svg"></img>
+              <img src="/images/swap2.svg"></img>
             </ListItemIcon>
             <ListItemText className="list-text">Swap</ListItemText>
           </ListItem>
 
           <ListItem className="list-item" button component={Link} to="/pool">
             <ListItemIcon>
-            <img src="/images/earn2.svg"></img>
+              <img src="/images/earn2.svg"></img>
             </ListItemIcon>
             <ListItemText className="list-text">Pool</ListItemText>
           </ListItem>
 
           <ListItem className="list-item" button component={Link} to="/market">
             <ListItemIcon>
-            <img src="/images/chart.svg"></img>
+              <img src="/images/chart.svg"></img>
             </ListItemIcon>
             <ListItemText className="list-text">Market</ListItemText>
-          </ListItem> */}
+          </ListItem>
 
           <ListItem
             className="list-item"

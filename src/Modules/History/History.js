@@ -55,6 +55,7 @@ function HistoryCard() {
   let amount;
   let dateTimeStamp;
   let bcd;
+  let selectedTimes;
 
   const fetchURL = "https://testapi.xdcbridge.com";
   const getData = () => fetch(`${fetchURL}/txns`).then((res) => res.json());
@@ -80,9 +81,7 @@ function HistoryCard() {
       hashing = data.data[i];
       console.log("mond", hashing);
 
-      transaction = await web3.eth.getTransaction(
-        "0xd96b3c7a2d1fc62f039178e5042b86c3e237773fcbd5a569bbe42b6c1b288533"
-      );
+      transaction = await web3.eth.getTransaction(hashing);
       //timestamp
       non = await web3.eth.getBlock(transaction["blockNumber"]);
       if (web3.utils.fromWei(transaction.value, "ether"))
@@ -91,7 +90,8 @@ function HistoryCard() {
       // transactionTime = new Date(dateTimeStamp);
       const transactionTime = moment(dateTimeStamp * 1000).fromNow();
       transactionTimes = new Date(dateTimeStamp * 1000).toLocaleString();
-      setSelectedTime(transactionTimes);
+      selectedTimes = transactionTimes;
+      setSelectedTime(selectedTimes);
       console.log("time", dateTimeStamp);
       var time = selectHash(hashing);
       setSelectedOption(hashing);
@@ -111,6 +111,7 @@ function HistoryCard() {
         Hash: hashing,
         TokensToImg: "",
         Time: transactionTime,
+        TimeDetail: selectedTime,
       });
     }
   };
