@@ -9,14 +9,22 @@
   height: 19px;
   font-size: 15px;
   font-family: "Inter";
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0px;
   color: #97aff4;
   opacity: 1;
   margin-right: 100px;
-
-  
-  
+}
+.selected-text {
+  width: 44px;
+  height: 19px;
+  font-size: 15px;
+  font-family: "Inter";
+  font-weight: 600;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+  margin-right: 100px;
 }
 .list-item {
   margin-bottom: 18px !important;

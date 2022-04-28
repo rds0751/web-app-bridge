@@ -27,6 +27,8 @@
   opacity: 1;
   box-shadow: none !important;
   padding: 34px 0 0 5%;
+  margin-left: 34px ;
+  margin-top: 56px;
 }
 .card-paper>img {
 margin-left: -9px;

@@ -6,13 +6,14 @@ import max from "../../assets/max.png";
 import "./FormMain.css";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { Button } from "react-bootstrap";
 import Select from "react-select";
 import xdc3 from "../../utils/xdc3";
 import Web3 from "web3";
 import token from "../../utils/xtoken";
 import xbridge from "../../utils/xbridge";
 import tokenList from "../../contracts/tokenlist.json";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import Bridge from "../../contracts/bridge.json";
 import Deploy from "../../contracts/deployer.json";
 import BridgeConfirm from "./BridgeConfirm";
@@ -39,7 +40,8 @@ function BridgeCard() {
   const [address, setAddress] = useState("");
   const [amount, setAmount] = useState("");
   const [txt, setTxt] = useState("");
-  toast.configure()
+  let accountings;
+  toast.configure();
 
   const onInputChange = (e) => {
     const { value } = e.target;
@@ -56,6 +58,21 @@ function BridgeCard() {
       return {
         ...defaultStyles,
         color: "#9D9D9D",
+      };
+    },
+  };
+
+  const colourStyless = {
+    control: (styles) => ({ ...styles, backgroundColor: "none" }),
+    option: (styles, { isDisabled }) => {
+      return {
+        ...styles,
+        backgroundColor: isDisabled ? "red" : "none",
+
+        border: isDisabled ? "1px" : "none",
+        borderradius: isDisabled ? "1px" : "none",
+        outline: isDisabled ? "1px" : "none",
+        cursor: isDisabled ? "not-allowed" : "default",
       };
     },
   };
@@ -85,8 +102,6 @@ function BridgeCard() {
     },
   ];
 
-
-
   const [selectedOption, setSelectedOption] = useState(null);
   const [icon, setIcon] = useState("");
   // handle onChange event of the dropdown
@@ -94,13 +109,10 @@ function BridgeCard() {
     console.log(e);
     setSelectedOption(e);
     setIcon(e?.icon);
-
     setSelectedOptionDestination(
       e.text === "Ethereum" ? dataDestination[0] : dataDestination[1]
     );
     setText(e.text === "Ethereum" ? "/images/XDC.svg" : "/images/ethereum.svg");
-
-
   };
   const [selectedOptionDestination, setSelectedOptionDestination] =
     useState(null);
@@ -114,7 +126,6 @@ function BridgeCard() {
       e.text === "Ethereum" ? dataDestination[0] : dataDestination[1]
     );
     setIcon(e.text === "Ethereum" ? "/images/XDC.svg" : "/images/ethereum.svg");
-    
   };
 
   const [selectedOptionToken, setSelectedOptionToken] = useState(null);
@@ -127,23 +138,43 @@ function BridgeCard() {
       console.log(" sczndzjn",selectedOption.value);
       console.log(" nkjsnd",e.chainId)
   }
-  setTimeout(() => {
-  if(50 === selectedOption.value){
-    toast.warning('Make Sure You change The NetWork To Apothem TestNet ', {position: toast.POSITION.TOP_RIGHT, autoClose:4000})
+  
+  if(50 === selectedOption.value  && e.chainId === selectedOption.value){
+    setTimeout(() => {
+    toast.warning('Make Sure You change The NetWork To Apothem TestNet ', {position: toast.POSITION.TOP_CENTER, autoClose:4000})
     console.log(" sczndzjn",selectedOption.value);
-    console.log(" nkjsnd",e.chainId)
+    console.log(" nkjsnd",e.chainId);
+  },3000);
 }
-},3000);
-setTimeout(() => {
-if(1 === selectedOption.value){
-  toast.warning('Make Sure You change The NetWork To Ropsten TestNet ', {position: toast.POSITION.TOP_RIGHT, autoClose:4000})
+
+
+if(1 === selectedOption.value  && e.chainId === selectedOption.value ){
+  setTimeout(() => {
+  toast.warning('Make Sure You change The NetWork To Ropsten TestNet ', {position: toast.POSITION.TOP_CENTER, autoClose:4000})
   console.log(" sczndzjn",selectedOption.value);
   console.log(" nkjsnd",e.chainId)
-}
 },3000);
-  };
-  
+}
 
+  };
+
+  const connectWallet = async () => {
+  let account = false;
+  window.web3.eth.getAccounts((err, accounts) => {
+    if (accounts.length === 0) {
+      setAddress("Connect Wallet");
+      // toast.info('Please Connect to XDCPAY Wallet');
+      // window.location.reload(false);
+      // alert("Please Connect to The XDCPAY")
+      account = false;
+    } else {
+      accountings = accounts;
+     console.log("account", accountings[0])
+     setAddress(accountings[0])
+     
+    }
+  });
+  };
   useEffect(() => [selectedOptionDestination, selectedOption, icon, address]);
   return (
     <>
@@ -160,6 +191,7 @@ if(1 === selectedOption.value){
                 placeholder="Select Option"
                 value={selectedOption}
                 options={data}
+                styles={colourStyless}
                 onChange={(e) => {
                   handleChange(e);
                 }}
@@ -181,7 +213,7 @@ if(1 === selectedOption.value){
                 style={{
                   width: "28px",
                   height: "27px",
-                  marginTop: "-28px",
+                  marginTop: "-44px",
                   marginLeft: "5px",
                   marginRight: "-2.85px",
                 }}
@@ -198,6 +230,7 @@ if(1 === selectedOption.value){
                 value={selectedOptionDestination}
                 options={dataDestination}
                 onChange={handleChangeDestination}
+                styles={colourStyless}
                 getOptionLabel={(e) => (
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <img
@@ -217,9 +250,8 @@ if(1 === selectedOption.value){
             <Select
               isSearchable={false}
               isClearable={false}
-              className="alignLeft drop-padding token-select fs-12 fw-b rm-border"
+              className="alignLeft drop-padding token-select fs-12 fw-b rm-border css-1pahdxg-control"
               placeholder="Select Option"
-              styles={colourStyles}
               value={selectedOptionToken}
               options={tokenList.tokens}
               onChange={handleChangeToken}
@@ -231,22 +263,7 @@ if(1 === selectedOption.value){
               )}
             />
           </div>
-          <div className="hint-label fs-10  c-b ">
-            Copy XETH Token Address
-            <Link className="copy-link" to="#">
-              <div className="copy-token">
-                <img src={copy} height="12px" />
-                <div 
-                >XDC Network</div>  
-              </div>
-            </Link>
-            <Link className="copy-link" to="#">
-              <div className="copy-token">
-                <img src={copy} height="12px" />
-                <div>Ethereum</div>
-              </div>
-            </Link>
-          </div>
+
           <div className="fs-12  c-b pt-3  left-label">Amount*</div>
           <div className="amount-box-outer fs-12 fw-b">
             <input
@@ -259,7 +276,6 @@ if(1 === selectedOption.value){
                   .replace(/(\..*?)\..*/g, "$1")
                   .replace(/^0[^.]/, "0");
                 setAmount(val);
-
               }}
               // Assign State
               value={amount}
@@ -268,8 +284,8 @@ if(1 === selectedOption.value){
             <Link to="#">
               <img
                 style={{
-                  width: "30px",
-                  height: "19px",
+                  width: "43px",
+                  height: "22px",
                 }}
                 src={max}
               />
@@ -279,15 +295,16 @@ if(1 === selectedOption.value){
           <div className="fs-12  c-b pt-3  left-label">
             Destination Address*
           </div>
-          <div className="destination">
-            <input
-              type="name"
-              name="amount"
-              className="input-box-1 fs-12 fw-b "
-              placeholder="Wallet Address"
-              onChange={(e) => setAddress(e.target.value)}
-            />
-          </div>
+          <Button onClick={connectWallet}>  <div
+                style={{
+                  fontFamily: "Inter",
+                  fontSize: " normal normal 600 18px/21px",
+                  paddingTop: "5px",
+                  textAlign: "left",
+                  opacity: "1",
+                  marginLeft: "34px",
+                }}
+              >    {address}</div> </Button>
           <Link
             to="/bridge-confirm-transaction"
             state={{
@@ -296,14 +313,32 @@ if(1 === selectedOption.value){
               selectedOptionToken,
               source: `${icon}`,
               destination: `${text}`,
-              
             }}
           >
             {" "}
-            <button type="submit" className="submit-button">
+            <button
+              disabled={
+                !selectedOptionDestination ||
+                !selectedOption ||
+                !selectedOptionToken ||
+                !amount ||
+                !address
+                  ? true
+                  : false
+              }
+              type="submit"
+              className={
+                !selectedOptionDestination ||
+                !selectedOption ||
+                !selectedOptionToken ||
+                !amount ||
+                !address
+                  ? "disabled-submit-button"
+                  : "submit-button"
+              }
+            >
               Next
-              
-            </button> 
+            </button>
           </Link>
           {/* , selectedOption , selectedOptionDestination */}
 

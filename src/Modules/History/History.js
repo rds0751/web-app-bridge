@@ -30,7 +30,7 @@ const useStyles = makeStyles({
     minWidth: 650,
   },
 });
- 
+
 function HistoryCard() {
   const classes = useStyles();
   const [data, setData] = useState("");
@@ -90,7 +90,7 @@ function HistoryCard() {
       // transactionTime = new Date(dateTimeStamp);
       const transactionTime = moment(dateTimeStamp * 1000).fromNow();
       transactionTimes = new Date(dateTimeStamp * 1000).toLocaleString();
-      selectedTimes =transactionTimes;
+      selectedTimes = transactionTimes;
       setSelectedTime(selectedTimes);
       console.log("time", dateTimeStamp);
       var time = selectHash(hashing);
@@ -111,16 +111,14 @@ function HistoryCard() {
         Hash: hashing,
         TokensToImg: "",
         Time: transactionTime,
-        TimeDetail : selectedTime,
+        TimeDetail: selectedTime,
       });
     }
   };
 
   React.useEffect(() => {
-
- History()
-
-  }, );
+    History();
+  });
 
   return (
     <Box className="pool-box">
@@ -168,9 +166,7 @@ function HistoryCard() {
           </svg>
           Filter
         </button>
-        <button  className="filter-button">
-          Export
-        </button>
+        <button className="filter-button">Export</button>
       </div>
       <Tabs
         defaultActiveKey="Top Tokens"
@@ -206,12 +202,10 @@ function HistoryCard() {
                       <img src={row.TokensToImg} />
                       &nbsp;&nbsp;{row.TokensTo}
                     </TableCell>
-                   
+
                     <Link
-                    
                       className="link"
                       to="/HistoryDetails"
-                      
                       state={{ xhash, setAmount, row, selectedTime }}
                     >
                       <TableCell

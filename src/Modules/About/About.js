@@ -11,10 +11,11 @@ import web3 from "../../utils/web3";
 import xdc3 from "../../utils/xdc3";
 import Web3 from "web3";
 import { NETWORKS } from "../../common/constant";
-import Link from "@mui/material/Link";
 import Jazzicon from "react-jazzicon";
+import CardActionArea from "@mui/material/CardActionArea";
+import { Card } from "@mui/material";
+import { Link } from "react-router-dom";
 //Main function
-
 export default function About() {
   function truncateString(str, num) {
     if (str.length > 14) {
@@ -29,7 +30,6 @@ export default function About() {
   const [accounting, setAccount] = useState("");
   toast.configure();
   window.web3 = new Web3(window.xdc ? window.xdc : window.ethereum);
-
   const handleXDCPayWallet = async () => {
     if (window.web3.currentProvider) {
       if (!window.web3.currentProvider.hasOwnProperty("chainId")) {
@@ -62,7 +62,6 @@ export default function About() {
       setButtonText(truncateString(accounts.toString()));
     }
   });
-
   return (
     <div>
       <Box
@@ -94,7 +93,6 @@ export default function About() {
             <div
               style={{
                 display: "flex",
-
                 alignContent: "top",
               }}
             >
@@ -118,7 +116,6 @@ export default function About() {
           </Button>{" "}
         </div>
       </Box>
-      
       <Grid
         item
         xs={12}
@@ -126,23 +123,25 @@ export default function About() {
       >
         <Grid container justifyContent="center" spacing={3}>
           <Grid item>
-            <Paper
+            <Card
               sx={{
                 height: 327,
                 width: 230,
               }}
               className="card-paper"
             >
-              <img src="/images/Bridge.svg" alt="bridge"></img>
-             <p className="p-heading">BRIDGE</p> 
-              <p className="p-subheading">
-                Transfer data (e.g. digital asset ownership information) between
-                two chains
-              </p>
-            </Paper>
+              <CardActionArea component={Link} to="/bridge">
+                <img src="/images/Bridge.svg" alt="bridge"></img>
+                <p className="p-heading">BRIDGE</p>
+                <p className="p-subheading">
+                  Transfer data (e.g. digital asset ownership information)
+                  between two chains
+                </p>
+              </CardActionArea>
+            </Card>
           </Grid>
           <Grid item>
-            <Paper
+            <Card
               sx={{
                 height: 327,
                 width: 230,
@@ -151,15 +150,17 @@ export default function About() {
               }}
               className="card-paper"
             >
-              <img src="/images/Swap_1.svg" alt="swap"></img>
-              <p className="p-heading">SWAP</p>
-              <p className="p-subheading">
-                Swap tokens supported on XDC Network
-              </p>
-            </Paper>
+              <CardActionArea component={Link} to="/swap">
+                <img src="/images/Swap_1.svg" alt="swap"></img>
+                <p className="p-heading">SWAP</p>
+                <p className="p-subheading">
+                  Swap tokens supported on XDC Network
+                </p>
+              </CardActionArea>
+            </Card>
           </Grid>
           <Grid item>
-            <Paper
+            <Card
               sx={{
                 height: 327,
                 width: 230,
@@ -168,16 +169,18 @@ export default function About() {
               }}
               className="card-paper"
             >
-              <img src="/images/Pool.svg" alt="swap"></img>
-              <p className="p-heading">POOL</p>
-              <p className="p-subheading">
-                Add your token pair to the pool and earn whenever there is a
-                swap
-              </p>
-            </Paper>
+              <CardActionArea component={Link} to="/pool">
+                <img src="/images/Pool.svg" alt="swap"></img>
+                <p className="p-heading">POOL</p>
+                <p className="p-subheading">
+                  Add your token pair to the pool and earn whenever there is a
+                  swap
+                </p>
+              </CardActionArea>
+            </Card>
           </Grid>
           <Grid item>
-            <Paper
+            <Card
               sx={{
                 height: 327,
                 width: 230,
@@ -186,12 +189,14 @@ export default function About() {
               }}
               className="card-paper"
             >
-              <img src="/images/Market.svg" alt="swap"></img>
-              <p className="p-heading">Market</p>
-              <p className="p-subheading">
-                Analyse the top performing tokens and pairs
-              </p>
-            </Paper>
+              <CardActionArea component={Link} to="/market">
+                <img src="/images/Market.svg" alt="swap"></img>
+                <p className="p-heading">Market</p>
+                <p className="p-subheading">
+                  Analyse the top performing tokens and pairs
+                </p>
+              </CardActionArea>
+            </Card>
           </Grid>
         </Grid>
       </Grid>

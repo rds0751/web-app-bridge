@@ -57,6 +57,9 @@ export default function SideBar() {
   //   setSelectedIndex(index);
   // };
 
+  const pathName = window.location.pathname?.split("/");
+  const currSection = pathName?.length ? pathName[pathName.length - 1] : "";
+
   const [aboutIcon, setAboutIcon] = React.useState(
     "/images/noun_Home_coloured.svg"
   );
@@ -101,22 +104,35 @@ export default function SideBar() {
             ></img>{" "}
           </Toolbar>
         </div>
-        <List style={{ paddingTop: "18px" }}>
+        <List style={{ paddingTop: "108px" }}>
           <ListItem
             className="list-item"
             button
-            onClick={() => setAboutIcon}
+            // onClick={() => setAboutIcon}
             // selected={selectedIndex === 1}
 
-            onMouseOver={() => changeSourceForIcons("about")}
-            onMouseOut={() => changeOriginalSourceForIcons("about")}
+            // onMouseOver={() => changeSourceForIcons("about")}
+            // onMouseOut={() => changeOriginalSourceForIcons("about")}
             component={Link}
             to="/about"
           >
             <ListItemIcon>
-              <img style={{ paddingLeft: "10px" }} src={aboutIcon}></img>
+              <img
+                style={{ paddingLeft: "10px" }}
+                src={
+                  currSection === "about"
+                    ? "/images/noun_Home_white.svg"
+                    : "/images/noun_Home_coloured.svg"
+                }
+              ></img>
             </ListItemIcon>
-            <ListItemText className="list-text">About</ListItemText>
+            <ListItemText
+              className={
+                currSection === "about" ? "selected-text" : "list-text"
+              }
+            >
+              About
+            </ListItemText>
           </ListItem>
 
           <ListItem
@@ -124,34 +140,47 @@ export default function SideBar() {
             button
             // selected={selectedIndex === 2}
             // onClick={(event) => handleListItemClick(2)}
-            onMouseOver={() => changeSourceForIcons("bridge")}
-            onMouseOut={() => changeOriginalSourceForIcons("bridge")}
+            // onMouseOver={() => changeSourceForIcons("bridge")}
+            // onMouseOut={() => changeOriginalSourceForIcons("bridge")}
             component={Link}
             to="/bridge"
           >
             <ListItemIcon>
-              <img style={{ paddingLeft: "10px" }} src={bridgeIcon}></img>
+              <img
+                style={{ paddingLeft: "10px" }}
+                src={
+                  currSection === "bridge"
+                    ? "/images/bridge_White.svg"
+                    : "/images/bridge_Colored.svg"
+                }
+              ></img>
             </ListItemIcon>
-            <ListItemText className="list-text">Bridge</ListItemText>
+            <ListItemText
+              className={
+                currSection === "bridge" ? "selected-text" : "list-text"
+              }
+            >
+              Bridge
+            </ListItemText>
           </ListItem>
 
           <ListItem className="list-item" button component={Link} to="/swap">
             <ListItemIcon>
-            <img src="/images/swap2.svg"></img>
+              <img src="/images/swap2.svg"></img>
             </ListItemIcon>
             <ListItemText className="list-text">Swap</ListItemText>
           </ListItem>
 
           <ListItem className="list-item" button component={Link} to="/pool">
             <ListItemIcon>
-            <img src="/images/earn2.svg"></img>
+              <img src="/images/earn2.svg"></img>
             </ListItemIcon>
             <ListItemText className="list-text">Pool</ListItemText>
           </ListItem>
 
           <ListItem className="list-item" button component={Link} to="/market">
             <ListItemIcon>
-            <img src="/images/chart.svg"></img>
+              <img src="/images/chart.svg"></img>
             </ListItemIcon>
             <ListItemText className="list-text">Market</ListItemText>
           </ListItem>
@@ -161,22 +190,31 @@ export default function SideBar() {
             button
             // selected={selectedIndex === 3}
             // onClick={(event) => handleListItemClick(3)}
-            onMouseOver={() => changeSourceForIcons("history")}
-            onMouseOut={() => changeOriginalSourceForIcons("history")}
+            // onMouseOver={() => changeSourceForIcons("history")}
+            // onMouseOut={() => changeOriginalSourceForIcons("history")}
             component={Link}
             to="/history"
           >
             <ListItemIcon>
-              <img style={{ paddingLeft: "10px" }} src={historyIcon}></img>
+              <img
+                style={{ paddingLeft: "10px" }}
+                src={
+                  currSection === "history"
+                    ? "/images/history_White.svg"
+                    : "/images/history_Coloured.svg"
+                }
+              ></img>
             </ListItemIcon>
-            <ListItemText className="list-text">History</ListItemText>
+            <ListItemText
+              className={
+                currSection === "history" ? "selected-text" : "list-text"
+              }
+            >
+              History
+            </ListItemText>
           </ListItem>
         </List>
         <div style={{ position: "absolute", bottom: "0", left: "18px" }}>
-          <div style={{ display: "flex", marginBottom: "11px" }}>
-            {<img src="/images/Night_mode.svg"></img>}
-            {<input className="footer-input" placeholder="  $USD"></input>}
-          </div>
           <div style={{ marginLeft: "14px" }}>
             {
               <p className="powered">
