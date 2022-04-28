@@ -32,7 +32,7 @@ let debridgeId,
   abc,
   transactionHash,
   transactionHashes;
-
+var regexp = /^\d+(\.\d{1,2})?$/;
 //Main Function
 function BridgeCard() {
   const [buttonText, setButtonText] = useState("");
@@ -99,7 +99,7 @@ function BridgeCard() {
       icon: "/images/ethereum.svg",
     },
   ];
-
+  var regex = /^\d+(\.\d{0,2})?$/g;
   const [selectedOption, setSelectedOption] = useState(null);
   const [icon, setIcon] = useState("");
   // handle onChange event of the dropdown
@@ -127,17 +127,36 @@ function BridgeCard() {
   };
 
   const [selectedOptionToken, setSelectedOptionToken] = useState(null);
-
   // handle onChange event of the dropdown
   const handleChangeToken = (e) => {
     setSelectedOptionToken(e);
     if (e.chainId != selectedOption.value) {
       toast.error("Select Proper Token ", {
         position: toast.POSITION.TOP_RIGHT,
-        autoClose: 15000,
+        autoClose: 2000,
       });
       console.log(" sczndzjn", selectedOption.value);
       console.log(" nkjsnd", e.chainId);
+    }
+    if (50 === selectedOption.value && e.chainId === selectedOption.value) {
+      setTimeout(() => {
+        toast.warning("Make Sure You change The NetWork To Apothem TestNet ", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 4000,
+        });
+        console.log(" sczndzjn", selectedOption.value);
+        console.log(" nkjsnd", e.chainId);
+      }, 100);
+    }
+    if (1 === selectedOption.value && e.chainId === selectedOption.value) {
+      setTimeout(() => {
+        toast.warning("Make Sure You change The NetWork To Ropsten TestNet ", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 4000,
+        });
+        console.log(" sczndzjn", selectedOption.value);
+        console.log(" nkjsnd", e.chainId);
+      }, 3000);
     }
   };
 
@@ -179,7 +198,7 @@ function BridgeCard() {
                 style={{
                   width: "28px",
                   height: "27px",
-                  marginTop: "-44px",
+                  marginTop: "-36px",
                   marginLeft: "5px",
                   marginRight: "-2.85px",
                 }}
@@ -235,13 +254,14 @@ function BridgeCard() {
             <input
               type="text"
               name="amount"
+              autoComplete="off"
+              step="0.01"
               className="amount-box-inner fs-12 fw-b rm-border-amount"
               onChange={(e) => {
-                const val = e.target.value
-                  .replace(/[^0-9.]/g, "")
-                  .replace(/(\..*?)\..*/g, "$1")
-                  .replace(/^0[^.]/, "0");
-                setAmount(val);
+                if (!regex.test(e.target.value)) {
+                  e.target.value = "";
+                }
+                setAmount(e.target.value);
               }}
               // Assign State
               value={amount}
@@ -265,6 +285,7 @@ function BridgeCard() {
             <input
               type="name"
               name="amount"
+              autoComplete="off"
               className="input-box-1 fs-12 fw-b "
               placeholder="Wallet Address"
               onChange={(e) => setAddress(e.target.value)}
