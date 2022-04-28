@@ -16,7 +16,6 @@ import CardActionArea from "@mui/material/CardActionArea";
 import { Card } from "@mui/material";
 import { Link } from "react-router-dom";
 //Main function
-
 export default function About() {
   function truncateString(str, num) {
     if (str.length > 14) {
@@ -31,7 +30,6 @@ export default function About() {
   const [accounting, setAccount] = useState("");
   toast.configure();
   window.web3 = new Web3(window.xdc ? window.xdc : window.ethereum);
-
   const handleXDCPayWallet = async () => {
     if (window.web3.currentProvider) {
       if (!window.web3.currentProvider.hasOwnProperty("chainId")) {
@@ -64,7 +62,6 @@ export default function About() {
       setButtonText(truncateString(accounts.toString()));
     }
   });
-
   return (
     <div>
       <Box
@@ -96,7 +93,6 @@ export default function About() {
             <div
               style={{
                 display: "flex",
-
                 alignContent: "top",
               }}
             >
@@ -120,7 +116,6 @@ export default function About() {
           </Button>{" "}
         </div>
       </Box>
-
       <Grid
         item
         xs={12}

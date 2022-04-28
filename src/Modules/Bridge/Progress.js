@@ -51,7 +51,9 @@ export default function App() {
   const [ThirdStatus, setThirdStatus] = useState("");
   const location = useLocation();
   const [progress, setProgress] = useState(0);
+
   toast.configure();
+
   const OnSubmit = async () => {
     let account;
     //connecting to the xdc testnetwork using chain_id
@@ -181,6 +183,7 @@ export default function App() {
         }, 5000);
       }
     }
+
     try {
       const requestOptions = {
         method: "POST",
@@ -198,16 +201,22 @@ export default function App() {
           .then((response) => response.json())
           .then((data) => {
             abc = data;
-            toast.info("Please Wait for Some time");
+            toast.info("Please Wait for Some time", { autoClose: 2000 });
           });
+
         console.log(abc.status);
         if (abc.status != 0) {
           var1 = 1;
-          toast.success("You Are Almost There !!!");
+          setTimeout(() => {
+            toast.success("You Are Almost There !!!");
+          }, 3000);
         }
       }
+
       console.log("transaction hash", transactionHash);
+
       setSecoundStatus("The");
+
       console.log(abc);
       debridgeId = abc.debridgeId;
       submissionId = abc.submissionId;
@@ -215,15 +224,18 @@ export default function App() {
       amount = abc.amount;
       setHash(transactionHash);
       console.log(submissionId, debridgeId);
+
       /**
        * @dev To claim the tokens from the sender.
        * @param tokenAddress The address of the token.
        */
+
       /**
        * @dev switching the network to the ropsten.
        * @param chainid chain id of the ropsten testnet.
        */
       setProgress(progress + 50);
+
       const bridgeAddress = eBridgeAddress;
       /**
        * @dev instance of ebridge, has been instilized because XDCPAY and METAMASK creats only once.
@@ -237,6 +249,7 @@ export default function App() {
        */
       const deploy = new web3.eth.Contract(Deploy.abi, deployerAddress);
       //fetching the address of the sender through metamask
+
       console.log("", accounts);
       console.log(" Destination", "3");
       const isSubmissionUsed = await ebridge.methods
@@ -245,6 +258,7 @@ export default function App() {
       const debridge_id = await ebridge.methods
         .getDebridgeId(location.state.selectedOptionToken.chainId, tokenBridge)
         .call();
+
       console.log("debridgeId", debridge_id);
       console.log(" Destination", location.state.selectedOptionToken.chainId);
       console.log("", location.state.selectedOptionToken.address);
@@ -261,6 +275,7 @@ export default function App() {
         location.state.address,
         "0x"
       );
+
       /**
        * @dev Performing the ERC20 claim function.
        * @param debridge_id The address of the token.
@@ -270,10 +285,13 @@ export default function App() {
        * @param submissionId Submission id contains :- nonce, id , address
        * @param signature to verify the contract
        */
+
       setHasher(transactionHashes);
       letToggle();
       console.log("", submissionId);
+
       console.log("", location.state.selectedOptionToken.chainId);
+
       if (location.state.selectedOptionToken.chainId === 50) {
         window.web3 = new XDC3(window.xdc);
         const xdc3 = new XDC3(window.xdc);
@@ -378,6 +396,7 @@ export default function App() {
           }, 8000);
         }
       }
+
       /**
        *@dev Retrning the hash.
        * @param web3 Librabry.
@@ -414,16 +433,18 @@ export default function App() {
       console.log(error);
       toast.info(
         " Dont worry if your money is deducted, you can apply for reversal/refund here",
-        { position: toast.POSITION.TOP_RIGHT, autoClose: 15000 }
+        { position: toast.POSITION.TOP_RIGHT, autoClose: 8000 }
       );
       setTimeout(() => {
         window.location.reload(1);
-      }, 8000);
+      }, 10000);
     }
   };
+
   useEffect(() => {
     OnSubmit();
   }, []);
+
   const [spinnerLoading, setSpinnerLoading] = useState(true);
   const [show_Hide_Image, setShowHideImage] = useState("none");
   const [a, setA] = useState(false);
