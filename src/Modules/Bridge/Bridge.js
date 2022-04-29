@@ -40,8 +40,13 @@ function BridgeCard() {
   const [address, setAddress] = useState("");
   const [amount, setAmount] = useState("");
   const [txt, setTxt] = useState("");
+  const [chainId , setChainId]  = useState("");
   let accountings;
+  let id;
+  let abc
   toast.configure();
+
+
 
   const onInputChange = (e) => {
     const { value } = e.target;
@@ -78,12 +83,12 @@ function BridgeCard() {
   };
   const data = [
     {
-      value: 1,
+      value: 3,
       text: "Ethereum",
       icon: "/images/ethereum.svg",
     },
     {
-      value: 50,
+      value: 51,
       text: "XDC",
       icon: "/images/XDC.svg",
     },
@@ -91,12 +96,12 @@ function BridgeCard() {
 
   const dataDestination = [
     {
-      value: 50,
+      value: 51,
       text: "XDC",
       icon: "/images/XDC.svg",
     },
     {
-      value: 1,
+      value: 3,
       text: "Ethereum",
       icon: "/images/ethereum.svg",
     },
@@ -109,6 +114,7 @@ function BridgeCard() {
     console.log(e);
     setSelectedOption(e);
     setIcon(e?.icon);
+    
     setSelectedOptionDestination(
       e.text === "Ethereum" ? dataDestination[0] : dataDestination[1]
     );
@@ -133,49 +139,55 @@ function BridgeCard() {
   // handle onChange event of the dropdown
   const handleChangeToken = (e) => {
     setSelectedOptionToken(e);
-    if(e.chainId != selectedOption.value){
-      toast.error('Select Proper Token ', {position: toast.POSITION.TOP_RIGHT, autoClose:15000})
-      console.log(" sczndzjn",selectedOption.value);
-      console.log(" nkjsnd",e.chainId)
-  }
-  
-  if(50 === selectedOption.value  && e.chainId === selectedOption.value){
-    setTimeout(() => {
-    toast.warning('Make Sure You change The NetWork To Apothem TestNet ', {position: toast.POSITION.TOP_CENTER, autoClose:4000})
-    console.log(" sczndzjn",selectedOption.value);
-    console.log(" nkjsnd",e.chainId);
-  },3000);
-}
-
-
-if(1 === selectedOption.value  && e.chainId === selectedOption.value ){
-  setTimeout(() => {
-  toast.warning('Make Sure You change The NetWork To Ropsten TestNet ', {position: toast.POSITION.TOP_CENTER, autoClose:4000})
-  console.log(" sczndzjn",selectedOption.value);
-  console.log(" nkjsnd",e.chainId)
-},3000);
-}
-
-  };
-
-  const connectWallet = async () => {
-  let account = false;
-  window.web3.eth.getAccounts((err, accounts) => {
-    if (accounts.length === 0) {
-      setAddress("Connect Wallet");
-      // toast.info('Please Connect to XDCPAY Wallet');
-      // window.location.reload(false);
-      // alert("Please Connect to The XDCPAY")
-      account = false;
-    } else {
-      accountings = accounts;
-     console.log("account", accountings[0])
-     setAddress(accountings[0])
-     
+    if (e.chainId != selectedOption.value) {
+      toast.error("Select Proper Token ", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 15000,
+      });
+      console.log(" sczndzjn", selectedOption.value);
+      console.log(" nkjsnd", e.chainId);
     }
-  });
-  };
+      
+  
+    };
+
+
+    const connectWallet = async () => {
+      let account = false;
+      
+      window.web3.eth.getAccounts((err, accounts) => {
+        if (accounts.length === 0) {
+          setAddress("Connect Wallet");
+          // toast.info('Please Connect to XDCPAY Wallet');
+          // window.location.reload(false);
+          // alert("Please Connect to The XDCPAY")
+          account = false;
+        } else {
+          accountings = accounts;
+         console.log("account", accountings[0])
+         setAddress(accountings[0])
+
+        }
+      });
+      
+      id =  await window.web3.eth.getChainId();
+      console.log("chainid" , id);
+
+      abc = id ===selectedOption.value;      
+      setChainId(abc); 
+      console.log("abc" , chainId);  
+      if(id !== selectedOption.value)
+      toast.error("Make sure you the Source Network and XDCPay Network are same",{position: toast.POSITION.TOP_CENTER,
+        autoClose: 4000,})
+      
+      };
+
+
+
+
   useEffect(() => [selectedOptionDestination, selectedOption, icon, address]);
+
+  
   return (
     <>
       {/* <div style={{display : "none"}}><BridgeConfirm amount={amount}/> </div> */}
@@ -321,6 +333,7 @@ if(1 === selectedOption.value  && e.chainId === selectedOption.value ){
                 !selectedOptionDestination ||
                 !selectedOption ||
                 !selectedOptionToken ||
+                !chainId ||
                 !amount ||
                 !address
                   ? true
@@ -331,7 +344,7 @@ if(1 === selectedOption.value  && e.chainId === selectedOption.value ){
                 !selectedOptionDestination ||
                 !selectedOption ||
                 !selectedOptionToken ||
-                !amount ||
+                !chainId ||
                 !address
                   ? "disabled-submit-button"
                   : "submit-button"

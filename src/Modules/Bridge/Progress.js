@@ -83,7 +83,7 @@ export default function App() {
      * @param data passing the approve method wih reciever address and amount
      */
 
-    if (location.state.selectedOptionToken.chainId === 50) {
+    if (location.state.selectedOptionToken.chainId === 51) {
       toast.info("Sending the Amount.", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 1000,
@@ -134,7 +134,7 @@ export default function App() {
       }
     }
 
-    if (location.state.selectedOptionToken.chainId === 1) {
+    if (location.state.selectedOptionToken.chainId === 3) {
       toast.info("Sending the Amount.");
 
       window.web3 = new XDC3(window.xdc);
@@ -178,7 +178,7 @@ export default function App() {
           .on("transactionHash", function (hash) {
             console.log("transaction  ", hash);
             transactionHash = hash;
-            setProgress(progress + 50);
+            
             setTimeout(() => {
               toast.warning("Change The Network To XDC Apothem , Make sure while Switching the network whether the Transaction is in pending If it is pending wait for successfull transaction and Then Switch the Network");
             }, 15000);
@@ -224,6 +224,7 @@ export default function App() {
     console.log("transaction hash", transactionHash);
 
     setSecoundStatus("The");
+    console.log(await window.web3.eth.getChainId());
 
     console.log(abc);
     debridgeId = abc.debridgeId;
@@ -260,14 +261,14 @@ export default function App() {
 
     console.log("", accounts);
     console.log(" Destination", "3");
-    const isSubmissionUsed = await ebridge.methods
-      .isSubmissionUsed(submissionId)
-      .call();
-    const debridge_id = await ebridge.methods
-      .getDebridgeId(location.state.selectedOptionToken.chainId, tokenBridge)
-      .call();
+    // const isSubmissionUsed = await ebridge.methods
+    //   .isSubmissionUsed(submissionId)
+    //   .call();
+    // const debridge_id = await ebridge.methods
+    //   .getDebridgeId(location.state.selectedOptionToken.chainId, tokenBridge)
+    //   .call();
 
-    console.log("debridgeId", debridge_id);
+    // console.log("debridgeId", debridge_id);
     console.log(" Destination", location.state.selectedOptionToken.chainId);
     console.log("", location.state.selectedOptionToken.address);
     //deploying the smart contract ERC20
@@ -300,7 +301,7 @@ export default function App() {
 
     console.log("", location.state.selectedOptionToken.chainId);
 
-    if (location.state.selectedOptionToken.chainId === 50) {
+    if (location.state.selectedOptionToken.chainId === 51) {
       window.web3 = new XDC3(window.xdc);
       const xdc3 = new XDC3(window.xdc);
       await window.web3.eth.getAccounts((err, accounts) => {
@@ -443,10 +444,13 @@ export default function App() {
     toast.info(
       " Dont worry if your money is deducted, you can apply for reversal/refund here",
       { position: toast.POSITION.TOP_RIGHT, autoClose: 8000 }
+      
+        
+
     );
-    setTimeout(() => {
-      window.location.reload(1);
-    }, 10000);
+    // setTimeout(() => {
+    //   window.location.reload(1);
+    // }, 10000);
   
 
   }
