@@ -27,6 +27,7 @@ import {
 import { toast } from "react-toastify";
 
 //defining the Global variable
+
 let debridgeId,
   submissionId,
   signatures,
@@ -40,6 +41,8 @@ function BridgeCard() {
   const [address, setAddress] = useState("");
   const [amount, setAmount] = useState("");
   const [txt, setTxt] = useState("");
+  const [chainId, setChainId] = useState("");
+  let id;
   let accountings;
   toast.configure();
 
@@ -78,12 +81,12 @@ function BridgeCard() {
   };
   const data = [
     {
-      value: 1,
+      value: 3,
       text: "Ethereum",
       icon: "/images/ethereum.svg",
     },
     {
-      value: 50,
+      value: 51,
       text: "XDC",
       icon: "/images/XDC.svg",
     },
@@ -91,12 +94,12 @@ function BridgeCard() {
 
   const dataDestination = [
     {
-      value: 50,
+      value: 51,
       text: "XDC",
       icon: "/images/XDC.svg",
     },
     {
-      value: 1,
+      value: 3,
       text: "Ethereum",
       icon: "/images/ethereum.svg",
     },
@@ -181,36 +184,6 @@ function BridgeCard() {
       e.name === "Ether" ? dataDestination[1] : dataDestination[0]
     );
     setIcon(e.text === "Ether" ? "/images/XDC.svg" : "/images/ethereum.svg");
-    if (e.chainId != selectedOption.value) {
-      toast.error("Select Proper Token ", {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 15000,
-      });
-      console.log(" sczndzjn", selectedOption.value);
-      console.log(" nkjsnd", e.chainId);
-    }
-
-    if (50 === selectedOption.value && e.chainId === selectedOption.value) {
-      setTimeout(() => {
-        toast.warning("Make Sure You change The NetWork To Apothem TestNet ", {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 4000,
-        });
-        console.log(" sczndzjn", selectedOption.value);
-        console.log(" nkjsnd", e.chainId);
-      }, 3000);
-    }
-
-    if (1 === selectedOption.value && e.chainId === selectedOption.value) {
-      setTimeout(() => {
-        toast.warning("Make Sure You change The NetWork To Ropsten TestNet ", {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 4000,
-        });
-        console.log(" sczndzjn", selectedOption.value);
-        console.log(" nkjsnd", e.chainId);
-      }, 3000);
-    }
   };
 
   const connectWallet = async () => {
@@ -228,6 +201,16 @@ function BridgeCard() {
         setAddress(accountings[0]);
       }
     });
+    id = await window.web3.eth.getChainId();
+    console.log("chainid", id);
+    abc = id === selectedOption.value;
+    setChainId(abc);
+    console.log("abc", chainId);
+    if (id !== selectedOption.value)
+      toast.error(
+        "Make sure you the Source Network and XDCPay Network are same",
+        { position: toast.POSITION.TOP_CENTER, autoClose: 4000 }
+      );
   };
   useEffect(() => [selectedOptionDestination, selectedOption, icon, address]);
   return (
@@ -391,6 +374,7 @@ function BridgeCard() {
                 !selectedOption ||
                 !selectedOptionToken ||
                 !amount ||
+                !chainId ||
                 !address
                   ? true
                   : false
@@ -401,6 +385,7 @@ function BridgeCard() {
                 !selectedOption ||
                 !selectedOptionToken ||
                 !amount ||
+                !chainId ||
                 !address
                   ? "disabled-submit-button"
                   : "submit-button"
