@@ -331,7 +331,7 @@ function BridgeCard() {
               {address}
             </div>{" "}
           </Button> */}
-          <button className="bg-transparent text-blue-700 py-2 px-4 border-1 border-blue-500 rounded-full w-full mt-2 cursor-pointer" onClick={(e) => handleWalletChange(e)}>
+          <button className="bg-transparent text-blue-700 py-2 px-4 border-1 border-blue-500 rounded-full w-full mt-2 cursor-pointer btn-connect" onClick={(e) => handleWalletChange(e)}>
             {address ? "Disconnect Wallet" : "Connect Wallet"}
           </button>
           {/* <Button variant="outline-primary" className="w-100 mt-1 btn-connect" onClick={handleWalletChange} >{address ? "Disconnect Wallet" : "Connect Wallet"}</Button> */}
