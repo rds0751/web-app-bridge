@@ -101,6 +101,20 @@ function BridgeCard() {
       icon: "/images/ethereum.svg",
     },
   ];
+
+  // const [amounterr, setamounterr] = useState("");
+
+  // const checkValidation = (e) => {
+  //   const confPassword = e.target.value
+  //     .replace(/[^0-9.]/g, "")
+  //     .replace(/(\..*?)\..*/g, "$1")
+  //     .replace(/^0[^.]/, "0");
+
+  //   setamounterr(amounterr);
+
+  //   setError("Passwords Don't Match");
+  // };
+
   var regex = /^\d+(\.\d{0,2})?$/g;
   const [selectedOption, setSelectedOption] = useState(null);
   const [icon, setIcon] = useState("");
@@ -278,10 +292,11 @@ function BridgeCard() {
               step="0.01"
               className="amount-box-inner fs-12 fw-b rm-border-amount"
               onChange={(e) => {
-                if (!regex.test(e.target.value)) {
-                  e.target.value = "";
-                }
-                setAmount(e.target.value);
+                const val = e.target.value
+                  .replace(/[^0-9.]/g, "")
+                  .replace(/(\..*?)\..*/g, "$1")
+                  .replace(/^0[^.]/, "0");
+                setAmount(val);
               }}
               // Assign State
               value={amount}
