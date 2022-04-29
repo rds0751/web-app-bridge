@@ -37,7 +37,8 @@ var regexp = /^\d+(\.\d{1,2})?$/;
 //Main Function
 function BridgeCard() {
   const [buttonText, setButtonText] = useState("");
-  const [address, setAddress] = useState(false);
+  const [buttonState, setButtonState] = useState(false)
+  const [address, setAddress] = useState("");
   const [amount, setAmount] = useState("");
   const [txt, setTxt] = useState("");
   let accountings;
@@ -129,7 +130,7 @@ function BridgeCard() {
 
   const handleWalletChange = (e) => {
     e.preventDefault()
-    setAddress(!address)
+    setButtonState(!buttonState)
   }
   const [selectedOptionToken, setSelectedOptionToken] = useState(null);
   // handle onChange event of the dropdown
@@ -166,11 +167,6 @@ function BridgeCard() {
       }, 3000);
     }
   };
-
-  const handleWalletClick = (e) => {
-    e.preventDefault()
-
-  }
 
   const connectWallet = async (e) => {
     e.preventDefault()
@@ -332,7 +328,7 @@ function BridgeCard() {
             </div>{" "}
           </Button> */}
           <button className="bg-transparent text-blue-700 py-2 px-4 border-1 border-blue-500 rounded-full w-full mt-2 cursor-pointer btn-connect" onClick={(e) => handleWalletChange(e)}>
-            {address ? "Disconnect Wallet" : "Connect Wallet"}
+            {buttonState ? "Disconnect Wallet" : "Connect Wallet"}
           </button>
           {/* <Button variant="outline-primary" className="w-100 mt-1 btn-connect" onClick={handleWalletChange} >{address ? "Disconnect Wallet" : "Connect Wallet"}</Button> */}
           <Link
