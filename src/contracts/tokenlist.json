@@ -59,7 +59,7 @@
     "tokens": [
 
       {
-        "chainId": 1,
+        "chainId": 3,
        " NetworkId" : 3,
         "address": "0x0000000000000000000000000000000000000000",
         "debridgeAddress" : "0xd419c8dcf9fbc39e392896e28ae683351d9b4e001339f92de4fd3d893cc4b2c2",
@@ -76,7 +76,7 @@
       },
       
       {
-        "chainId": 50,
+        "chainId": 51,
         " NetworkId" : 51,
         "address": "0x0000000000000000000000000000000000000000",
         "debridgeAddress" : "0x0e4ff116d2faf056156d31da16ff7c3c906d57187440adbb77baf74d1b60f6a9",

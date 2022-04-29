@@ -25,6 +25,7 @@ import {
   xBridgeAddress,
 } from "../../common/constant";
 import { toast } from "react-toastify";
+import { color } from "@mui/system";
 
 //defining the Global variable
 let debridgeId,
@@ -40,7 +41,10 @@ function BridgeCard() {
   const [address, setAddress] = useState("");
   const [amount, setAmount] = useState("");
   const [txt, setTxt] = useState("");
+  const [chainId, setChainId] = useState("");
   let accountings;
+  let id;
+  let abc;
   toast.configure();
 
   const onInputChange = (e) => {
@@ -67,8 +71,7 @@ function BridgeCard() {
     option: (styles, { isDisabled }) => {
       return {
         ...styles,
-        backgroundColor: isDisabled ? "red" : "none",
-
+        backgroundColor: isDisabled ? "red" : "",
         border: isDisabled ? "1px" : "none",
         borderradius: isDisabled ? "1px" : "none",
         outline: isDisabled ? "1px" : "none",
@@ -78,12 +81,12 @@ function BridgeCard() {
   };
   const data = [
     {
-      value: 1,
+      value: 3,
       text: "Ethereum",
       icon: "/images/ethereum.svg",
     },
     {
-      value: 50,
+      value: 51,
       text: "XDC",
       icon: "/images/XDC.svg",
     },
@@ -91,16 +94,30 @@ function BridgeCard() {
 
   const dataDestination = [
     {
-      value: 50,
+      value: 51,
       text: "XDC",
       icon: "/images/XDC.svg",
     },
     {
-      value: 1,
+      value: 3,
       text: "Ethereum",
       icon: "/images/ethereum.svg",
     },
   ];
+
+  // const [amounterr, setamounterr] = useState("");
+
+  // const checkValidation = (e) => {
+  //   const confPassword = e.target.value
+  //     .replace(/[^0-9.]/g, "")
+  //     .replace(/(\..*?)\..*/g, "$1")
+  //     .replace(/^0[^.]/, "0");
+
+  //   setamounterr(amounterr);
+
+  //   setError("Passwords Don't Match");
+  // };
+
   var regex = /^\d+(\.\d{0,2})?$/g;
   const [selectedOption, setSelectedOption] = useState(null);
   const [icon, setIcon] = useState("");
@@ -109,6 +126,7 @@ function BridgeCard() {
     console.log(e);
     setSelectedOption(e);
     setIcon(e?.icon);
+
     setSelectedOptionDestination(
       e.text === "Ethereum" ? dataDestination[0] : dataDestination[1]
     );
@@ -140,32 +158,11 @@ function BridgeCard() {
       console.log(" sczndzjn", selectedOption.value);
       console.log(" nkjsnd", e.chainId);
     }
-
-    if (50 === selectedOption.value && e.chainId === selectedOption.value) {
-      setTimeout(() => {
-        toast.warning("Make Sure You change The NetWork To Apothem TestNet ", {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 4000,
-        });
-        console.log(" sczndzjn", selectedOption.value);
-        console.log(" nkjsnd", e.chainId);
-      }, 3000);
-    }
-
-    if (1 === selectedOption.value && e.chainId === selectedOption.value) {
-      setTimeout(() => {
-        toast.warning("Make Sure You change The NetWork To Ropsten TestNet ", {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 4000,
-        });
-        console.log(" sczndzjn", selectedOption.value);
-        console.log(" nkjsnd", e.chainId);
-      }, 3000);
-    }
   };
 
   const connectWallet = async () => {
     let account = false;
+
     window.web3.eth.getAccounts((err, accounts) => {
       if (accounts.length === 0) {
         setAddress("Connect Wallet");
@@ -179,8 +176,22 @@ function BridgeCard() {
         setAddress(accountings[0]);
       }
     });
+
+    id = await window.web3.eth.getChainId();
+    console.log("chainid", id);
+
+    abc = id === selectedOption.value;
+    setChainId(abc);
+    console.log("abc", chainId);
+    if (id !== selectedOption.value)
+      toast.error(
+        "Make sure you the Source Network and XDCPay Network are same",
+        { position: toast.POSITION.TOP_CENTER, autoClose: 4000 }
+      );
   };
+
   useEffect(() => [selectedOptionDestination, selectedOption, icon, address]);
+
   return (
     <>
       {/* <div style={{display : "none"}}><BridgeConfirm amount={amount}/> </div> */}
@@ -192,7 +203,7 @@ function BridgeCard() {
               <Select
                 isSearchable={false}
                 isClearable={false}
-                className="alignLeft input-box-1 fs-12 fw-b rm-border "
+                className="alignLeft input-box-1 fs-12 fw-b rm-border"
                 placeholder="Select Option"
                 value={selectedOption}
                 options={data}
@@ -201,14 +212,16 @@ function BridgeCard() {
                   handleChange(e);
                 }}
                 getOptionLabel={(e) => (
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <img
-                      style={{ width: "24px", height: "24px" }}
-                      src={e.icon}
-                    />
-                    <span style={{ marginLeft: 5, color: "black" }}>
-                      {e.text}
-                    </span>
+                  <div>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <img
+                        style={{ width: "24px", height: "24px" }}
+                        src={e.icon}
+                      />
+                      <span style={{ marginLeft: 5, color: "black" }}>
+                        {e.text}
+                      </span>
+                    </div>
                   </div>
                 )}
               />
@@ -237,7 +250,7 @@ function BridgeCard() {
                 onChange={handleChangeDestination}
                 styles={colourStyless}
                 getOptionLabel={(e) => (
-                  <div style={{ display: "flex", alignItems: "center" }}>
+                  <div>
                     <img
                       style={{ width: "24px", height: "24px" }}
                       src={e.icon}
@@ -278,10 +291,11 @@ function BridgeCard() {
               step="0.01"
               className="amount-box-inner fs-12 fw-b rm-border-amount"
               onChange={(e) => {
-                if (!regex.test(e.target.value)) {
-                  e.target.value = "";
-                }
-                setAmount(e.target.value);
+                const val = e.target.value
+                  .replace(/[^0-9.]/g, "")
+                  .replace(/(\..*?)\..*/g, "$1")
+                  .replace(/^0[^.]/, "0");
+                setAmount(val);
               }}
               // Assign State
               value={amount}
@@ -333,6 +347,7 @@ function BridgeCard() {
                 !selectedOptionDestination ||
                 !selectedOption ||
                 !selectedOptionToken ||
+                !chainId ||
                 !amount ||
                 !address
                   ? true
@@ -343,7 +358,7 @@ function BridgeCard() {
                 !selectedOptionDestination ||
                 !selectedOption ||
                 !selectedOptionToken ||
-                !amount ||
+                !chainId ||
                 !address
                   ? "disabled-submit-button"
                   : "submit-button"

@@ -51,9 +51,7 @@ export default function App() {
   const [ThirdStatus, setThirdStatus] = useState("");
   const location = useLocation();
   const [progress, setProgress] = useState(0);
-
   toast.configure();
-
   const OnSubmit = async () => {
     let account;
     //connecting to the xdc testnetwork using chain_id
@@ -79,7 +77,7 @@ export default function App() {
      * @param account[0] sender address.
      * @param data passing the approve method wih reciever address and amount
      */
-    if (location.state.selectedOptionToken.chainId === 50) {
+    if (location.state.selectedOptionToken.chainId === 51) {
       toast.info("Sending the Amount.", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 1000,
@@ -127,7 +125,7 @@ export default function App() {
         }, 8000);
       }
     }
-    if (location.state.selectedOptionToken.chainId === 1) {
+    if (location.state.selectedOptionToken.chainId === 3) {
       toast.info("Sending the Amount.");
       window.web3 = new XDC3(window.xdc);
       const xdc3 = new XDC3(window.xdc);
@@ -169,7 +167,6 @@ export default function App() {
           .on("transactionHash", function (hash) {
             console.log("transaction  ", hash);
             transactionHash = hash;
-            setProgress(progress + 50);
             setTimeout(() => {
               toast.warning(
                 "Change The Network To XDC Apothem , Make sure while Switching the network whether the Transaction is in pending If it is pending wait for successfull transaction and Then Switch the Network"
@@ -183,7 +180,6 @@ export default function App() {
         }, 5000);
       }
     }
-
     try {
       const requestOptions = {
         method: "POST",
@@ -203,7 +199,6 @@ export default function App() {
             abc = data;
             toast.info("Please Wait for Some time", { autoClose: 2000 });
           });
-
         console.log(abc.status);
         if (abc.status != 0) {
           var1 = 1;
@@ -212,11 +207,9 @@ export default function App() {
           }, 3000);
         }
       }
-
       console.log("transaction hash", transactionHash);
-
       setSecoundStatus("The");
-
+      console.log(await window.web3.eth.getChainId());
       console.log(abc);
       debridgeId = abc.debridgeId;
       submissionId = abc.submissionId;
@@ -224,18 +217,15 @@ export default function App() {
       amount = abc.amount;
       setHash(transactionHash);
       console.log(submissionId, debridgeId);
-
       /**
        * @dev To claim the tokens from the sender.
        * @param tokenAddress The address of the token.
        */
-
       /**
        * @dev switching the network to the ropsten.
        * @param chainid chain id of the ropsten testnet.
        */
       setProgress(progress + 50);
-
       const bridgeAddress = eBridgeAddress;
       /**
        * @dev instance of ebridge, has been instilized because XDCPAY and METAMASK creats only once.
@@ -249,17 +239,15 @@ export default function App() {
        */
       const deploy = new web3.eth.Contract(Deploy.abi, deployerAddress);
       //fetching the address of the sender through metamask
-
       console.log("", accounts);
       console.log(" Destination", "3");
-      const isSubmissionUsed = await ebridge.methods
-        .isSubmissionUsed(submissionId)
-        .call();
-      const debridge_id = await ebridge.methods
-        .getDebridgeId(location.state.selectedOptionToken.chainId, tokenBridge)
-        .call();
-
-      console.log("debridgeId", debridge_id);
+      // const isSubmissionUsed = await ebridge.methods
+      //   .isSubmissionUsed(submissionId)
+      //   .call();
+      // const debridge_id = await ebridge.methods
+      //   .getDebridgeId(location.state.selectedOptionToken.chainId, tokenBridge)
+      //   .call();
+      // console.log("debridgeId", debridge_id);
       console.log(" Destination", location.state.selectedOptionToken.chainId);
       console.log("", location.state.selectedOptionToken.address);
       //deploying the smart contract ERC20
@@ -275,7 +263,6 @@ export default function App() {
         location.state.address,
         "0x"
       );
-
       /**
        * @dev Performing the ERC20 claim function.
        * @param debridge_id The address of the token.
@@ -285,14 +272,11 @@ export default function App() {
        * @param submissionId Submission id contains :- nonce, id , address
        * @param signature to verify the contract
        */
-
       setHasher(transactionHashes);
       letToggle();
       console.log("", submissionId);
-
       console.log("", location.state.selectedOptionToken.chainId);
-
-      if (location.state.selectedOptionToken.chainId === 50) {
+      if (location.state.selectedOptionToken.chainId === 51) {
         window.web3 = new XDC3(window.xdc);
         const xdc3 = new XDC3(window.xdc);
         await window.web3.eth.getAccounts((err, accounts) => {
@@ -396,7 +380,6 @@ export default function App() {
           }, 8000);
         }
       }
-
       /**
        *@dev Retrning the hash.
        * @param web3 Librabry.
@@ -435,16 +418,14 @@ export default function App() {
         " Dont worry if your money is deducted, you can apply for reversal/refund here",
         { position: toast.POSITION.TOP_RIGHT, autoClose: 8000 }
       );
-      setTimeout(() => {
-        window.location.reload(1);
-      }, 10000);
+      // setTimeout(() => {
+      //   window.location.reload(1);
+      // }, 10000);
     }
   };
-
   useEffect(() => {
     OnSubmit();
   }, []);
-
   const [spinnerLoading, setSpinnerLoading] = useState(true);
   const [show_Hide_Image, setShowHideImage] = useState("none");
   const [a, setA] = useState(false);
@@ -555,6 +536,9 @@ export default function App() {
           {" "}
           <p style={{ color: "black", fontSize: "12px" }}> {hasher} </p>{" "}
         </center>
+        {/* <Button onClick={() => letToggle()} className="done-button margintp">
+            Done
+          </Button> */}
       </div>
       {/* <center> <a href={'https://explorer.apothem.network/txs/' + hash} target='_blank' style={{ color: "black", fontSize: "5px" }}> Hi{hash} </a></center>
           <center>  <a href={'https://ropsten.etherscan.io/tx/' + hasher} target='_blank' style={{ color: "black", fontSize: "5px" }}> {hasher} </a> </center> */}
