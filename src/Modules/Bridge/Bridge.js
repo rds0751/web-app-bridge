@@ -39,7 +39,7 @@ var regexp = /^\d+(\.\d{1,2})?$/;
 function BridgeCard() {
   const [buttonText, setButtonText] = useState("");
   const [buttonState, setButtonState] = useState(false)
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState("Collect Wallet");
   const [amount, setAmount] = useState("");
   const [txt, setTxt] = useState("");
   const [chainId, setChainId] = useState("");
@@ -169,6 +169,12 @@ function BridgeCard() {
     e.preventDefault()
     let account = false;
 
+    // console.log("Connect Wallet called")
+
+    if (address !== "Collect Wallet") {
+      setAddress("Collect Wallet")
+      return
+    }
     window.web3.eth.getAccounts((err, accounts) => {
       if (accounts.length === 0) {
         setAddress("Connect Wallet");
@@ -178,22 +184,22 @@ function BridgeCard() {
         account = false;
       } else {
         accountings = accounts;
-        console.log("account", accountings[0]);
-        setAddress(accountings[0]);
+        // console.log("account", accountings[0]);
+        setAddress(`Disconnect ${accountings[0]}`);
       }
     });
 
     id = await window.web3.eth.getChainId();
-    console.log("chainid", id);
+    // console.log("chainid", id);
 
-    abc = id === selectedOption.value;
-    setChainId(abc);
-    console.log("abc", chainId);
-    if (id !== selectedOption.value)
-      toast.error(
-        "Make sure you the Source Network and XDCPay Network are same",
-        { position: toast.POSITION.TOP_CENTER, autoClose: 4000 }
-      );
+    // abc = id === selectedOption.value;
+    // setChainId(abc);
+    // console.log("abc", chainId);
+    // if (id !== selectedOption.value)
+    //   toast.error(
+    //     "Make sure you the Source Network and XDCPay Network are same",
+    //     { position: toast.POSITION.TOP_CENTER, autoClose: 4000 }
+    //   );
   };
 
   useEffect(() => [selectedOptionDestination, selectedOption, icon, address]);
@@ -337,8 +343,8 @@ function BridgeCard() {
               {address}
             </div>{" "}
           </Button> */}
-          <button className="bg-transparent text-blue-700 py-2 px-4 border-1 border-blue-500 rounded-full w-full mt-2 cursor-pointer btn-connect" onClick={(e) => handleWalletChange(e)}>
-            {buttonState ? "Disconnect Wallet" : "Connect Wallet"}
+          <button className="bg-transparent text-blue-700 py-2 px-4 border-1 border-blue-500 rounded-full w-full mt-2 cursor-pointer btn-connect" onClick={(e) => connectWallet(e)}>
+            {address}
           </button>
           {/* <Button variant="outline-primary" className="w-100 mt-1 btn-connect" onClick={handleWalletChange} >{address ? "Disconnect Wallet" : "Connect Wallet"}</Button> */}
           <Link
@@ -355,21 +361,21 @@ function BridgeCard() {
             <button
               disabled={
                 !selectedOptionDestination ||
-                !selectedOption ||
-                !selectedOptionToken ||
-                !chainId ||
-                !amount ||
-                !address
+                  !selectedOption ||
+                  !selectedOptionToken ||
+                  !chainId ||
+                  !amount ||
+                  !address
                   ? true
                   : false
               }
               type="submit"
               className={
                 !selectedOptionDestination ||
-                !selectedOption ||
-                !selectedOptionToken ||
-                !chainId ||
-                !address
+                  !selectedOption ||
+                  !selectedOptionToken ||
+                  !chainId ||
+                  !address
                   ? "disabled-submit-button"
                   : "submit-button"
               }
