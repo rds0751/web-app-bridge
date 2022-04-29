@@ -25,6 +25,7 @@ import {
   xBridgeAddress,
 } from "../../common/constant";
 import { toast } from "react-toastify";
+import { color } from "@mui/system";
 
 //defining the Global variable
 let debridgeId,
@@ -70,8 +71,7 @@ function BridgeCard() {
     option: (styles, { isDisabled }) => {
       return {
         ...styles,
-        backgroundColor: isDisabled ? "red" : "none",
-
+        backgroundColor: isDisabled ? "red" : "",
         border: isDisabled ? "1px" : "none",
         borderradius: isDisabled ? "1px" : "none",
         outline: isDisabled ? "1px" : "none",
@@ -203,7 +203,7 @@ function BridgeCard() {
               <Select
                 isSearchable={false}
                 isClearable={false}
-                className="alignLeft input-box-1 fs-12 fw-b rm-border "
+                className="alignLeft input-box-1 fs-12 fw-b rm-border"
                 placeholder="Select Option"
                 value={selectedOption}
                 options={data}
@@ -212,14 +212,16 @@ function BridgeCard() {
                   handleChange(e);
                 }}
                 getOptionLabel={(e) => (
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <img
-                      style={{ width: "24px", height: "24px" }}
-                      src={e.icon}
-                    />
-                    <span style={{ marginLeft: 5, color: "black" }}>
-                      {e.text}
-                    </span>
+                  <div>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <img
+                        style={{ width: "24px", height: "24px" }}
+                        src={e.icon}
+                      />
+                      <span style={{ marginLeft: 5, color: "black" }}>
+                        {e.text}
+                      </span>
+                    </div>
                   </div>
                 )}
               />
@@ -248,7 +250,7 @@ function BridgeCard() {
                 onChange={handleChangeDestination}
                 styles={colourStyless}
                 getOptionLabel={(e) => (
-                  <div style={{ display: "flex", alignItems: "center" }}>
+                  <div>
                     <img
                       style={{ width: "24px", height: "24px" }}
                       src={e.icon}
