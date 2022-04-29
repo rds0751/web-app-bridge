@@ -253,9 +253,11 @@ export default function SideBar() {
           <div style={{ marginLeft: "14px" }}>
             {
               <p className="powered">
-                Powered by <img src="/images/XDC-Icon.svg"></img>&nbsp;XDC
+                Powered by <img src="/images/XDC-Icon.svg"></img>&nbsp;XDC v.0.01
               </p>
+              
             }
+            
           </div>
         </div>
       </Drawer>
