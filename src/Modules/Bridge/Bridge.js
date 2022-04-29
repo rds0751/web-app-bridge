@@ -65,15 +65,14 @@ function BridgeCard() {
     option: (styles, { isDisabled }) => {
       return {
         ...styles,
-        backgroundColor: isDisabled ? "red" : "none",
-
+        backgroundColor: isDisabled ? "red" : "",
         border: isDisabled ? "1px" : "none",
         borderradius: isDisabled ? "1px" : "none",
         outline: isDisabled ? "1px" : "none",
         cursor: isDisabled ? "not-allowed" : "default",
       };
     },
-  };
+  }
   const data = [
     {
       value: 1,
@@ -153,7 +152,7 @@ function BridgeCard() {
               <Select
                 isSearchable={false}
                 isClearable={false}
-                className="alignLeft input-box-1 fs-12 fw-b rm-border "
+                className="alignLeft input-box-1 fs-12 fw-b rm-border"
                 placeholder="Select Option"
                 value={selectedOption}
                 options={data}
@@ -162,14 +161,16 @@ function BridgeCard() {
                   handleChange(e);
                 }}
                 getOptionLabel={(e) => (
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <img
-                      style={{ width: "24px", height: "24px" }}
-                      src={e.icon}
-                    />
-                    <span style={{ marginLeft: 5, color: "black" }}>
-                      {e.text}
-                    </span>
+                  <div>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <img
+                        style={{ width: "24px", height: "24px" }}
+                        src={e.icon}
+                      />
+                      <span style={{ marginLeft: 5, color: "black" }}>
+                        {e.text}
+                      </span>
+                    </div>
                   </div>
                 )}
               />
@@ -179,7 +180,7 @@ function BridgeCard() {
                 style={{
                   width: "28px",
                   height: "27px",
-                  marginTop: "-44px",
+                  marginTop: "-34px",
                   marginLeft: "5px",
                   marginRight: "-2.85px",
                 }}
@@ -198,12 +199,12 @@ function BridgeCard() {
                 onChange={handleChangeDestination}
                 styles={colourStyless}
                 getOptionLabel={(e) => (
-                  <div style={{ display: "flex", alignItems: "center" }}>
+                  <div>
                     <img
                       style={{ width: "24px", height: "24px" }}
                       src={e.icon}
                     />
-                    <span style={{ marginLeft: 5, color: "black" }}>
+                    <span style={{ marginLeft: 5 }}>
                       {e.text}
                     </span>
                   </div>
@@ -284,20 +285,20 @@ function BridgeCard() {
             <button
               disabled={
                 !selectedOptionDestination ||
-                !selectedOption ||
-                !selectedOptionToken ||
-                !amount ||
-                !address
+                  !selectedOption ||
+                  !selectedOptionToken ||
+                  !amount ||
+                  !address
                   ? true
                   : false
               }
               type="submit"
               className={
                 !selectedOptionDestination ||
-                !selectedOption ||
-                !selectedOptionToken ||
-                !amount ||
-                !address
+                  !selectedOption ||
+                  !selectedOptionToken ||
+                  !amount ||
+                  !address
                   ? "disabled-submit-button"
                   : "submit-button"
               }
