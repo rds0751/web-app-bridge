@@ -166,23 +166,58 @@ export default function SideBar() {
 
           <ListItem className="list-item" button component={Link} to="/swap">
             <ListItemIcon>
-              <img src="/images/swap2.svg"></img>
+              <img
+                style={{ paddingLeft: "10px" }}
+                src={
+                  currSection === "swap"
+                    ? "/images/swap2_white.svg"
+                    : "/images/swap2_coloured.svg"
+                }
+              ></img>
             </ListItemIcon>
-            <ListItemText className="list-text">Swap</ListItemText>
+            <ListItemText
+              className={currSection === "swap" ? "selected-text" : "list-text"}
+            >
+              Swap
+            </ListItemText>
           </ListItem>
 
           <ListItem className="list-item" button component={Link} to="/pool">
             <ListItemIcon>
-              <img src="/images/earn2.svg"></img>
+              <img
+                style={{ paddingLeft: "10px" }}
+                src={
+                  currSection === "pool"
+                    ? "/images/earn2_white.svg"
+                    : "/images/earn2_coloured.svg"
+                }
+              ></img>
             </ListItemIcon>
-            <ListItemText className="list-text">Pool</ListItemText>
+            <ListItemText
+              className={currSection === "pool" ? "selected-text" : "list-text"}
+            >
+              Pool
+            </ListItemText>
           </ListItem>
 
           <ListItem className="list-item" button component={Link} to="/market">
             <ListItemIcon>
-              <img src="/images/chart.svg"></img>
+              <img
+                style={{ paddingLeft: "10px" }}
+                src={
+                  currSection === "market"
+                    ? "/images/chart_white.svg"
+                    : "/images/chart_coloured.svg"
+                }
+              ></img>
             </ListItemIcon>
-            <ListItemText className="list-text">Market</ListItemText>
+            <ListItemText
+              className={
+                currSection === "market" ? "selected-text" : "list-text"
+              }
+            >
+              Market
+            </ListItemText>
           </ListItem>
 
           <ListItem

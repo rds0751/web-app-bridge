@@ -6,6 +6,7 @@ import max from "../../assets/max.png";
 import "./FormMain.css";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { Button } from "react-bootstrap";
 import Select from "react-select";
 import xdc3 from "../../utils/xdc3";
 import Web3 from "web3";
@@ -32,13 +33,14 @@ let debridgeId,
   abc,
   transactionHash,
   transactionHashes;
-
+var regexp = /^\d+(\.\d{1,2})?$/;
 //Main Function
 function BridgeCard() {
   const [buttonText, setButtonText] = useState("");
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState(false);
   const [amount, setAmount] = useState("");
   const [txt, setTxt] = useState("");
+  let accountings;
   toast.configure();
 
   const onInputChange = (e) => {
@@ -98,7 +100,7 @@ function BridgeCard() {
       icon: "/images/ethereum.svg",
     },
   ];
-
+  var regex = /^\d+(\.\d{0,2})?$/g;
   const [selectedOption, setSelectedOption] = useState(null);
   const [icon, setIcon] = useState("");
   // handle onChange event of the dropdown
@@ -125,8 +127,11 @@ function BridgeCard() {
     setIcon(e.text === "Ethereum" ? "/images/XDC.svg" : "/images/ethereum.svg");
   };
 
+  const handleWalletChange = (e) => {
+    e.preventDefault()
+    setAddress(!address)
+  }
   const [selectedOptionToken, setSelectedOptionToken] = useState(null);
-
   // handle onChange event of the dropdown
   const handleChangeToken = (e) => {
     setSelectedOptionToken(e);
@@ -138,8 +143,55 @@ function BridgeCard() {
       console.log(" sczndzjn", selectedOption.value);
       console.log(" nkjsnd", e.chainId);
     }
+
+    if (50 === selectedOption.value && e.chainId === selectedOption.value) {
+      setTimeout(() => {
+        toast.warning("Make Sure You change The NetWork To Apothem TestNet ", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 4000,
+        });
+        console.log(" sczndzjn", selectedOption.value);
+        console.log(" nkjsnd", e.chainId);
+      }, 3000);
+    }
+
+    if (1 === selectedOption.value && e.chainId === selectedOption.value) {
+      setTimeout(() => {
+        toast.warning("Make Sure You change The NetWork To Ropsten TestNet ", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 4000,
+        });
+        console.log(" sczndzjn", selectedOption.value);
+        console.log(" nkjsnd", e.chainId);
+      }, 3000);
+    }
   };
 
+  const handleWalletClick = (e) => {
+    e.preventDefault()
+
+  }
+
+  const connectWallet = async (e) => {
+    e.preventDefault()
+    let account = false;
+
+    setAddress(!address)
+
+    window.web3.eth.getAccounts((err, accounts) => {
+      if (accounts.length === 0) {
+        setAddress("Connect Wallet");
+        // toast.info('Please Connect to XDCPAY Wallet');
+        // window.location.reload(false);
+        // alert("Please Connect to The XDCPAY")
+        account = false;
+      } else {
+        accountings = accounts;
+        console.log("account", accountings[0]);
+        setAddress(accountings[0]);
+      }
+    });
+  };
   useEffect(() => [selectedOptionDestination, selectedOption, icon, address]);
   return (
     <>
@@ -180,7 +232,7 @@ function BridgeCard() {
                 style={{
                   width: "28px",
                   height: "27px",
-                  marginTop: "-34px",
+                  marginTop: "-36px",
                   marginLeft: "5px",
                   marginRight: "-2.85px",
                 }}
@@ -236,13 +288,14 @@ function BridgeCard() {
             <input
               type="text"
               name="amount"
+              autoComplete="off"
+              step="0.01"
               className="amount-box-inner fs-12 fw-b rm-border-amount"
               onChange={(e) => {
-                const val = e.target.value
-                  .replace(/[^0-9.]/g, "")
-                  .replace(/(\..*?)\..*/g, "$1")
-                  .replace(/^0[^.]/, "0");
-                setAmount(val);
+                if (!regex.test(e.target.value)) {
+                  e.target.value = "";
+                }
+                setAmount(e.target.value);
               }}
               // Assign State
               value={amount}
@@ -262,15 +315,26 @@ function BridgeCard() {
           <div className="fs-12  c-b pt-3  left-label">
             Destination Address*
           </div>
-          <div className="destination">
-            <input
-              type="name"
-              name="amount"
-              className="input-box-1 fs-12 fw-b "
-              placeholder="Wallet Address"
-              onChange={(e) => setAddress(e.target.value)}
-            />
-          </div>
+          {/* <Button onClick={connectWallet}>
+            {" "}
+            <div
+              style={{
+                fontFamily: "Inter",
+                fontSize: " normal normal 600 18px/21px",
+                paddingTop: "5px",
+                textAlign: "left",
+                opacity: "1",
+                marginLeft: "34px",
+              }}
+            >
+              {" "}
+              {address}
+            </div>{" "}
+          </Button> */}
+          <button className="bg-transparent text-blue-700 py-2 px-4 border-1 border-blue-500 rounded-full w-full mt-2 cursor-pointer" onClick={(e) => handleWalletChange(e)}>
+            {address ? "Disconnect Wallet" : "Connect Wallet"}
+          </button>
+          {/* <Button variant="outline-primary" className="w-100 mt-1 btn-connect" onClick={handleWalletChange} >{address ? "Disconnect Wallet" : "Connect Wallet"}</Button> */}
           <Link
             to="/bridge-confirm-transaction"
             state={{
