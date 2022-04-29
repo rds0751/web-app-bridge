@@ -448,9 +448,9 @@ export default function App() {
         
 
     );
-    // setTimeout(() => {
-    //   window.location.reload(1);
-    // }, 10000);
+    setTimeout(() => {
+      window.location.reload(1);
+    }, 10000);
   
 
   }
