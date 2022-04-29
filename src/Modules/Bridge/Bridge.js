@@ -38,6 +38,7 @@ var regexp = /^\d+(\.\d{1,2})?$/;
 //Main Function
 function BridgeCard() {
   const [buttonText, setButtonText] = useState("");
+  const [buttonState, setButtonState] = useState(false)
   const [address, setAddress] = useState("");
   const [amount, setAmount] = useState("");
   const [txt, setTxt] = useState("");
@@ -146,6 +147,10 @@ function BridgeCard() {
     setIcon(e.text === "Ethereum" ? "/images/XDC.svg" : "/images/ethereum.svg");
   };
 
+  const handleWalletChange = (e) => {
+    e.preventDefault()
+    setButtonState(!buttonState)
+  }
   const [selectedOptionToken, setSelectedOptionToken] = useState(null);
   // handle onChange event of the dropdown
   const handleChangeToken = (e) => {
@@ -160,7 +165,8 @@ function BridgeCard() {
     }
   };
 
-  const connectWallet = async () => {
+  const connectWallet = async (e) => {
+    e.preventDefault()
     let account = false;
 
     window.web3.eth.getAccounts((err, accounts) => {
@@ -315,7 +321,7 @@ function BridgeCard() {
           <div className="fs-12  c-b pt-3  left-label">
             Destination Address*
           </div>
-          <Button onClick={connectWallet}>
+          {/* <Button onClick={connectWallet}>
             {" "}
             <div
               style={{
@@ -330,7 +336,11 @@ function BridgeCard() {
               {" "}
               {address}
             </div>{" "}
-          </Button>
+          </Button> */}
+          <button className="bg-transparent text-blue-700 py-2 px-4 border-1 border-blue-500 rounded-full w-full mt-2 cursor-pointer btn-connect" onClick={(e) => handleWalletChange(e)}>
+            {buttonState ? "Disconnect Wallet" : "Connect Wallet"}
+          </button>
+          {/* <Button variant="outline-primary" className="w-100 mt-1 btn-connect" onClick={handleWalletChange} >{address ? "Disconnect Wallet" : "Connect Wallet"}</Button> */}
           <Link
             to="/bridge-confirm-transaction"
             state={{
