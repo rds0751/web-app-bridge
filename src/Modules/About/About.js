@@ -154,7 +154,7 @@ export default function About() {
                 <img src="/images/Swap_1.svg" alt="swap"></img>
                 <p className="p-heading">SWAP</p>
                 <p className="p-subheading">
-                  Swap tokens supported on XDC Network
+                  Swap tokens supported on XDC Networkss
                 </p>
               </CardActionArea>
             </Card>
