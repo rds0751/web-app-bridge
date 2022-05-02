@@ -45,15 +45,9 @@ function BridgeCard() {
   let id;
   let abc
   toast.configure();
-  
 
-  function truncateString(str, num) {
-    if (str.length > 14) {
-      return str.slice(0, 5) + "..." + str.slice(37, str.length - 1);
-    } else {
-      return str;
-    }
-  }
+
+
   const onInputChange = (e) => {
     const { value } = e.target;
     console.log("Input value: ", value);
@@ -172,10 +166,10 @@ function BridgeCard() {
           // alert("Please Connect to The XDCPAY")
           account = false;
         } else {
-          
           accountings = accounts;
          console.log("account", accountings[0])
-         setAddress(truncateString(accounts.toString()));
+         setAddress(accountings[0])
+
         }
       });
       
@@ -332,12 +326,9 @@ function BridgeCard() {
           <div className="fs-12  c-b pt-3  left-label">
             Destination Address*
           </div>
-          <button className={  
-             "desitination-button"
-             
-          } onClick={(e) => connectWallet(e)}>
+          <button className="desitination-button" onClick={(e) => connectWallet(e)}>
 
-{address }
+{address}
 
 </button>
           <Link
