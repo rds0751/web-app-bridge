@@ -25,6 +25,7 @@ import {
   xBridgeAddress,
 } from "../../common/constant";
 import { toast } from "react-toastify";
+import { Balance } from "@mui/icons-material";
 
 //defining the Global variable
 
@@ -33,13 +34,15 @@ let debridgeId,
   signatures,
   abc,
   transactionHash,
+  balance,
   transactionHashes;
+
 var regexp = /^\d+(\.\d{1,2})?$/;
 //Main Function
 function BridgeCard() {
   const [buttonText, setButtonText] = useState("");
   const [buttonState, setButtonState] = useState(false);
-  const [address, setAddress] = useState("Collect Wallet");
+  const [address, setAddress] = useState("");
   const [amount, setAmount] = useState("");
   const [destinationAddress, setDestinationAddress] =
     useState("Connect Wallet");
@@ -217,8 +220,10 @@ function BridgeCard() {
         setDestinationAddress(truncateString(accounts.toString()));
       }
     });
-
+    console.log("acouts", address);
     id = await window.web3.eth.getChainId();
+    // balance = await window.web3.eth.getBalance('0x2910543af39aba0cd09dbb2d50200b3e800a63d2');
+    // console.log("balances",balance);
     console.log("chainid", id);
 
     abc = id === selectedOption.value;
@@ -339,7 +344,6 @@ function BridgeCard() {
               />
             </div>
           </div>
-
           <div>
             <div className="fs-12  c-b pt-3    left-label ">Select Token*</div>
             <Select
