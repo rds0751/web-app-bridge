@@ -41,12 +41,21 @@ function BridgeCard() {
   const [buttonState, setButtonState] = useState(false);
   const [address, setAddress] = useState("Collect Wallet");
   const [amount, setAmount] = useState("");
+  const [destinationAddress , setDestinationAddress] = useState("Connect Wallet")
   const [txt, setTxt] = useState("");
   const [chainId, setChainId] = useState("");
   let id;
   let accountings;
   toast.configure();
+  
 
+  function truncateString(str, num) {
+    if (str.length > 14) {
+      return str.slice(0, 5) + "..." + str.slice(37, str.length - 1);
+    } else {
+      return str;
+    }
+  }
   const onInputChange = (e) => {
     const { value } = e.target;
     console.log("Input value: ", value);
@@ -191,40 +200,62 @@ function BridgeCard() {
     setIcon(e.text === "Ether" ? "/images/XDC.svg" : "/images/ethereum.svg");
   };
 
+
+
+
+   
   const connectWallet = async (e) => {
-    e.preventDefault();
-    let account = false;
 
-    // console.log("Connect Wallet called")
-
-    if (address !== "Collect Wallet") {
-      setAddress("Collect Wallet");
-      return;
-    }
-    window.web3.eth.getAccounts((err, accounts) => {
-      if (accounts.length === 0) {
-        setAddress("Connect Wallet");
-        // toast.info('Please Connect to XDCPAY Wallet');
-        // window.location.reload(false);
-        // alert("Please Connect to The XDCPAY")
-        account = false;
-      } else {
-        accountings = accounts;
-        // console.log("account", accountings[0]);
-        setAddress(`Disconnect ${accountings[0]}`);
-      }
-    });
-    id = await window.web3.eth.getChainId();
-    console.log("chainid", id);
-    abc = id === selectedOption.value;
-    setChainId(abc);
-    console.log("abc", chainId);
-    if (id !== selectedOption.value)
-      toast.error("Make sure the Source Network and XDCPay Network are same", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 4000,
+    e.preventDefault()
+      let account = false;
+      
+      window.web3.eth.getAccounts((err, accounts) => {
+        if (accounts.length === 0) {
+        
+          // toast.info('Please Connect to XDCPAY Wallet');
+          // window.location.reload(false);
+          // alert("Please Connect to The XDCPAY")
+          account = false;
+        } else {
+          
+          accountings = accounts;
+         console.log("account", accountings[0])
+         setAddress (accountings[0])
+         setDestinationAddress(truncateString(accounts.toString()));
+        }
       });
-  };
+      
+      id =  await window.web3.eth.getChainId();
+      console.log("chainid" , id);
+
+      abc = id ===selectedOption.value;      
+      setChainId(abc); 
+      console.log("abc" , chainId);  
+      if(id !== selectedOption.value)
+      {
+        if(id == 3){
+          toast.error("You are currently connected to Ropsten Network. Please connect to Apothem Testnet network to complete the transaction",{position: toast.POSITION.TOP_CENTER,
+            autoClose: 4000,})
+        }
+        if(id==51) {
+          toast.error("You are currently connected to Apothem Network. Please connect to Ropsten network to complete the transaction",{position: toast.POSITION.TOP_CENTER,
+            autoClose: 4000,})
+        }
+        if(id==50 && selectedOption.value == 3 ) {
+          toast.error("You are currently connected to XINFIN Main Network Network. Please connect to Ropsten network to complete the transaction",{position: toast.POSITION.TOP_CENTER,
+            autoClose: 4000,})
+        }
+        if(id==50 && selectedOption.value == 51 ) {
+          toast.error("You are currently connected to XINFIN Network. Please connect to Apothem Testnet network to complete the transaction",{position: toast.POSITION.TOP_CENTER,
+            autoClose: 4000,})
+        }
+       
+      }
+      };
+
+
+
+
   useEffect(() => [selectedOptionDestination, selectedOption, icon, address]);
   return (
     <>
@@ -295,6 +326,7 @@ function BridgeCard() {
               />
             </div>
           </div>
+          
           <div>
             <div className="fs-12  c-b pt-3    left-label ">Select Token*</div>
             <Select
@@ -360,29 +392,14 @@ function BridgeCard() {
           <div className="fs-12  c-b pt-3  left-label">
             Destination Address*
           </div>
-          {/* <Button onClick={connectWallet}>
-            {" "}
-            <div
-              style={{
-                fontFamily: "Inter",
-                fontSize: " normal normal 600 18px/21px",
-                paddingTop: "5px",
-                textAlign: "left",
-                opacity: "1",
-                marginLeft: "34px",
-              }}
-            >
-              {" "}
-              {address}
-            </div>{" "}
-          </Button> */}
-          <button
-            className="bg-transparent text-blue-700 py-2 px-4 border-1 border-blue-500 rounded-full w-full mt-2 cursor-pointer btn-connect"
-            onClick={(e) => connectWallet(e)}
-          >
-            {address}
-          </button>
-          {/* <Button variant="outline-primary" className="w-100 mt-1 btn-connect" onClick={handleWalletChange} >{address ? "Disconnect Wallet" : "Connect Wallet"}</Button> */}
+          <button className={  
+             "desitination-button"
+             
+          } onClick={(e) => connectWallet(e)}>
+
+{destinationAddress }
+
+</button>
           <Link
             to="/bridge-confirm-transaction"
             state={{

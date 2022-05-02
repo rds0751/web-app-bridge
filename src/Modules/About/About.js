@@ -61,7 +61,7 @@ export default function About() {
       accountings = accounts;
       setButtonText(truncateString(accounts.toString()));
     }
-  });
+  }); 
   return (
     <div>
       <Box
