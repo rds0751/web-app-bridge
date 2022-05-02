@@ -235,6 +235,15 @@ function BridgeCard() {
                     </div>
                   </div>
                 )}
+                theme={(theme) => ({
+                  ...theme,
+                  borderRadius: 50,
+                  colors: {
+                    ...theme.colors,
+                    primary: '#2358E5',
+                    primary50: '#2358E5'
+                  },
+                })}
               />
             </div>
             <div style={{ padding: "76px 11px 0 0px" }}>
@@ -260,6 +269,15 @@ function BridgeCard() {
                 options={dataDestination}
                 onChange={handleChangeDestination}
                 styles={colourStyless}
+                theme={(theme) => ({
+                  ...theme,
+                  borderRadius: "50%",
+                  colors: {
+                    ...theme.colors,
+                    primary: '#2358E5',
+                    primary50: '#2358E5'
+                  },
+                })}
                 getOptionLabel={(e) => (
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <img
