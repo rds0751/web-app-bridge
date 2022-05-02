@@ -7,7 +7,7 @@
   padding-right: 2.5%;
   margin-left: 37%;
     margin-top: 1.5%;
-    margin-bottom: 98px;
+    margin-bottom: 98px !important;
     box-shadow: none !important;
 }
 .my-card-second {

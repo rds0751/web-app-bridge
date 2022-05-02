@@ -138,7 +138,10 @@ function SwapCard() {
                     <img src="/images/settings.svg" />
                   </button>
                   <Popover
-                    style={{ width: "351px !important", height: "431px !important" }}
+                    style={{
+                      width: "351px !important",
+                      height: "431px !important",
+                    }}
                     {...bindPopover(popupState)}
                     anchorOrigin={{
                       vertical: "bottom",
