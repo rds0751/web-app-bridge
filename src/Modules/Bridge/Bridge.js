@@ -34,6 +34,7 @@ let debridgeId,
   signatures,
   abc,
   transactionHash,
+  balancings,
   balance,
   transactionHashes;
 
@@ -43,13 +44,16 @@ function BridgeCard() {
   const [buttonText, setButtonText] = useState("");
   const [buttonState, setButtonState] = useState(false);
   const [address, setAddress] = useState("");
+  const [balancing, setBalancing] = useState("Connect Wallet");
   const [amount, setAmount] = useState("");
   const [destinationAddress, setDestinationAddress] =
     useState("Connect Wallet");
   const [txt, setTxt] = useState("");
   const [chainId, setChainId] = useState("");
+  const [balanceCheck, setBalanceCheck] = useState("");
   let id;
   let accountings;
+  let amountBalance;
   toast.configure();
 
   function truncateString(str, num) {
@@ -146,6 +150,7 @@ function BridgeCard() {
     setSelectedOptionDestination(
       e.text === "Ethereum" ? dataDestination[0] : dataDestination[1]
     );
+
     setText(e.text === "Ethereum" ? "/images/XDC.svg" : "/images/ethereum.svg");
     if (e.text === "Ethereum")
       setSelectedOptionToken(
@@ -217,13 +222,14 @@ function BridgeCard() {
         accountings = accounts;
         console.log("account", accountings[0]);
         setAddress(accountings[0]);
+        setBalancing(accountings[0]);
         setDestinationAddress(truncateString(accounts.toString()));
       }
     });
-    console.log("acouts", address);
+    // console.log('balance = : ', await window.web3.eth.getBalance(address));
+    console.log("acouts", balancing);
     id = await window.web3.eth.getChainId();
-    // balance = await window.web3.eth.getBalance('0x2910543af39aba0cd09dbb2d50200b3e800a63d2');
-    // console.log("balances",balance);
+
     console.log("chainid", id);
 
     abc = id === selectedOption.value;
@@ -233,31 +239,72 @@ function BridgeCard() {
       if (id == 3) {
         toast.error(
           "You are currently connected to Ropsten Network. Please connect to Apothem Testnet network to complete the transaction",
-          { position: toast.POSITION.TOP_CENTER, autoClose: 4000 }
+          {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 4000,
+          }
         );
       }
       if (id == 51) {
         toast.error(
           "You are currently connected to Apothem Network. Please connect to Ropsten network to complete the transaction",
-          { position: toast.POSITION.TOP_CENTER, autoClose: 4000 }
+          {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 4000,
+          }
         );
       }
       if (id == 50 && selectedOption.value == 3) {
         toast.error(
           "You are currently connected to XINFIN Main Network Network. Please connect to Ropsten network to complete the transaction",
-          { position: toast.POSITION.TOP_CENTER, autoClose: 4000 }
+          {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 4000,
+          }
         );
       }
       if (id == 50 && selectedOption.value == 51) {
         toast.error(
           "You are currently connected to XINFIN Network. Please connect to Apothem Testnet network to complete the transaction",
-          { position: toast.POSITION.TOP_CENTER, autoClose: 4000 }
+          {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 4000,
+          }
         );
       }
     }
+    balance = await window.web3.eth.getBalance(balancing);
+    setBalanceCheck(xdc3.utils.toWei(balance));
+    console.log("balances", balance);
   };
 
-  useEffect(() => [selectedOptionDestination, selectedOption, icon, address]);
+  const balances = async () => {
+    let account = false;
+    console.log("saduhd");
+    window.web3.eth.getAccounts((err, accounts) => {
+      if (accounts.length === 0) {
+        // toast.info('Please Connect to XDCPAY Wallet');
+        // window.location.reload(false);
+        // alert("Please Connect to The XDCPAY")
+        account = false;
+      } else {
+        amountBalance = accounts;
+        console.log("account", amountBalance[0]);
+        setBalancing(amountBalance[0]);
+      }
+    });
+    // console.log("akbdsjkb")
+  };
+
+  useEffect(
+    () => [selectedOptionDestination, selectedOption, icon, address],
+    balances()
+  );
+
+  // React.useEffect(() => {
+  //   balances();
+  // });
+
   return (
     <>
       {/* <div style={{display : "none"}}><BridgeConfirm amount={amount}/> </div> */}
@@ -344,6 +391,15 @@ function BridgeCard() {
               />
             </div>
           </div>
+          <div className="fs-12  c-b pt-3    left-label ">Source Address</div>
+          <div>
+            <button
+              className={"desitination-button"}
+              onClick={(e) => connectWallet(e)}
+            >
+              {balancing}
+            </button>
+          </div>
           <div>
             <div className="fs-12  c-b pt-3    left-label ">Select Token*</div>
             <Select
@@ -405,7 +461,7 @@ function BridgeCard() {
             </Link>
           </div>
           <span className="amounterr">{amounterr}</span>
-
+          <p>{balanceCheck} </p>
           <div className="fs-12  c-b pt-3  left-label">
             Destination Address*
           </div>
