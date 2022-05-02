@@ -4,6 +4,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
+import classnames from "classnames"
 import MuiListItem from "@material-ui/core/ListItem";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -221,12 +222,12 @@ export default function SideBar() {
           </ListItem>
 
           <ListItem
-            className="list-item"
+            className="list-item flex items-center  justify-start"
             button
             // selected={selectedIndex === 3}
             // onClick={(event) => handleListItemClick(3)}
             // onMouseOver={() => changeSourceForIcons("history")}
-            // onMouseOut={() => changeOriginalSourceForIcons("history")}
+            // onMouseOuts={() => changeOriginalSourceForIcons("history")}
             component={Link}
             to="/history"
           >
@@ -241,9 +242,11 @@ export default function SideBar() {
               ></img>
             </ListItemIcon>
             <ListItemText
-              className={
-                currSection === "history" ? "selected-text" : "list-text"
-              }
+              className={classnames(
+                { "selected-text": currSection === "history" },
+                { "list-text": currSection !== "history" },
+                "flex"
+              )}
             >
               History
             </ListItemText>
@@ -255,9 +258,8 @@ export default function SideBar() {
               <p className="powered">
                 Powered by <img src="/images/XDC-Icon.svg"></img>&nbsp;XDC v.0.01
               </p>
-              
+
             }
-            
           </div>
         </div>
       </Drawer>

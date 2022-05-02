@@ -72,6 +72,7 @@ function HistoryCard() {
     const web3 = new Web3(
       new Web3.providers.HttpProvider("https://rpc.apothem.network/")
     );
+    
 
     // Get address
     const accounts = await web3.eth.getAccounts();
@@ -126,7 +127,7 @@ function HistoryCard() {
         <p>History</p>
       </div>
       <div className="filter-Export">
-        <button className="flex items-center justify-center bg-blue-800 text-white px-3 rounded-full mr-2">
+        <button className="flex items-center justify-center filter-buttons text-white px-3 py-2 rounded-full mr-2">
           <svg
             class="filter__icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +167,18 @@ function HistoryCard() {
           </svg>
           Filter
         </button>
-        <button className="filter-button">Export</button>
+        <button className="filter-buttons flex items-center justify-center filter-buttons text-white px-3 py-2 rounded-full mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" className="mr-2">
+          <g id="export" transform="translate(-1419 -195)">
+            <rect id="Rectangle_69" data-name="Rectangle 69" width="16" height="16" transform="translate(1419 195)" fill="none" />
+            <g id="export-2" data-name="export" transform="translate(1399 182)">
+              <g id="Group_836" data-name="Group 836" transform="translate(22 15)">
+                <path id="Path_818" data-name="Path 818" d="M27.556,36.245V26.98L31.893,31.3l.5-.5-5.2-5.2L22,30.8l.5.5,4.337-4.319v9.265Z" transform="translate(-22 -23.7)" fill="#fff" stroke="#fff" stroke-width="0.6" />
+                <rect id="Rectangle_63" data-name="Rectangle 63" width="10.253" height="1.025" transform="translate(0.141)" fill="#fff" stroke="#fff" stroke-width="0.6" />
+              </g>
+            </g>
+          </g>
+        </svg>
+          Export</button>
       </div>
       <Tabs
         defaultActiveKey="Top Tokens"
