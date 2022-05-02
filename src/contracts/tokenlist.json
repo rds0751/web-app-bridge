@@ -69,7 +69,7 @@
         "decimals": 10,
         "type" : 100,
         "logoURI": "https://ropsten.etherscan.io/tx/",
-        "image" : "/images/Ethereum.svg",
+        "image" : "/images/ethereum.svg",
         "tags": [
           "currency", "xrc20"
         ]
