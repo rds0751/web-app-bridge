@@ -207,10 +207,10 @@ function BridgeCard() {
     setChainId(abc);
     console.log("abc", chainId);
     if (id !== selectedOption.value)
-      toast.error(
-        "Make sure you the Source Network and XDCPay Network are same",
-        { position: toast.POSITION.TOP_CENTER, autoClose: 4000 }
-      );
+      toast.error("Make sure the Source Network and XDCPay Network are same", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 4000,
+      });
   };
   useEffect(() => [selectedOptionDestination, selectedOption, icon, address]);
   return (
@@ -314,11 +314,14 @@ function BridgeCard() {
                 const val = e.target.value
                   .replace(/[^0-9.]/g, "")
                   .replace(/(\..*?)\..*/g, "$1")
-                  .replace(/^0[^.]/, "0");
+                  .replace(/^0[^.]/, "0")
+                  .replace(0.01, "");
                 setAmount(val);
 
                 setamounterr(
-                  e.target.value > 0.01 ? "" : "amount should greater than 0.01"
+                  e.target.value > 0.01
+                    ? ""
+                    : "The minimum amount to send via XDC bridge is 0.02"
                 );
               }}
               // Assign State
@@ -336,7 +339,7 @@ function BridgeCard() {
               />
             </Link>
           </div>
-          <span>{amounterr}</span>
+          <span className="amounterr">{amounterr}</span>
 
           <div className="fs-12  c-b pt-3  left-label">
             Destination Address*

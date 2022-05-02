@@ -679,6 +679,13 @@
   opacity: 1;
 }
 
+.amounterr{
+  padding-left: 20px;
+  font-family: serif;
+  color: red;
+  
+}
+
 .done {
   display: flex;
   justify-content: center;
