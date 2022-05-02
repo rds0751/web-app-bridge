@@ -316,6 +316,9 @@ function BridgeCard() {
                   .replace(/(\..*?)\..*/g, "$1")
                   .replace(/^0[^.]/, "0")
                   .replace(0.01, "");
+                if (regexp.test(e.target.value)) {
+                  setAmount("");
+                }
                 setAmount(val);
 
                 setamounterr(
