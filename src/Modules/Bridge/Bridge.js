@@ -37,7 +37,7 @@ let debridgeId,
 //Main Function
 function BridgeCard() {
   const [buttonText, setButtonText] = useState("");
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState("Connect Wallet");
   const [amount, setAmount] = useState("");
   const [txt, setTxt] = useState("");
   const [chainId , setChainId]  = useState("");
@@ -152,12 +152,15 @@ function BridgeCard() {
     };
 
 
-    const connectWallet = async () => {
+   
+  const connectWallet = async (e) => {
+
+    e.preventDefault()
       let account = false;
       
       window.web3.eth.getAccounts((err, accounts) => {
         if (accounts.length === 0) {
-          setAddress("Connect Wallet");
+        
           // toast.info('Please Connect to XDCPAY Wallet');
           // window.location.reload(false);
           // alert("Please Connect to The XDCPAY")
@@ -177,9 +180,25 @@ function BridgeCard() {
       setChainId(abc); 
       console.log("abc" , chainId);  
       if(id !== selectedOption.value)
-      toast.error("Make sure you the Source Network and XDCPay Network are same",{position: toast.POSITION.TOP_CENTER,
-        autoClose: 4000,})
-      
+      {
+        if(id == 3){
+          toast.error("You are currently connected to Ropsten Network. Please connect to Apothem Testnet network to complete the transaction",{position: toast.POSITION.TOP_CENTER,
+            autoClose: 4000,})
+        }
+        if(id==51) {
+          toast.error("You are currently connected to Apothem Network. Please connect to Ropsten network to complete the transaction",{position: toast.POSITION.TOP_CENTER,
+            autoClose: 4000,})
+        }
+        if(id==50 && selectedOption.value == 3 ) {
+          toast.error("You are currently connected to XINFIN Main Network Network. Please connect to Ropsten network to complete the transaction",{position: toast.POSITION.TOP_CENTER,
+            autoClose: 4000,})
+        }
+        if(id==50 && selectedOption.value == 51 ) {
+          toast.error("You are currently connected to XINFIN Network. Please connect to Apothem Testnet network to complete the transaction",{position: toast.POSITION.TOP_CENTER,
+            autoClose: 4000,})
+        }
+       
+      }
       };
 
 
@@ -195,7 +214,6 @@ function BridgeCard() {
         <form>
           <div className="parent-row">
             <div className="fl ">
-              <h1> Hi do u .....</h1>
               <div className="fs-12  c-b pt-3  left-label ">Source</div>
               <Select
                 isSearchable={false}
@@ -308,16 +326,11 @@ function BridgeCard() {
           <div className="fs-12  c-b pt-3  left-label">
             Destination Address*
           </div>
-          <Button onClick={connectWallet}>  <div
-                style={{
-                  fontFamily: "Inter",
-                  fontSize: " normal normal 600 18px/21px",
-                  paddingTop: "5px",
-                  textAlign: "left",
-                  opacity: "1",
-                  marginLeft: "34px",
-                }}
-              >    {address}</div> </Button>
+          <button className="bg-transparent text-blue-700 py-2 px-4 border-1 border-blue-500 rounded-full w-full mt-2 cursor-pointer btn-connect" onClick={(e) => connectWallet(e)}>
+
+{address}
+
+</button>
           <Link
             to="/bridge-confirm-transaction"
             state={{
