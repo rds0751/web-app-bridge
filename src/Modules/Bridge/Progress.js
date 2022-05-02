@@ -540,8 +540,28 @@ export default function App() {
             Done
           </Button> */}
       </div>
-      {/* <center> <a href={'https://explorer.apothem.network/txs/' + hash} target='_blank' style={{ color: "black", fontSize: "5px" }}> Hi{hash} </a></center>
-          <center>  <a href={'https://ropsten.etherscan.io/tx/' + hasher} target='_blank' style={{ color: "black", fontSize: "5px" }}> {hasher} </a> </center> */}
+      <center>
+        {" "}
+        <a
+          href={"https://explorer.apothem.network/txs/" + hash}
+          target="_blank"
+          style={{ color: "black", fontSize: "5px" }}
+        >
+          {" "}
+          Hi{hash}{" "}
+        </a>
+      </center>
+      <center>
+        {" "}
+        <a
+          href={"https://ropsten.etherscan.io/tx/" + hasher}
+          target="_blank"
+          style={{ color: "black", fontSize: "5px" }}
+        >
+          {" "}
+          {hasher}{" "}
+        </a>{" "}
+      </center>
     </div>
   );
 }
