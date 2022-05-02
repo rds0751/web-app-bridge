@@ -126,7 +126,7 @@ function HistoryCard() {
         <p>History</p>
       </div>
       <div className="filter-Export">
-        <button className="filter-button mr12">
+        <button className="flex items-center justify-center bg-blue-800 text-white px-3 rounded-full mr-2">
           <svg
             class="filter__icon"
             xmlns="http://www.w3.org/2000/svg"
