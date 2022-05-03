@@ -223,7 +223,9 @@ function BridgeCard() {
         console.log("account", accountings[0]);
         setAddress(accountings[0]);
         setBalancing(accountings[0]);
-        setDestinationAddress(truncateString(accounts.toString()));
+        setDestinationAddress(
+          "Disconnect  " + truncateString(accounts.toString())
+        );
       }
     });
     // console.log('balance = : ', await window.web3.eth.getBalance(address));
@@ -274,7 +276,7 @@ function BridgeCard() {
       }
     }
     balance = await window.web3.eth.getBalance(balancing);
-    setBalanceCheck(window.web3.utils.fromWei(balance));
+    setBalanceCheck("Balance:  " + window.web3.utils.fromWei(balance));
     console.log("balances", balance);
     console.log("balaknce", balanceCheck);
   };
@@ -425,8 +427,8 @@ function BridgeCard() {
                 borderRadius: 20,
                 colors: {
                   ...theme.colors,
-                  primary: "#2358E5",
-                  primary50: "#2358E5",
+                  primary: "#D8D8D8",
+                  primary50: "#D8D8D8",
                 },
               })}
             />
@@ -481,8 +483,8 @@ function BridgeCard() {
           <p
             align="left"
             style={{
-              fontSize: "11px",
-              color: "red",
+              fontSize: "17px",
+              color: "#101010",
               fontFamily: "bolder",
               marginLeft: "16px",
             }}
