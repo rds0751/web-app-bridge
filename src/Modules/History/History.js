@@ -127,9 +127,8 @@ function HistoryCard() {
         <p>History</p>
       </div>
       <div className="filter-Export">
-        <button className="flex items-center justify-center filter-buttons text-white px-3 py-2 rounded-full mr-2">
+        <button className="flex items-center justify-center history-buttons text-white px-3 py-2 rounded-full mr-2">
           <svg
-            class="filter__icon"
             xmlns="http://www.w3.org/2000/svg"
             width="16"
             height="16"
@@ -167,7 +166,7 @@ function HistoryCard() {
           </svg>
           Filter
         </button>
-        <button className="filter-buttons flex items-center justify-center filter-buttons text-white px-3 py-2 rounded-full mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" className="mr-2">
+        <button className="flex items-center justify-center history-buttons text-white px-3 py-2 rounded-full mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
           <g id="export" transform="translate(-1419 -195)">
             <rect id="Rectangle_69" data-name="Rectangle 69" width="16" height="16" transform="translate(1419 195)" fill="none" />
             <g id="export-2" data-name="export" transform="translate(1399 182)">

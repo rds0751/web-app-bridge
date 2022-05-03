@@ -273,6 +273,9 @@ export default function App() {
        * @param signature to verify the contract
        */
       setHasher(transactionHashes);
+      console.log(showBtn)
+      setShowBtn(true)
+      console.log(showBtn)
       letToggle();
       console.log("", submissionId);
       console.log("", location.state.selectedOptionToken.chainId);
