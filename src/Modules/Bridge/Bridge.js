@@ -274,13 +274,14 @@ function BridgeCard() {
       }
     }
     balance = await window.web3.eth.getBalance(balancing);
-    setBalanceCheck(xdc3.utils.toWei(balance));
+    setBalanceCheck(window.web3.utils.fromWei(balance));
     console.log("balances", balance);
+    console.log("balaknce", balanceCheck);
   };
 
   const balances = async () => {
     let account = false;
-    console.log("saduhd");
+
     window.web3.eth.getAccounts((err, accounts) => {
       if (accounts.length === 0) {
         // toast.info('Please Connect to XDCPAY Wallet');
@@ -293,8 +294,8 @@ function BridgeCard() {
         setBalancing(amountBalance[0]);
       }
     });
-    // console.log("akbdsjkb")
   };
+  // console.log("akbdsjkb")
 
   useEffect(
     () => [selectedOptionDestination, selectedOption, icon, address],
@@ -391,10 +392,10 @@ function BridgeCard() {
               />
             </div>
           </div>
-          <div className="fs-12  c-b pt-3    left-label ">Source Address</div>
+          <div className="fs-12  c-b pt-3  left-label ">Source Address</div>
           <div>
             <button
-              className={"desitination-button"}
+              className={"sourceAddressBtn"}
               onClick={(e) => connectWallet(e)}
             >
               {balancing}
@@ -408,14 +409,26 @@ function BridgeCard() {
               className="alignLeft drop-padding token-select fs-12 fw-b rm-border css-1pahdxg-control"
               placeholder="Select Option"
               value={selectedOptionToken}
+              styles={colourStyless}
               options={tokenList.tokens}
               onChange={handleChangeToken}
               getOptionLabel={(e) => (
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <img style={{ marginRight: "5px" }} src={e.image} /> {e.name}
-                  <span style={{ marginLeft: 5, color: "black" }}></span>
+                  <img style={{ marginRight: "5px" }} src={e.image} />
+                  <span style={{ marginLeft: 5, color: "black" }}>
+                    {e.name}
+                  </span>
                 </div>
               )}
+              theme={(theme) => ({
+                ...theme,
+                borderRadius: 20,
+                colors: {
+                  ...theme.colors,
+                  primary: "#2358E5",
+                  primary50: "#2358E5",
+                },
+              })}
             />
           </div>
 
@@ -457,11 +470,28 @@ function BridgeCard() {
                   height: "22px",
                 }}
                 src={max}
+                onChange={(e) => {
+                  // const val = e.target.value
+                  setAmount(balanceCheck);
+                }}
+                value={amount}
               />
             </Link>
           </div>
+          <p
+            align="left"
+            style={{
+              fontSize: "11px",
+              color: "red",
+              fontFamily: "bolder",
+              marginLeft: "16px",
+            }}
+          >
+            {" "}
+            {balanceCheck}{" "}
+          </p>
           <span className="amounterr">{amounterr}</span>
-          <p>{balanceCheck} </p>
+
           <div className="fs-12  c-b pt-3  left-label">
             Destination Address*
           </div>
