@@ -369,6 +369,7 @@ export default function App() {
               transactionHashes = hash;
               setHasher(transactionHashes);
               setProgress(progress + 100);
+              setShowBtn(true)
             });
         } catch {
           toast.info(
@@ -428,6 +429,7 @@ export default function App() {
   }, []);
   const [spinnerLoading, setSpinnerLoading] = useState(true);
   const [show_Hide_Image, setShowHideImage] = useState("none");
+  const [showBtn, setShowBtn] = useState(false)
   const [a, setA] = useState(false);
   const [progressText, setProgressText] = useState("Show Image Component");
   const letToggle = () => {
@@ -454,9 +456,8 @@ export default function App() {
           {({ accomplished, index }) => (
             <>
               <div
-                className={`indexedStep ${
-                  accomplished ? "accomplished" : null
-                }`}
+                className={`indexedStep ${accomplished ? "accomplished" : null
+                  }`}
               >
                 {index + 1}
               </div>
@@ -468,9 +469,8 @@ export default function App() {
           {({ accomplished, index }) => (
             <>
               <div
-                className={`indexedStep ${
-                  accomplished ? "accomplished" : null
-                }`}
+                className={`indexedStep ${accomplished ? "accomplished" : null
+                  }`}
               >
                 {index + 1}
               </div>
@@ -482,9 +482,8 @@ export default function App() {
           {({ accomplished, index }) => (
             <>
               <div
-                className={`indexedStep ${
-                  accomplished ? "accomplished" : null
-                }`}
+                className={`indexedStep ${accomplished ? "accomplished" : null
+                  }`}
               >
                 {index + 1}
               </div>
@@ -536,9 +535,9 @@ export default function App() {
           {" "}
           <p style={{ color: "black", fontSize: "12px" }}> {hasher} </p>{" "}
         </center>
-        {/* <Button onClick={() => letToggle()} className="done-button margintp">
-            Done
-          </Button> */}
+        {showBtn && <Button onClick={() => letToggle()} className="done-button margintp">
+          Done
+        </Button>}
       </div>
       <center>
         {" "}
