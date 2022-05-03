@@ -536,19 +536,28 @@ export default function App() {
           {" "}
           <p style={{ color: "black", fontSize: "12px" }}> {hasher} </p>{" "}
         </center>
-        {/* <Button onClick={() => letToggle()} className="done-button margintp">
+        {/*   <center>
+      <Button className={a ? "viewOnXDCText" : "viewOnXDCTextDisable"}
+          to={{
+            pathname: "/courses",
+            search: "?sort=name",
+            hash: "#the-hash",
+            state: { fromDashboard: true },
+          }}onClick={() => letToggle()} className="done-button margintp">
             Done
-          </Button> */}
+          </Button> 
+          </center>
+          */}
       </div>
       <center>
         {" "}
         <a
           href={"https://explorer.apothem.network/txs/" + hash}
           target="_blank"
-          style={{ color: "black", fontSize: "5px" }}
+          style={{ color: "black", fontSize: "12px" }}
         >
           {" "}
-          Hi{hash}{" "}
+          {hash}{" "}
         </a>
       </center>
       <center>
@@ -556,7 +565,7 @@ export default function App() {
         <a
           href={"https://ropsten.etherscan.io/tx/" + hasher}
           target="_blank"
-          style={{ color: "black", fontSize: "5px" }}
+          style={{ color: "black", fontSize: "12px" }}
         >
           {" "}
           {hasher}{" "}
