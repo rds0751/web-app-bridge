@@ -1,10 +1,9 @@
 import React from "react";
 import moment from "moment";
-
 import { Box } from "@mui/material";
 import Tabs from "react-bootstrap/Tabs";
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Tab } from "react-bootstrap";
 import Faq from "react-faq-component";
 import { makeStyles } from "@material-ui/core/styles";
@@ -42,6 +41,7 @@ function HistoryCard() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedClickHash, setSelectedClickHash] = useState(null);
   const [selectedTime, setSelectedTime] = useState("");
+  const navigate = useNavigate()
 
   // handle onChange event of the dropdown
   const handleChange = (e) => {
@@ -72,7 +72,7 @@ function HistoryCard() {
     const web3 = new Web3(
       new Web3.providers.HttpProvider("https://rpc.apothem.network/")
     );
-    
+
 
     // Get address
     const accounts = await web3.eth.getAccounts();
@@ -263,7 +263,6 @@ function HistoryCard() {
                       <img src={row.TokensToImg} />
                       &nbsp;&nbsp;{row.TokensTo}
                     </TableCell>
-
                     <TableCell onChange={handleChange}>{row.Hash}</TableCell>
                     <TableCell>{row.Time}</TableCell>
                     {/* <TableCell>{row.apr}</TableCell> */}
