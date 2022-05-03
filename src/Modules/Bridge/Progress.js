@@ -418,9 +418,9 @@ export default function App() {
         " Dont worry if your money is deducted, you can apply for reversal/refund here",
         { position: toast.POSITION.TOP_RIGHT, autoClose: 8000 }
       );
-      // setTimeout(() => {
-      //   window.location.reload(1);
-      // }, 10000);
+      setTimeout(() => {
+        window.location.reload(1);
+      }, 10000);
     }
   };
   useEffect(() => {
