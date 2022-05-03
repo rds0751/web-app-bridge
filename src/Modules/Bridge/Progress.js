@@ -39,6 +39,7 @@ let debridgeId,
   cde,
   transaction,
   accountsing;
+
 export default function App() {
   const [show, setShow] = useState(false);
   const [hash, setHash] = useState("");
@@ -216,6 +217,9 @@ export default function App() {
       signatures = abc.signature;
       amount = abc.amount;
       setHash(transactionHash);
+      console.log(showBtn);
+      setShowBtn(true);
+      console.log(showBtn);
       console.log(submissionId, debridgeId);
       /**
        * @dev To claim the tokens from the sender.
@@ -273,6 +277,7 @@ export default function App() {
        * @param signature to verify the contract
        */
       setHasher(transactionHashes);
+
       letToggle();
       console.log("", submissionId);
       console.log("", location.state.selectedOptionToken.chainId);
@@ -369,6 +374,7 @@ export default function App() {
               transactionHashes = hash;
               setHasher(transactionHashes);
               setProgress(progress + 100);
+              setShowBtn(true);
             });
         } catch {
           toast.info(
@@ -428,6 +434,7 @@ export default function App() {
   }, []);
   const [spinnerLoading, setSpinnerLoading] = useState(true);
   const [show_Hide_Image, setShowHideImage] = useState("none");
+  const [showBtn, setShowBtn] = useState(false);
   const [a, setA] = useState(false);
   const [progressText, setProgressText] = useState("Show Image Component");
   const letToggle = () => {
@@ -536,12 +543,34 @@ export default function App() {
           {" "}
           <p style={{ color: "black", fontSize: "12px" }}> {hasher} </p>{" "}
         </center>
-        {/* <Button onClick={() => letToggle()} className="done-button margintp">
+        {showBtn && (
+          <Button onClick={() => letToggle()} className="done-button margintp">
             Done
-          </Button> */}
+          </Button>
+        )}
       </div>
-      {/* <center> <a href={'https://explorer.apothem.network/txs/' + hash} target='_blank' style={{ color: "black", fontSize: "5px" }}> Hi{hash} </a></center>
-          <center>  <a href={'https://ropsten.etherscan.io/tx/' + hasher} target='_blank' style={{ color: "black", fontSize: "5px" }}> {hasher} </a> </center> */}
+      <center>
+        {" "}
+        <a
+          href={"https://explorer.apothem.network/txs/" + hash}
+          target="_blank"
+          style={{ color: "black", fontSize: "12px" }}
+        >
+          {" "}
+          {hash}{" "}
+        </a>
+      </center>
+      <center>
+        {" "}
+        <a
+          href={"https://ropsten.etherscan.io/tx/" + hasher}
+          target="_blank"
+          style={{ color: "black", fontSize: "12px" }}
+        >
+          {" "}
+          {hasher}{" "}
+        </a>{" "}
+      </center>
     </div>
   );
 }

@@ -25,6 +25,7 @@ import {
   xBridgeAddress,
 } from "../../common/constant";
 import { toast } from "react-toastify";
+import { Balance } from "@mui/icons-material";
 
 //defining the Global variable
 
@@ -33,20 +34,35 @@ let debridgeId,
   signatures,
   abc,
   transactionHash,
+  balancings,
+  balance,
   transactionHashes;
+
 var regexp = /^\d+(\.\d{1,2})?$/;
 //Main Function
 function BridgeCard() {
   const [buttonText, setButtonText] = useState("");
-  const [buttonState, setButtonState] = useState(false)
+  const [buttonState, setButtonState] = useState(false);
   const [address, setAddress] = useState("");
+  const [balancing, setBalancing] = useState("Connect Wallet");
   const [amount, setAmount] = useState("");
+  const [destinationAddress, setDestinationAddress] =
+    useState("Connect Wallet");
   const [txt, setTxt] = useState("");
   const [chainId, setChainId] = useState("");
+  const [balanceCheck, setBalanceCheck] = useState("");
   let id;
   let accountings;
+  let amountBalance;
   toast.configure();
 
+  function truncateString(str, num) {
+    if (str.length > 14) {
+      return str.slice(0, 5) + "..." + str.slice(37, str.length - 1);
+    } else {
+      return str;
+    }
+  }
   const onInputChange = (e) => {
     const { value } = e.target;
     console.log("Input value: ", value);
@@ -134,6 +150,7 @@ function BridgeCard() {
     setSelectedOptionDestination(
       e.text === "Ethereum" ? dataDestination[0] : dataDestination[1]
     );
+
     setText(e.text === "Ethereum" ? "/images/XDC.svg" : "/images/ethereum.svg");
     if (e.text === "Ethereum")
       setSelectedOptionToken(
@@ -173,9 +190,9 @@ function BridgeCard() {
   };
 
   const handleWalletChange = (e) => {
-    e.preventDefault()
-    setButtonState(!buttonState)
-  }
+    e.preventDefault();
+    setButtonState(!buttonState);
+  };
   const [selectedOptionToken, setSelectedOptionToken] = useState(null);
   // handle onChange event of the dropdown
   const handleChangeToken = (e) => {
@@ -192,11 +209,11 @@ function BridgeCard() {
   };
 
   const connectWallet = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     let account = false;
+
     window.web3.eth.getAccounts((err, accounts) => {
       if (accounts.length === 0) {
-        setAddress("Connect Wallet");
         // toast.info('Please Connect to XDCPAY Wallet');
         // window.location.reload(false);
         // alert("Please Connect to The XDCPAY")
@@ -205,20 +222,92 @@ function BridgeCard() {
         accountings = accounts;
         console.log("account", accountings[0]);
         setAddress(accountings[0]);
+        setBalancing(accountings[0]);
+        setDestinationAddress(
+          "Disconnect  " + truncateString(accounts.toString())
+        );
       }
     });
+    // console.log('balance = : ', await window.web3.eth.getBalance(address));
+    console.log("acouts", balancing);
     id = await window.web3.eth.getChainId();
+
     console.log("chainid", id);
+
     abc = id === selectedOption.value;
     setChainId(abc);
     console.log("abc", chainId);
-    if (id !== selectedOption.value)
-      toast.error(
-        "Make sure you the Source Network and XDCPay Network are same",
-        { position: toast.POSITION.TOP_CENTER, autoClose: 4000 }
-      );
+    if (id !== selectedOption.value) {
+      if (id == 3) {
+        toast.error(
+          "You are currently connected to Ropsten Network. Please connect to Apothem Testnet network to complete the transaction",
+          {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 4000,
+          }
+        );
+      }
+      if (id == 51) {
+        toast.error(
+          "You are currently connected to Apothem Network. Please connect to Ropsten network to complete the transaction",
+          {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 4000,
+          }
+        );
+      }
+      if (id == 50 && selectedOption.value == 3) {
+        toast.error(
+          "You are currently connected to XINFIN Main Network Network. Please connect to Ropsten network to complete the transaction",
+          {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 4000,
+          }
+        );
+      }
+      if (id == 50 && selectedOption.value == 51) {
+        toast.error(
+          "You are currently connected to XINFIN Network. Please connect to Apothem Testnet network to complete the transaction",
+          {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 4000,
+          }
+        );
+      }
+    }
+    balance = await window.web3.eth.getBalance(balancing);
+    setBalanceCheck("Balance:  " + window.web3.utils.fromWei(balance));
+    console.log("balances", balance);
+    console.log("balaknce", balanceCheck);
   };
-  useEffect(() => [selectedOptionDestination, selectedOption, icon, address]);
+
+  const balances = async () => {
+    let account = false;
+
+    window.web3.eth.getAccounts((err, accounts) => {
+      if (accounts.length === 0) {
+        // toast.info('Please Connect to XDCPAY Wallet');
+        // window.location.reload(false);
+        // alert("Please Connect to The XDCPAY")
+        account = false;
+      } else {
+        amountBalance = accounts;
+        console.log("account", amountBalance[0]);
+        setBalancing(amountBalance[0]);
+      }
+    });
+  };
+  // console.log("akbdsjkb")
+
+  useEffect(
+    () => [selectedOptionDestination, selectedOption, icon, address],
+    balances()
+  );
+
+  // React.useEffect(() => {
+  //   balances();
+  // });
+
   return (
     <>
       {/* <div style={{display : "none"}}><BridgeConfirm amount={amount}/> </div> */}
@@ -229,8 +318,7 @@ function BridgeCard() {
               <div className="fs-12  c-b pt-3  left-label ">Source</div>
               <Select
                 isSearchable={false}
-                isClearable={false}
-                className="alignLeft input-box-1 fs-12 fw-b rm-border "
+                className="alignLeft input-box-1 fs-12 fw-b rm-border"
                 placeholder="Select Option"
                 value={selectedOption}
                 options={data}
@@ -249,6 +337,15 @@ function BridgeCard() {
                     </span>
                   </div>
                 )}
+                theme={(theme) => ({
+                  ...theme,
+                  borderRadius: 50,
+                  colors: {
+                    ...theme.colors,
+                    primary: "#2358E5",
+                    primary50: "#2358E5",
+                  },
+                })}
               />
             </div>
             <div style={{ padding: "76px 11px 0 0px" }}>
@@ -274,6 +371,15 @@ function BridgeCard() {
                 options={dataDestination}
                 onChange={handleChangeDestination}
                 styles={colourStyless}
+                theme={(theme) => ({
+                  ...theme,
+                  borderRadius: "50%",
+                  colors: {
+                    ...theme.colors,
+                    primary: "#2358E5",
+                    primary50: "#2358E5",
+                  },
+                })}
                 getOptionLabel={(e) => (
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <img
@@ -288,6 +394,15 @@ function BridgeCard() {
               />
             </div>
           </div>
+          <div className="fs-12  c-b pt-3  left-label ">Source Address</div>
+          <div>
+            <button
+              className={"sourceAddressBtn"}
+              onClick={(e) => connectWallet(e)}
+            >
+              {balancing}
+            </button>
+          </div>
           <div>
             <div className="fs-12  c-b pt-3    left-label ">Select Token*</div>
             <Select
@@ -296,14 +411,26 @@ function BridgeCard() {
               className="alignLeft drop-padding token-select fs-12 fw-b rm-border css-1pahdxg-control"
               placeholder="Select Option"
               value={selectedOptionToken}
+              styles={colourStyless}
               options={tokenList.tokens}
               onChange={handleChangeToken}
               getOptionLabel={(e) => (
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <img style={{ marginRight: "5px" }} src={e.image} /> {e.name}
-                  <span style={{ marginLeft: 5, color: "black" }}></span>
+                  <img style={{ marginRight: "5px" }} src={e.image} />
+                  <span style={{ marginLeft: 5, color: "black" }}>
+                    {e.name}
+                  </span>
                 </div>
               )}
+              theme={(theme) => ({
+                ...theme,
+                borderRadius: 20,
+                colors: {
+                  ...theme.colors,
+                  primary: "#2358E5",
+                  primary50: "#2358E5",
+                },
+              })}
             />
           </div>
 
@@ -320,11 +447,17 @@ function BridgeCard() {
                 const val = e.target.value
                   .replace(/[^0-9.]/g, "")
                   .replace(/(\..*?)\..*/g, "$1")
-                  .replace(/^0[^.]/, "0");
+                  .replace(/^0[^.]/, "0")
+                  .replace(0.01, "");
+                if (regexp.test(e.target.value)) {
+                  setAmount("");
+                }
                 setAmount(val);
 
                 setamounterr(
-                  e.target.value > 0.01 ? "" : "amount should greater than 0.01"
+                  e.target.value > 0.01
+                    ? ""
+                    : "The minimum amount to send via XDC bridge is 0.02"
                 );
               }}
               // Assign State
@@ -339,34 +472,37 @@ function BridgeCard() {
                   height: "22px",
                 }}
                 src={max}
+                onChange={(e) => {
+                  // const val = e.target.value
+                  setAmount(balanceCheck);
+                }}
+                value={amount}
               />
             </Link>
           </div>
-          <span>{amounterr}</span>
+          <p
+            align="left"
+            style={{
+              fontSize: "17px",
+              color: "#101010",
+              fontFamily: "bolder",
+              marginLeft: "16px",
+            }}
+          >
+            {" "}
+            {balanceCheck}{" "}
+          </p>
+          <span className="amounterr">{amounterr}</span>
 
           <div className="fs-12  c-b pt-3  left-label">
             Destination Address*
           </div>
-          {/* <Button onClick={connectWallet}>
-            {" "}
-            <div
-              style={{
-                fontFamily: "Inter",
-                fontSize: " normal normal 600 18px/21px",
-                paddingTop: "5px",
-                textAlign: "left",
-                opacity: "1",
-                marginLeft: "34px",
-              }}
-            >
-              {" "}
-              {address}
-            </div>{" "}
-          </Button> */}
-          <button className="bg-transparent text-blue-700 py-2 px-4 border-1 border-blue-500 rounded-full w-full mt-2 cursor-pointer btn-connect" onClick={(e) => handleWalletChange(e)}>
-            {buttonState ? "Disconnect Wallet" : "Connect Wallet"}
+          <button
+            className={"desitination-button"}
+            onClick={(e) => connectWallet(e)}
+          >
+            {destinationAddress}
           </button>
-          {/* <Button variant="outline-primary" className="w-100 mt-1 btn-connect" onClick={handleWalletChange} >{address ? "Disconnect Wallet" : "Connect Wallet"}</Button> */}
           <Link
             to="/bridge-confirm-transaction"
             state={{

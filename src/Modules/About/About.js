@@ -61,7 +61,7 @@ export default function About() {
       accountings = accounts;
       setButtonText(truncateString(accounts.toString()));
     }
-  });
+  }); 
   return (
     <div>
       <Box
@@ -131,7 +131,7 @@ export default function About() {
               className="card-paper"
             >
               <CardActionArea component={Link} to="/bridge">
-                <img src="/images/Bridge.svg" alt="bridge"></img>
+                <img src="/images/Bridge.svg" alt="bridge" className="w-full text-center h-24 -ml-2"/>
                 <p className="p-heading">BRIDGE</p>
                 <p className="p-subheading">
                   Transfer data (e.g. digital asset ownership information)
@@ -151,7 +151,7 @@ export default function About() {
               className="card-paper"
             >
               <CardActionArea component={Link} to="/swap">
-                <img src="/images/Swap_1.svg" alt="swap"></img>
+                <img src="/images/Swap_1.svg" alt="swap" className="w-full text-center h-24 -ml-2"/>
                 <p className="p-heading">SWAP</p>
                 <p className="p-subheading">
                   Swap tokens supported on XDC Network
@@ -170,7 +170,7 @@ export default function About() {
               className="card-paper"
             >
               <CardActionArea component={Link} to="/pool">
-                <img src="/images/Pool.svg" alt="swap"></img>
+                <img src="/images/Pool.svg" alt="swap" className="w-full text-center h-24 -ml-2"/>
                 <p className="p-heading">POOL</p>
                 <p className="p-subheading">
                   Add your token pair to the pool and earn whenever there is a
@@ -190,7 +190,7 @@ export default function About() {
               className="card-paper"
             >
               <CardActionArea component={Link} to="/market">
-                <img src="/images/Market.svg" alt="swap"></img>
+                <img src="/images/Market.svg" alt="swap" className="w-full text-center h-24 -ml-2"/>
                 <p className="p-heading">Market</p>
                 <p className="p-subheading">
                   Analyse the top performing tokens and pairs

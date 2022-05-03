@@ -1,12 +1,14 @@
 .pool-box {
   margin: 70px 16% 0 27%;
 }
+
 .investment-div {
   display: flex;
   justify-content: center;
   margin-top: -12px;
 }
-.investment-div > p {
+
+.investment-div>p {
   top: 110px;
   left: 1007px;
   width: 106px;
@@ -19,29 +21,30 @@
   opacity: 1;
   margin-top: 62px;
 }
+
 .faq {
   margin-right: 0;
   margin-top: 118px;
   margin-bottom: 69px;
 }
+
 .styles_faq-row-wrapper__3vA1D .styles_faq-row__2YF3c {
   font: normal normal normal 15px/19px Inter;
 }
-.styles_faq-row-wrapper__3vA1D
-  .styles_row-body__1NvUo
-  .styles_faq-row__2YF3c
-  .styles_row-title__1YiiY
-  .styles_row-title-text__1MuhU {
+
+.styles_faq-row-wrapper__3vA1D .styles_row-body__1NvUo .styles_faq-row__2YF3c .styles_row-title__1YiiY .styles_row-title-text__1MuhU {
   text-align: left;
   font: normal normal normal 15px/19px Inter;
   letter-spacing: 0px;
 }
+
 .searchbar {
   position: absolute;
   top: 190px;
   left: 38%;
 }
-.searchbar > input {
+
+.searchbar>input {
   width: 166px;
   height: 36px;
   background: #ffffff 0% 0% no-repeat padding-box;
@@ -51,6 +54,7 @@
   opacity: 1;
   border: none;
 }
+
 .searchicon {
   width: 45px;
   height: 36px;
@@ -61,9 +65,11 @@
   opacity: 1;
   border: none;
 }
+
 .nav-tabs {
   border-bottom: none !important;
 }
+
 link.active {
   color: #495057;
   background-color: none !important;
@@ -73,18 +79,23 @@ link.active {
   /* border-bottom-color: #2149B9; */
   border-bottom: 2px solid #2149b9 !important;
 }
+
 .MuiPaper-elevation1 {
   box-shadow: none !important;
 }
+
 .MuiTableCell-root {
   border-bottom: 1px solid rgba(224, 224, 224, 1) !important;
 }
+
 .MuiPaper-elevation1 {
   box-shadow: none !important;
 }
+
 .MuiTableCell-root {
   border-bottom: 1px solid rgba(224, 224, 224, 1) !important;
 }
+
 .table-head {
   font-family: normal normal medium 16px/20px Inter !important;
   letter-spacing: 0px !important;
@@ -92,6 +103,7 @@ link.active {
   opacity: 1 !important;
   font-size: 16px !important;
 }
+
 .MuiTableCell-root {
   font-family: unset !important;
   /* font-family: ; */
@@ -99,22 +111,26 @@ link.active {
 
   /* border-bottom: 1px solid rgba(224, 224, 224, 1); */
 }
+
 .MuiTableCell-head {
   color: rgba(0, 0, 0, 0.87);
   font-weight: 500 !important;
   line-height: 1.5rem;
 }
+
 .MuiTableCell-body {
   color: #404040 !important;
   font-size: 15px !important;
 }
+
 .filter-Export {
   display: flex;
   position: relative;
   left: 74%;
   top: 35px;
 }
-.filter-button {
+
+.history-buttons {
   width: 91px;
   height: 36px;
   text-align: center;
@@ -125,8 +141,12 @@ link.active {
   font: normal normal normal 15px/19px Inter;
   letter-spacing: 0px;
   color: #ffffff;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
 }
+
 .mr12 {
   margin-right: 12px;
 }
@@ -134,6 +154,14 @@ link.active {
 .link {
   text-decoration: none;
 }
-.filter__icon {
-  margin-right: 12px;
+
+
+
+.button__icons {
+  height: 11px;
+  margin-right: 21px;
+}
+
+.filter-buttons {
+  background-color: #2358E5;
 }
