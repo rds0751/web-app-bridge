@@ -130,7 +130,7 @@ link.active {
   top: 35px;
 }
 
-.filter-button {
+.history-buttons {
   width: 91px;
   height: 36px;
   text-align: center;
@@ -141,7 +141,10 @@ link.active {
   font: normal normal normal 15px/19px Inter;
   letter-spacing: 0px;
   color: #ffffff;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
 }
 
 .mr12 {
@@ -152,8 +155,11 @@ link.active {
   text-decoration: none;
 }
 
-.filter__icon {
-  margin-right: 12px;
+
+
+.button__icons {
+  height: 11px;
+  margin-right: 21px;
 }
 
 .filter-buttons {
