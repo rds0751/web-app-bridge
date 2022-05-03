@@ -254,7 +254,7 @@ export default function SideBar() {
             {
               <p className="powered">
                 Powered by <img src="/images/XDC-Icon.svg"></img>&nbsp;XDC
-                v.0.02
+                v.0.0.3
               </p>
             }
           </div>

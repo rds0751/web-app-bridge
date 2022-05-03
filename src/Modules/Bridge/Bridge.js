@@ -222,8 +222,9 @@ function BridgeCard() {
 
 
   const connectWallet = async (e) => {
-
+    
     e.preventDefault()
+    
     let account = false;
 
     window.web3.eth.getAccounts((err, accounts) => {
@@ -280,11 +281,14 @@ function BridgeCard() {
 
     }
     balance = await window.web3.eth.getBalance(balancing);
-    setBalanceCheck(balance);
+    setBalanceCheck(window.web3.utils.fromWei(balance));
     console.log("balances",balance);
+    console.log("balaknce",balanceCheck);
+  
   };
 
   const balances = async () => {
+   
     let account = false;
     console.log("saduhd",)
     window.web3.eth.getAccounts((err, accounts) => {
@@ -297,11 +301,12 @@ function BridgeCard() {
       } else {
 
         amountBalance = accounts;
-        console.log("account", amountBalance[0])
+        console.log("account", amountBalance[0])  
         setBalancing(amountBalance[0])
       }
     });
     // console.log("akbdsjkb")
+  
 
   
 
@@ -383,11 +388,13 @@ function BridgeCard() {
               />
             </div>
           </div>
-          <div className="fs-12  c-b pt-3    left-label ">Source Address</div>
+          <div className="fs-12  c-b pt-3    left-label ">Sender Address</div>
           <div>
           <button className={
             "desitination-button"
 
+
+            
           } onClick={(e) => connectWallet(e)}>
 
             {balancing}
@@ -443,18 +450,25 @@ function BridgeCard() {
               placeholder="0"
             />
            
-            <Link to="#">
+            <Link  to="#">
               <img
                 style={{
                   width: "43px",
                   height: "22px",
-                }}
+                }}  
                 src={max}
+
+                onChange={(e) => {
+                  setAmount(balanceCheck)}}
+                  value={amount}
               />
+
             </Link>
+          
           </div>
+          <p align = "left" style={{fontSize : "11px" , color : "red" , fontFamily : "bolder" , marginLeft : "16px"}}> {balanceCheck} </p>
           <span className="amounterr">{amounterr}</span>
-          <p>{balanceCheck} </p>
+      
           <div className="fs-12  c-b pt-3  left-label">
             Destination Address*
           </div>
