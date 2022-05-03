@@ -74,7 +74,7 @@ function BridgeCard() {
       setTxt(value);
     }
   };
-
+ 
   const colourStyles = {
     placeholder: (defaultStyles) => {
       return {
@@ -290,7 +290,7 @@ function BridgeCard() {
   const balances = async () => {
    
     let account = false;
-    console.log("saduhd",)
+  
     window.web3.eth.getAccounts((err, accounts) => {
       if (accounts.length === 0) {
 
@@ -459,6 +459,7 @@ function BridgeCard() {
                 src={max}
 
                 onChange={(e) => {
+                  // const val = e.target.value
                   setAmount(balanceCheck)}}
                   value={amount}
               />
