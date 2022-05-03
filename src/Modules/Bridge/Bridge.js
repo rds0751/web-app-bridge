@@ -427,8 +427,8 @@ function BridgeCard() {
                 borderRadius: 20,
                 colors: {
                   ...theme.colors,
-                  primary: "#D8D8D8",
-                  primary50: "#D8D8D8",
+                  primary: "#2358E5",
+                  primary50: "#2358E5",
                 },
               })}
             />
