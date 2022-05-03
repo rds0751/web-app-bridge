@@ -39,6 +39,7 @@ let debridgeId,
   cde,
   transaction,
   accountsing;
+
 export default function App() {
   const [show, setShow] = useState(false);
   const [hash, setHash] = useState("");
@@ -216,6 +217,9 @@ export default function App() {
       signatures = abc.signature;
       amount = abc.amount;
       setHash(transactionHash);
+      console.log(showBtn)
+      setShowBtn(true)
+      console.log(showBtn)
       console.log(submissionId, debridgeId);
       /**
        * @dev To claim the tokens from the sender.
@@ -273,9 +277,7 @@ export default function App() {
        * @param signature to verify the contract
        */
       setHasher(transactionHashes);
-      console.log(showBtn)
-      setShowBtn(true)
-      console.log(showBtn)
+      
       letToggle();
       console.log("", submissionId);
       console.log("", location.state.selectedOptionToken.chainId);
