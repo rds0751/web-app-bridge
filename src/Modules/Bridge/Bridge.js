@@ -329,12 +329,8 @@ function BridgeCard() {
               <div className="fs-12  c-b pt-3  left-label ">Source</div>
               <Select
                 isSearchable={false}
-<<<<<<< HEAD
-                className="alignLeft input-box-1 fs-12 fw-b rm-border"
-=======
                 isClearable={false}
                 className="alignLeft input-box-1 fs-12 fw-b rm-border "
->>>>>>> 2fb2cedbf12246b34692d593f9fbfa2e3cc93b1d
                 placeholder="Select Option"
                 value={selectedOption}
                 options={data}
@@ -343,18 +339,6 @@ function BridgeCard() {
                   handleChange(e);
                 }}
                 getOptionLabel={(e) => (
-<<<<<<< HEAD
-                  <div>
-                    <div style={{ display: "flex", alignItems: "center" }} className="focus:bg-none">
-                      <img
-                        style={{ width: "24px", height: "24px" }}
-                        src={e.icon}
-                      />
-                      <span style={{ marginLeft: 5, color: "black" }}>
-                        {e.text}
-                      </span>
-                    </div>
-=======
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <img
                       style={{ width: "24px", height: "24px" }}
@@ -363,7 +347,6 @@ function BridgeCard() {
                     <span style={{ marginLeft: 5, color: "black" }}>
                       {e.text}
                     </span>
->>>>>>> 2fb2cedbf12246b34692d593f9fbfa2e3cc93b1d
                   </div>
                 )}
                 theme={(theme) => ({
@@ -508,46 +491,12 @@ function BridgeCard() {
           <div className="fs-12  c-b pt-3  left-label">
             Destination Address*
           </div>
-<<<<<<< HEAD
-          {/* <Button onClick={connectWallet}>
-            {" "}
-            <div
-              style={{
-                fontFamily: "Inter",
-                fontSize: " normal normal 600 18px/21px",
-                paddingTop: "5px",
-                textAlign: "left",
-                opacity: "1",
-                marginLeft: "34px",
-              }}
-            >
-              {" "}
-              {address}
-            </div>{" "}
-          </Button> */}
-          <button className="bg-transparent text-blue-700 py-2 px-4 border-1 border-blue-500 rounded-full w-full mt-2 cursor-pointer btn-connect" onClick={(e) => connectWallet(e)}>
-            {address === "Collect Wallet" ? address : (<div className="flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="mr-2">
-                <g id="Disconnect" transform="translate(12559 -523)">
-                  <rect id="Rectangle_103" data-name="Rectangle 103" width="24" height="24" transform="translate(-12559 523)" fill="none" />
-                  <g id="noun-disconnect-3367979" transform="translate(-12555 524)">
-                    <path id="Path_857" data-name="Path 857" d="M228.542,232.307a4.7,4.7,0,0,1-6.746-5.828l2.426-5.887a.522.522,0,1,0-.965-.4l-2.43,5.887a5.742,5.742,0,0,0,8.247,7.123.522.522,0,1,0-.532-.9Z" transform="translate(-220.393 -212.871)" fill="#2358e5" stroke="#2358e5" stroke-width="1" />
-                    <path id="Path_858" data-name="Path 858" d="M335.016,103.207a5.685,5.685,0,0,0-5.115.37.522.522,0,1,0,.533.9,4.7,4.7,0,0,1,6.743,5.829l-2.388,5.795a.522.522,0,0,0,.283.681.508.508,0,0,0,.2.04.522.522,0,0,0,.482-.323l2.388-5.795h0a5.747,5.747,0,0,0-3.123-7.493Z" transform="translate(-323.109 -102.768)" fill="#2358e5" stroke="#2358e5" stroke-width="1" />
-                    <path id="Path_859" data-name="Path 859" d="M275.661,111.618a.522.522,0,1,0-.964.4L282.64,131.1a.522.522,0,0,0,.482.322.536.536,0,0,0,.2-.042.522.522,0,0,0,.282-.683Z" transform="translate(-271.419 -110.787)" fill="#2358e5" stroke="#2358e5" stroke-width="1" />
-                  </g>
-                </g>
-              </svg>
-              {address}
-            </div>)}
-
-=======
           <button className={
             "desitination-button"
 
           } onClick={(e) => connectWallet(e)}>
 
             {destinationAddress}
->>>>>>> 2fb2cedbf12246b34692d593f9fbfa2e3cc93b1d
 
           </button>
           <Link
