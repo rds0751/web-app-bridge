@@ -110,10 +110,7 @@ function PoolCard() {
   const classes = useStyles();
   return (
     <Box className="pool-box">
-      <div className="investment-div">
-        <p>Investment Pool</p>
-      </div>
-
+        <p className="header-market">Investment Pool</p>
       <Tabs
         defaultActiveKey="Top Tokens"
         id="uncontrolled-tab-example"

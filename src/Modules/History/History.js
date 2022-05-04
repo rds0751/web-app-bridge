@@ -123,9 +123,7 @@ function HistoryCard() {
 
   return (
     <Box className="pool-box">
-      <div className="investment-div">
-        <p>History</p>
-      </div>
+        <p className="header-market">History</p>
       <div className="filter-Export">
         <button className="flex items-center justify-center history-buttons text-white px-3 py-2 rounded-full mr-2">
           <svg
