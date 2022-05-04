@@ -11,8 +11,7 @@ function Card() {
       <Header />
       <SideBar />
       <div className="main-head">
-        {" "}
-        <p style={{ marginTop: "-32px" }}>Bridge</p>
+        <p style={{marginTop: "-80px", marginRight: "50px"}}>Bridge</p>
       </div>
       <div className="my-card">
         <BridgeCard />

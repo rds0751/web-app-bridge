@@ -9,7 +9,7 @@ import "react-step-progress-bar/styles.css";
 import xdc3 from "../../utils/xdc3";
 import Web3 from "web3";
 import token from "../../utils/xtoken";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import xbridge from "../../utils/xbridge";
 import tokenList from "../../contracts/tokenlist.json";
 import Bridge from "../../contracts/Gate.json";
@@ -53,6 +53,7 @@ export default function App() {
   const location = useLocation();
   const [progress, setProgress] = useState(0);
   toast.configure();
+  const navigate = useNavigate()
   const OnSubmit = async () => {
     let account;
     //connecting to the xdc testnetwork using chain_id
@@ -437,7 +438,11 @@ export default function App() {
   const [showBtn, setShowBtn] = useState(false);
   const [a, setA] = useState(false);
   const [progressText, setProgressText] = useState("Show Image Component");
+  const handleDoneClick = () => {
+    navigate("/bridge")
+  }
   const letToggle = () => {
+
     if (show_Hide_Image === "flex") {
       setA(true);
       setSpinnerLoading(true);
@@ -448,6 +453,7 @@ export default function App() {
       setShowHideImage(true);
       setProgressText("Transafering the Amount");
     }
+    // navigate("/about")
   };
   return (
     <div className="App">
@@ -543,11 +549,12 @@ export default function App() {
           {" "}
           <p style={{ color: "black", fontSize: "12px" }}> {hasher} </p>{" "}
         </center>
-        {showBtn && (
-          <Button onClick={() => letToggle()} className="done-button margintp">
-            Done
-          </Button>
-        )}
+        {showBtn && <Button onClick={() => {
+          letToggle()
+          handleDoneClick()
+        }} className="done-button margintp">
+          Done
+        </Button>}
       </div>
       <center>
         {" "}
