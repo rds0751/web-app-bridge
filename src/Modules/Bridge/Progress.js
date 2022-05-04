@@ -218,9 +218,9 @@ export default function App() {
       signatures = abc.signature;
       amount = abc.amount;
       setHash(transactionHash);
-      console.log(showBtn)
-      setShowBtn(true)
-      console.log(showBtn)
+      console.log(showBtn);
+      setShowBtn(true);
+      console.log(showBtn);
       console.log(submissionId, debridgeId);
       /**
        * @dev To claim the tokens from the sender.
@@ -375,7 +375,7 @@ export default function App() {
               transactionHashes = hash;
               setHasher(transactionHashes);
               setProgress(progress + 100);
-              setShowBtn(true)
+              setShowBtn(true);
             });
         } catch {
           toast.info(
@@ -435,7 +435,7 @@ export default function App() {
   }, []);
   const [spinnerLoading, setSpinnerLoading] = useState(true);
   const [show_Hide_Image, setShowHideImage] = useState("none");
-  const [showBtn, setShowBtn] = useState(false)
+  const [showBtn, setShowBtn] = useState(false);
   const [a, setA] = useState(false);
   const [progressText, setProgressText] = useState("Show Image Component");
   const handleDoneClick = () => {
@@ -467,8 +467,9 @@ export default function App() {
           {({ accomplished, index }) => (
             <>
               <div
-                className={`indexedStep ${accomplished ? "accomplished" : null
-                  }`}
+                className={`indexedStep ${
+                  accomplished ? "accomplished" : null
+                }`}
               >
                 {index + 1}
               </div>
@@ -480,8 +481,9 @@ export default function App() {
           {({ accomplished, index }) => (
             <>
               <div
-                className={`indexedStep ${accomplished ? "accomplished" : null
-                  }`}
+                className={`indexedStep ${
+                  accomplished ? "accomplished" : null
+                }`}
               >
                 {index + 1}
               </div>
@@ -493,8 +495,9 @@ export default function App() {
           {({ accomplished, index }) => (
             <>
               <div
-                className={`indexedStep ${accomplished ? "accomplished" : null
-                  }`}
+                className={`indexedStep ${
+                  accomplished ? "accomplished" : null
+                }`}
               >
                 {index + 1}
               </div>
@@ -558,10 +561,10 @@ export default function App() {
         <a
           href={"https://explorer.apothem.network/txs/" + hash}
           target="_blank"
-          style={{ color: "black", fontSize: "5px" }}
+          style={{ color: "black", fontSize: "12px" }}
         >
           {" "}
-          Hi{hash}{" "}
+          {hash}{" "}
         </a>
       </center>
       <center>
@@ -569,7 +572,7 @@ export default function App() {
         <a
           href={"https://ropsten.etherscan.io/tx/" + hasher}
           target="_blank"
-          style={{ color: "black", fontSize: "5px" }}
+          style={{ color: "black", fontSize: "12px" }}
         >
           {" "}
           {hasher}{" "}
